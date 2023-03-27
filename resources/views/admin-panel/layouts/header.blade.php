@@ -21,6 +21,25 @@
         </div>
     </form>
 
+
+    @if( Auth::user()->isAdmin() === false)
+    <div class="d-flex align-items-center justify-content-between">
+        <div>
+            <strong>
+                {{ __(' You Current plan is  ') }}
+            </strong>
+        </div>
+        <div class="mr-3">
+            <a class="btn btn-link p-2" href="#" style="color:green;">
+                Growth
+            </a>
+        </div>
+
+        <div>
+            <a class="btn btn-primary" href="#" style="background-color: #5083C1;">{{ __('Upgrade to Enterprice') }}</a>
+        </div>
+    </div>
+    @endif
     <!-- Top buttons -->
     <div class="d-flex align-items-center ms-auto me-n1 me-lg-n2">
 
@@ -643,7 +662,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <button class="dropdown-item" >Sign out</button>
+                    <button class="dropdown-item">Sign out</button>
                 </form>
             </div>
         </div>
