@@ -16,11 +16,21 @@ class AdminRoleSeeder extends Seeder
      */
     public function run()
     {
-        $admin = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('admin'),
-            'role' => 'admin'
-        ]);
+        $admin = User::insert(
+            [
+                [
+                    'name' => 'Admin',
+                    'email' => 'admin@admin.com',
+                    'password' => bcrypt('admin'),
+                    'role' => 'admin'
+                ],
+                [
+                    'name' => 'User',
+                    'email' => 'user@admin.com',
+                    'password' => bcrypt('user'),
+                    'role' => 'user'
+                ]
+            ]
+        );
     }
 }
