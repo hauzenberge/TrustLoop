@@ -18,7 +18,8 @@ class ProfileController extends Controller
     {
         return view('admin-panel.user.profile.edit', [
             'user' => $request->user(),
-            'title' => $request->user()->name . " Profile"
+            'title' => $request->user()->name . " Profile",
+            'active' => null
         ]);
     }
 

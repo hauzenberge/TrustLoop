@@ -1,5 +1,5 @@
 
-@extends('layouts2.auth')
+@extends('admin-panel.layouts.auth')
 
 @section('content')
 <x-guest-layout>

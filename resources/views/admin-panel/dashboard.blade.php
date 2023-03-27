@@ -380,7 +380,6 @@
 
 <div class="row">
     <div class="col">
-
         <!-- Card -->
         <div class="card border-0 flex-fill w-100" data-list='{"valueNames": ["name", "email", "id", {"name": "date", "attr": "data-signed"}, "status"], "page": 8}' id="users">
             <div class="card-header border-0 card-header-space-between">

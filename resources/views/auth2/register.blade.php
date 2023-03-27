@@ -1,4 +1,4 @@
-@extends('layouts2.auth')
+@extends('admin-panel.layouts.auth')
 
 @section('content')
 <div class="row align-items-center justify-content-center vh-100">
