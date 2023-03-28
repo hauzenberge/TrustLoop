@@ -19,12 +19,12 @@
     <div class="container-fluid">
 
         <!-- Brand -->
-        <a class="navbar-brand" href="./index.html">
-            <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-05.png') }}" class="navbar-brand-img logo-light logo-small" alt="..." width="19" height="25">
-            <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-03.png') }}" class="navbar-brand-img logo-light logo-large" alt="..." width="125" height="25">
+        <a class="navbar-brand" href="{{ url('/') }}">
+            <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-05.png') }}" class="navbar-brand-img logo-light logo-small" alt="..." width="19" height="auto">
+            <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-03.png') }}" class="navbar-brand-img logo-light logo-large" alt="..." width="125" height="auto">
 
-            <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-05.png') }}" class="navbar-brand-img logo-dark logo-small" alt="..." width="19" height="25">
-            <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-04.png') }}" class="navbar-brand-img logo-dark logo-large" alt="..." width="125" height="25">
+            <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-05.png') }}" class="navbar-brand-img logo-dark logo-small" alt="..." width="19" height="auto"">
+            <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-04.png') }}" class="navbar-brand-img logo-dark logo-large" alt="..." width="125" height="auto">
         </a>
 
         <!-- Navbar toggler -->

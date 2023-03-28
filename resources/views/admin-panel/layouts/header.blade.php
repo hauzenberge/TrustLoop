@@ -1,7 +1,6 @@
 <header class="container-fluid d-flex py-6 mb-4">
-
     <!-- Search -->
-    <form class="d-none d-md-inline-block me-auto">
+    <form class="d-none d-md-inline-block mb-auto">
         <div class="input-group input-group-merge">
 
             <!-- Input -->
@@ -19,10 +18,11 @@
                 </button>
             </span>
         </div>
+
     </form>
 
-
     @if( Auth::user()->isAdmin() === false)
+
     <div class="d-flex align-items-center justify-content-between">
         <div>
             <strong>
@@ -30,16 +30,17 @@
             </strong>
         </div>
         <div class="mr-3">
-            <a class="btn btn-link p-2" href="#" style="color:green;">
-                Growth
+            <a class="btn btn-link p-2" href="#" style="color:#50C18B;">
+                FREE TRIAL
             </a>
         </div>
 
         <div>
-            <a class="btn btn-primary" href="#" style="background-color: #5083C1;">{{ __('Upgrade to Enterprice') }}</a>
+            <a class="btn btn-primary" href="#" style="background-color: #5083C1; border-radius: 7.60234px;">{{ __('Upgrade to premium') }}</a>
         </div>
     </div>
     @endif
+
     <!-- Top buttons -->
     <div class="d-flex align-items-center ms-auto me-n1 me-lg-n2">
 
@@ -627,8 +628,7 @@
                 </div> <!-- / .row -->
             </div>
         </div>
-        <!-- Separator -->
-        <div class="vr bg-gray-700 mx-2 mx-lg-3"></div>
+
 
         <!-- Dropdown -->
         <div class="dropdown">
@@ -637,6 +637,7 @@
                     <img src="{{ asset('/assets_project/assets/images/profiles/profile-06.jpeg') }}" alt="..." class="avatar-img" width="40" height="40">
                 </div>
             </a>
+
 
             <div class="dropdown-menu">
                 <div class="dropdown-item-text">
