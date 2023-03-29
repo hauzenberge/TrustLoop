@@ -9,7 +9,7 @@
 
                 <!-- Title -->
                 <h2 class="card-header-title h4 text-uppercase">
-                    {{ __('Reviews') }}
+                    {{ __('List') }}
                 </h2>
 
                 <div class="ms-4">
