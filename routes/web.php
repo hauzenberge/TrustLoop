@@ -33,8 +33,15 @@ Route::get('/users', function () {
         'title' => 'Users',
         'active' => 'users'
     ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('users');
 
+Route::get('/settigns', function () {
+    //return view('dashboard');
+    return view('admin-panel.settigns.index', [
+        'title' => 'Settigns',
+        'active' => 'settigns'
+    ]);
+})->middleware(['auth', 'verified'])->name('users');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
