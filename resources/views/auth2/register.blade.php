@@ -1,7 +1,7 @@
 @extends('admin-panel.layouts.auth')
 
 @section('content')
-<div class="row align-items-center justify-content-center vh-100">
+<div class="row align-items-center justify-content-center">
     <div class="col-11 col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3 py-6">
 
         <!-- Title -->
@@ -64,7 +64,7 @@
                             <button type="button" class="input-group-text px-4 text-secondary link-primary" data-toggle-password></button>
                                               
                         </div>
-                        <x-input-error :messages="$errors->get('password')" class="mb-4" style="color:brown; />
+                        <x-input-error :messages="$errors->get('password')" class="mb-4" style="color:brown;" />
                     </div>
                 </div>
 

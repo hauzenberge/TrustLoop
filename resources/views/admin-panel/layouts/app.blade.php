@@ -148,6 +148,7 @@
         }
     </script>
     @include('admin-panel.layouts.navigation')
+    
     <!-- MAIN CONTENT -->
     <main>
 

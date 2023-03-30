@@ -145,10 +145,23 @@
             }
         }
     </script>
+
     <!-- MAIN CONTENT -->
-    <main class="container">
+    <main class="container-fluid">
+        <!-- NAVIGATION -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: relative; background-color: rgba(var(--bs-light-green-rgb),var(--bs-bg-opacity))!important;">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-05.png') }}" class="navbar-brand-img logo-light logo-small" alt="..." width="19" height="auto">
+                <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-03.png') }}" class="navbar-brand-img logo-light logo-large" alt="..." width="125" height="auto">
+
+                <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-05.png') }}" class="navbar-brand-img logo-dark logo-small" alt="..." width="19" height="auto"">
+            <img src=" {{ asset('/assets_project/assets/images/final_logos/FInal-04.png') }}" class="navbar-brand-img logo-dark logo-large" alt="..." width="125" height="auto">
+            </a>
+            </div>
+        </nav>
+
         @yield('content')
-    </main> 
+    </main>
     <!-- / main -->
 
     <!-- JAVASCRIPT-->
