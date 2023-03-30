@@ -18,29 +18,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/dashboard', function () {
-    //return view('dashboard');
-    return view('admin-panel.dashboard', [
-        'title' => 'Dashboard',
-        'active' => 'dashboard'
-    ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/users', function () {
-    return view('admin-panel.users.index', [
-        'title' => 'Users',
-        'active' => 'users'
-    ]);
-})->middleware(['auth', 'verified'])->name('users');
-
 Route::group(['namespace' => 'App\Http\Controllers\AdminPanel'], function () {
-    Route::get('/payments', 'PaymentsContoller@index');
-});
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/', 'DashboardController@index')->name('dashboard');
+    });
 
-Route::get('/settigns', function () {
-    return redirect('profile');
-})->middleware(['auth', 'verified'])->name('users');
+    Route::prefix('users')->group(function () {
+        Route::get('/', 'UsersController@index')->name('users');
+    });
+
+
+    Route::prefix('payments')->group(function () {
+        Route::get('/', 'PaymentsContoller@index')->name('payments');
+    });
+
+    Route::get('/settigns', function () {
+        return redirect('profile');
+    })->name('settigns');
+    
+})->middleware(['auth', 'verified']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
