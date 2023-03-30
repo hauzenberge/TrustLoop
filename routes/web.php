@@ -28,19 +28,18 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/users', function () {
-    //return view('dashboard');
     return view('admin-panel.users.index', [
         'title' => 'Users',
         'active' => 'users'
     ]);
 })->middleware(['auth', 'verified'])->name('users');
 
+Route::group(['namespace' => 'App\Http\Controllers\AdminPanel'], function () {
+    Route::get('/payments', 'PaymentsContoller@index');
+});
+
 Route::get('/settigns', function () {
-    //return view('dashboard');
-    return view('admin-panel.settigns.index', [
-        'title' => 'Settigns',
-        'active' => 'settigns'
-    ]);
+    return redirect('profile');
 })->middleware(['auth', 'verified'])->name('users');
 
 Route::middleware('auth')->group(function () {
