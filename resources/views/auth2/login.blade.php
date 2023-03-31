@@ -1,9 +1,18 @@
 @extends('admin-panel.layouts.auth')
 
 @section('content')
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center align-items-center">
 
-    <div class="col-11 col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3 py-6">
+    <div style="display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px 0px;
+    gap: 2px;
+    position: absolute;
+    width: 360px;
+    height: 380px;
+    left: 635px;
+    top: 250px;">
 
         <!-- Title -->
         <h1 class="mb-2 text-center">
@@ -32,7 +41,9 @@
 
                         <!-- Input -->
 
-                        <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                        <input id="email" class="form-control" type="email" name="email" required autocomplete="username"  data-toggle-password-input placeholder="Your email"style="
+    background-color: white;
+">
                         <x-input-error :messages="$errors->get('email')" class="mt-2" style="color:brown; " />
                     </div>
                 </div>
@@ -60,8 +71,8 @@
 
                         <!-- Input -->
                         <div class="input-group input-group-merge">
+                            <input id="password" class="form-control" type="password" name="password" required data-toggle-password-input placeholder="Your password">
 
-                            <x-text-input id="password" class="form-control" type="password" name="password" required autocomplete="current-password" />
 
                             <x-input-error :messages="$errors->get('password')" class="mt-2" style="color:brown; " />
 

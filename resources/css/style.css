@@ -1,0 +1,17 @@
+#login-content{
+    position: relative;
+    background-color: rgba(var(--bs-light-green-rgb),var(--bs-bg-opacity))!important;
+}
+
+#login-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px 0px;
+    gap: 24px;
+    position: absolute;
+    width: 360px;
+    height: 380px;
+    left: 615px;
+    top: 250px;
+}

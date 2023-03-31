@@ -9,6 +9,8 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{asset('assets_project/assets/css/theme.bundle.css')}}" id="stylesheetLTR">
     <link rel="stylesheet" href="{{asset('assets_project/assets/css/theme.rtl.bundle.css')}}" id="stylesheetRTL">
+    
+    <link rel="stylesheet" href="{{ asset('/custom assets/style.css') }}" id="stylesheetRTL">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap">
@@ -125,7 +127,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 
-<body class="d-flex align-items-center bg-light-green">
+<body style="background-color: white;">
 
     <!-- THEME CONFIGURATION -->
     <script>
@@ -149,7 +151,7 @@
     <!-- MAIN CONTENT -->
     <main class="container-fluid">
         <!-- NAVIGATION -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: relative; background-color: rgba(var(--bs-light-green-rgb),var(--bs-bg-opacity))!important;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white" style="position: relative; background-color: white;">
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-05.png') }}" class="navbar-brand-img logo-light logo-small" alt="..." width="19" height="auto">
                 <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-03.png') }}" class="navbar-brand-img logo-light logo-large" alt="..." width="125" height="auto">

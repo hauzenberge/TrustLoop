@@ -163,13 +163,13 @@
                 <!-- Label -->
                 <h5 class="text-uppercase text-muted fw-semibold mb-0">
                     <span class="legend-circle-lg bg-primary"></span>
-                    Projections
+                    PROJECTIONS
                 </h5>
 
                 <!-- Label -->
                 <h5 class="text-uppercase text-muted fw-semibold mb-0 ms-4">
                     <span class="legend-circle-lg bg-light"></span>
-                    Actual
+                    FREE
                 </h5>
             </div>
 
