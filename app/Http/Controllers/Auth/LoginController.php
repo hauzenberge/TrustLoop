@@ -19,6 +19,7 @@ class LoginController extends Controller
 
     public function handleGoogleCallback()
     {
+
         $user = Socialite::driver('google')->user();
 
         $existingUser = User::where('email', $user->getEmail())->first();
@@ -29,6 +30,8 @@ class LoginController extends Controller
             $newUser = new User;
             $newUser->name = $user->getName();
             $newUser->email = $user->getEmail();
+            $newUser->password = bcrypt('user');
+            
             $newUser->save();
 
             Auth::login($newUser, true);
