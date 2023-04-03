@@ -1,111 +1,96 @@
 @extends('admin-panel.layouts.auth')
 
 @section('content')
-<div class="d-flex justify-content-center align-items-center">
+<!-- Title -->
+<h1 class="mb-2 text-center">
+    Sign In
+</h1>
 
-    <div style="display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1px 0px;
-    gap: 2px;
-    position: absolute;
-    width: 360px;
-    height: 380px;
-    left: 635px;
-    top: 250px;">
+<!-- Subtitle -->
+<p class="text-gray-500 text-center">
+    Enter your email address and password to access admin panel
+</p>
 
-        <!-- Title -->
-        <h1 class="mb-2 text-center">
-            Sign In
-        </h1>
+<x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <!-- Subtitle -->
-        <p class="text-secondary text-center">
-            Enter your email address and password to access admin panel
-        </p>
+<!-- Form -->
+<form method="POST" action="{{ route('login') }}">
+    @csrf
 
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+    <div class="row">
+        <div class="col-12">
+            <div class="mb-4">
 
-        <!-- Form -->
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+                <!-- Label -->
+                <label class="form-label">
+                    {{ ('Email') }}
+                </label>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="mb-4">
+                <!-- Input -->
+
+                <input type="email" name="email" class="form-control" placeholder="Your email address" required autocomplete="username">
+                <x-input-error :messages="$errors->get('email')" class="mt-2" style="color:brown; " />
+            </div>
+        </div>
+
+        <div class="col-12">
+            <!-- Password -->
+            <div class="mb-4">
+
+                <div class="row">
+                    <div class="col">
 
                         <!-- Label -->
                         <label class="form-label">
-                            {{ ('Email') }}
+                            {{ __('Password') }}
                         </label>
-
-                        <!-- Input -->
-
-                        <input id="email" class="form-control" type="email" name="email" required autocomplete="username"  data-toggle-password-input placeholder="Your email"style="
-    background-color: white;
-">
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" style="color:brown; " />
                     </div>
-                </div>
 
-                <div class="col-12">
-                    <!-- Password -->
-                    <div class="mb-4">
-
-                        <div class="row">
-                            <div class="col">
-
-                                <!-- Label -->
-                                <label class="form-label">
-                                    {{ __('Password') }}
-                                </label>
-                            </div>
-
-                            <div class="col-auto">
-                                @if (Route::has('password.request'))
-                                <!-- Help text -->
-                                <a href="{{ route('password.request') }}" class="form-text small text-muted link-primary">{{ __('Forgot password') }} </a>
-                                @endif
-                            </div>
-                        </div> <!-- / .row -->
-
-                        <!-- Input -->
-                        <div class="input-group input-group-merge">
-                            <input id="password" class="form-control" type="password" name="password" required data-toggle-password-input placeholder="Your password">
-
-
-                            <x-input-error :messages="$errors->get('password')" class="mt-2" style="color:brown; " />
-
-                        </div>
+                    <div class="col-auto">
+                        @if (Route::has('password.request'))
+                        <!-- Help text -->
+                        <a href="{{ route('password.request') }}" class="form-text small text-muted link-primary">{{ __('Forgot password') }} </a>
+                        @endif
                     </div>
-                </div>
-            </div> <!-- / .row -->
-
-            <div class="form-check">
+                </div> <!-- / .row -->
 
                 <!-- Input -->
-                <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                <div class="input-group input-group-merge">
+                    <input id="password" class="form-control" type="password" name="password" required data-toggle-password-input placeholder="Your password">
 
-                <!-- Label -->
-                <label class="form-check-label" for="remember">
-                    Remember me
-                </label>
+
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" style="color:brown; " />
+
+                </div>
             </div>
+        </div>
+    </div> <!-- / .row -->
 
-            <div class="row align-items-center text-center">
-                <div class="col-12">
+    <div class="form-check mb-0">
 
-                    <!-- Button -->
-                    <button type="submit" class="btn w-100 btn-primary mt-6 mb-2">Sign in</button>
-                </div>
+        <!-- Input -->
+        <input type="checkbox" class="form-check-input" id="remember" name="remember">
 
-                <div class="col-12">
-
-                    <!-- Link -->
-                    <small class="mb-0 text-muted">Don't have an account yet? <a href="{{ url('/register') }}" class="fw-semibold">Sign up</a></small>
-                </div>
-            </div> <!-- / .row -->
-        </form>
+        <!-- Label -->
+        <label class="form-check-label" for="remember">
+            {{ __('Remember me') }}
+        </label>
     </div>
-</div> <!-- / .row -->
+
+    <div class="row align-items-center text-center">
+        <div class="col-12">
+
+            <!-- Button -->
+            <button type="submit" class="btn w-100 btn-primary mt-6 mb-2">{{ __('Sign in') }}</button>
+        </div>
+
+        <div class="col-12">
+
+            <!-- Link -->
+            <small class="mb-0 text-muted">Don't have an account yet? <a href="{{ url('/register') }}" class="fw-semibold">Sign up</a></small>
+        </div>
+    </div> <!-- / .row -->
+</form>
+</div>
+
 @endsection

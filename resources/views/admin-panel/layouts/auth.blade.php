@@ -7,10 +7,8 @@
     <meta content="Webinning" name="author">
 
     <!-- Theme CSS -->
-    <link rel="stylesheet" href="{{asset('assets_project/assets/css/theme.bundle.css')}}" id="stylesheetLTR">
-    <link rel="stylesheet" href="{{asset('assets_project/assets/css/theme.rtl.bundle.css')}}" id="stylesheetRTL">
-    
-    <link rel="stylesheet" href="{{ asset('/custom assets/style.css') }}" id="stylesheetRTL">
+    <link rel="stylesheet" href="{{asset('assets_project/assets/css/theme.bundle.css') }}" id="stylesheetLTR">
+    <link rel="stylesheet" href="{{asset('assets_project/assets/css/theme.rtl.bundle.css') }}" id="stylesheetRTL">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap">
@@ -92,7 +90,7 @@
         }
     </script>
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('assets_project/assets//images/final_logos/FInal-05.png')}}" sizes="any">
+    <link rel="icon" href="{{asset('assets_project//assets/favicon/favicon.ico') }}" sizes="any">
 
     <!-- Demo script -->
     <script>
@@ -101,7 +99,7 @@
             isRTL: JSON.parse('false'),
             isFluid: JSON.parse('true'),
             sidebarBehaviour: JSON.parse('"fixed"'),
-            navigationColor: JSON.parse('"white"')
+            navigationColor: JSON.parse('"default"')
         };
 
         var isRTL = localStorage.getItem('isRTL') === 'true',
@@ -124,10 +122,10 @@
     </script>
 
     <!-- Page Title -->
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Sign Up | TRUSTLOOP</title>
 </head>
 
-<body style="background-color: white;">
+<body class="d-flex align-items-center">
 
     <!-- THEME CONFIGURATION -->
     <script>
@@ -149,20 +147,17 @@
     </script>
 
     <!-- MAIN CONTENT -->
-    <main class="container-fluid">
-        <!-- NAVIGATION -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white" style="position: relative; background-color: white;">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-05.png') }}" class="navbar-brand-img logo-light logo-small" alt="..." width="19" height="auto">
-                <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-03.png') }}" class="navbar-brand-img logo-light logo-large" alt="..." width="125" height="auto">
+    <main class="container">
+        <div class="row align-items-center justify-content-center vh-100">
+            <div class="col-11 col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3 py-6">
+                <!-- Brand -->
+                <a class="d-none d-sm-block navbar-brand position-absolute top-0 start-0 pt-1 ps-1 mt-5 ms-5" href="{{ url('/') }}">
+                    <img src="{{ asset('/assets_project/assets/images/logo.svg') }}" class="navbar-brand-img logo-light logo-large" alt="..." width="125" height="25">
+                </a>
 
-                <img src="{{ asset('/assets_project/assets/images/final_logos/FInal-05.png') }}" class="navbar-brand-img logo-dark logo-small" alt="..." width="19" height="auto"">
-            <img src=" {{ asset('/assets_project/assets/images/final_logos/FInal-04.png') }}" class="navbar-brand-img logo-dark logo-large" alt="..." width="125" height="auto">
-            </a>
+                @yield('content')
             </div>
-        </nav>
-
-        @yield('content')
+        </div>
     </main>
     <!-- / main -->
 
