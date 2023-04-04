@@ -7,8 +7,8 @@
     <meta content="Webinning" name="author">
 
     <!-- Theme CSS -->
-    <link rel="stylesheet" href="{{asset('assets_project/assets/css/theme.bundle.css') }}" id="stylesheetLTR">
-    <link rel="stylesheet" href="{{asset('assets_project/assets/css/theme.rtl.bundle.css') }}" id="stylesheetRTL">
+    <link rel="stylesheet" href="{{asset('assets_project/assets/css/theme.bundle.css')}}" id="stylesheetLTR">
+    <link rel="stylesheet" href="{{asset('assets_project/assets/css/theme.rtl.bundle.css')}}" id="stylesheetRTL">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap">
@@ -90,7 +90,7 @@
         }
     </script>
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('assets_project//assets/favicon/favicon.ico') }}" sizes="any">
+    <link rel="icon" href="{{asset('assets_project/assets/favicon/favicon.ico')}}" sizes="any">
 
     <!-- Demo script -->
     <script>
@@ -122,7 +122,7 @@
     </script>
 
     <!-- Page Title -->
-    <title>Sign Up | TRUSTLOOP</title>
+    <title>Sign In | TRUSTLOOP</title>
 </head>
 
 <body class="d-flex align-items-center">
@@ -145,25 +145,25 @@
             }
         }
     </script>
-
     <!-- MAIN CONTENT -->
     <main class="container">
         <div class="row align-items-center justify-content-center vh-100">
             <div class="col-11 col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3 py-6">
+
                 <!-- Brand -->
                 <a class="d-none d-sm-block navbar-brand position-absolute top-0 start-0 pt-1 ps-1 mt-5 ms-5" href="{{ url('/') }}">
-                    <img src="{{ asset('/assets_project/assets/images/logo.svg') }}" class="navbar-brand-img logo-light logo-large" alt="..." width="125" height="25">
+                    <img src="{{asset('assets_project/assets/images/logo.svg')}}" class="navbar-brand-img logo-light logo-large" alt="..." width="125" height="25">
                 </a>
-
+                
                 @yield('content')
+                
             </div>
-        </div>
-    </main>
-    <!-- / main -->
+        </div> <!-- / .row -->
+    </main> <!-- / main -->
 
     <!-- JAVASCRIPT-->
     <!-- Theme JS -->
-    <script src="{{ asset('/assets_project/assets/js/theme.bundle.js') }}"></script>
+    <script src="{{asset('assets_project/assets/js/theme.bundle.js')}}"></script>
 </body>
 
 </html>
