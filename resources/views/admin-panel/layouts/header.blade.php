@@ -1,4 +1,9 @@
-<header class="container-fluid d-flex py-6 mb-4">
+<header class="container-fluid d-flex py-4 ps-4 ps-lg-6 pe-4 pe-xl-7 mb-4 bg-white">
+
+    <!-- Brand -->
+    <a class="header-brand align-items-center d-none d-lg-flex" href="./index.html">
+        <img src="{{asset('assets_project/assets/images/logo.png')}}" class="header-brand-img logo-light logo-large" alt="..." width="118" height="25">
+    </a>
     <!-- Search -->
     <form class="d-none d-md-inline-block mb-auto">
         <div class="input-group input-group-merge">

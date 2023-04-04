@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light" data-sidebar-behaviour="fixed" data-navigation-color="white" data-is-fluid="true">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light" data-sidebar-behaviour="fixed" data-navigation-color="default" data-is-fluid="true">
 
 <head>
     <meta charset="utf-8">
@@ -7,10 +7,8 @@
     <meta content="Webinning" name="author">
 
     <!-- Theme CSS -->
-    <link rel="stylesheet" href="{{ asset('/assets_project/assets/css/theme.bundle.css') }}" id="stylesheetLTR">
-    <link rel="stylesheet" href="{{ asset('/assets_project/assets/css/theme.rtl.bundle.css') }}" id="stylesheetRTL">
-
-    <link rel="stylesheet" href="{{ asset('/custom assets/style.css') }}" id="stylesheetRTL">
+    <link rel="stylesheet" href="{{asset('assets_project/assets/css/theme.bundle.css')}}" id="stylesheetLTR">
+    <link rel="stylesheet" href="{{asset('assets_project/assets/css/theme.rtl.bundle.css')}}" id="stylesheetRTL">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap">
@@ -92,7 +90,7 @@
         }
     </script>
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('/assets_project/assets/images/final_logos/FInal-05.png') }}" sizes="any">
+    <link rel="icon" href="{{asset('assets_project/assets/favicon/favicon.ico')}}" sizes="any">
 
     <!-- Demo script -->
     <script>
@@ -101,7 +99,7 @@
             isRTL: JSON.parse('false'),
             isFluid: JSON.parse('true'),
             sidebarBehaviour: JSON.parse('"fixed"'),
-            navigationColor: JSON.parse('"white"')
+            navigationColor: JSON.parse('"default"')
         };
 
         var isRTL = localStorage.getItem('isRTL') === 'true',
@@ -128,7 +126,6 @@
 </head>
 
 <body>
-
     <!-- THEME CONFIGURATION -->
     <script>
         let themeAttrs = document.documentElement.dataset;
@@ -147,13 +144,17 @@
             }
         }
     </script>
+
+    <!-- NAVIGATION -->
     @include('admin-panel.layouts.navigation')
-    
+
+    <!-- HEADER -->
+    @include('admin-panel.layouts.header')
+
     <!-- MAIN CONTENT -->
     <main>
 
-        <!-- HEADER -->
-        @include('admin-panel.layouts.header')
+        
 
         <div class="container-fluid">
 
