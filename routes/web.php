@@ -32,9 +32,7 @@ Route::group(['namespace' => 'App\Http\Controllers\AdminPanel'], function () {
         Route::get('/', 'PaymentsContoller@index')->name('payments');
     });
 
-    Route::get('/settigns', function () {
-        return redirect('profile');
-    })->name('settigns');
+    Route::get('/settigns', 'SettignsController@index')->name('settigns');
     
 })->middleware(['auth', 'verified']);
 

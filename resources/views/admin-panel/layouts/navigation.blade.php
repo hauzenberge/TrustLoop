@@ -67,9 +67,9 @@
                     </li>
                     <li class="nav-item">
                         @if($active == 'settigns')
-                        <a class="nav-link active" href="{{ url('profile') }}">
+                        <a class="nav-link active" href="{{ url('/settigns') }}">
                             @else
-                            <a class="nav-link " href="{{ url('profile') }}">
+                            <a class="nav-link " href="{{ url('/settigns') }}">
                                 @endif
 
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
