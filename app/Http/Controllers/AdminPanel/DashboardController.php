@@ -10,10 +10,24 @@ class DashboardController extends Controller
 {
     public function index()
     {
+    
+        switch (Auth::user()->role) {
+            case 'admin':{
+                $title = 'Dashboard';
+                break;
+            }
+            case 'user':{
+                $title = 'Dashboard | TRUSTLOOP';
+                break;
+            }
+            default:
+            $title = 'Dashboard';
+                break;
+        }
         $view = 'admin-panel.dashboards.' . Auth::user()->role . '-dashboard';
-      //  dd($view);
+       
         return view($view, [
-            'title' => 'Dashboard',
+            'title' => $title,
             'active' => 'dashboard'
         ]);
     }
