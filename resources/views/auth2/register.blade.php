@@ -3,12 +3,12 @@
 @section('content')
 <!-- Title -->
 <h1 class="mb-2 text-center">
-    Sign Up
+    {{ __('Sign Up') }}
 </h1>
 
 <!-- Subtitle -->
 <p class="text-gray-500 text-center">
-    Register to access to your account
+    {{('Register to access to your account')}}
 </p>
 
 <!-- Form -->
@@ -23,7 +23,7 @@
 
                 <!-- Label -->
                 <label class="form-label">
-                    Full name
+                    {{ __('First name') }}
                 </label>
 
                 <!-- Input -->
@@ -37,7 +37,7 @@
 
                 <!-- Label -->
                 <label class="form-label">
-                    Email Address
+                    {{ __('Email Address') }}
                 </label>
 
                 <!-- Input -->
@@ -53,7 +53,7 @@
 
                 <!-- Label -->
                 <label class="form-label">
-                    Password
+                    {{ __('Password') }}
                 </label>
 
                 <!-- Input -->
@@ -72,7 +72,7 @@
 
                 <!-- Label -->
                 <label class="form-label">
-                    Confirm password
+                    {{ __('Confirm password') }}
                 </label>
 
                 <!-- Input -->
