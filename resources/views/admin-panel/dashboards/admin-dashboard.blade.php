@@ -47,7 +47,7 @@
 
                             <!-- Subtitle -->
                             <h2 class="mb-0">
-                                71
+                                {{ $registrations_count }}
                             </h2>
 
                             <!-- Comment -->
@@ -89,7 +89,7 @@
 
                             <!-- Subtitle -->
                             <h2 class="mb-0">
-                                22K
+                                {{ $total_users }}
                             </h2>
 
                             <!-- Comment -->
