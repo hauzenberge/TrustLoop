@@ -4,6 +4,7 @@
 
 <!-- Title -->
 <h1 class="h2">
+<br>
     {{ $title }}
 </h1>
 

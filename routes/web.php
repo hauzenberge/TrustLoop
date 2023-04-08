@@ -33,7 +33,8 @@ Route::group(['namespace' => 'App\Http\Controllers\AdminPanel'], function () {
     });
 
     Route::get('/settigns', 'SettignsController@index')->name('settigns');
-    
+   
+    Route::post('/upload-avatar', 'AvatarController@store')->name('avatar.upload');
 })->middleware(['auth', 'verified']);
 
 

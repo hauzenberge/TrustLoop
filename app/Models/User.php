@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Avatar;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -21,7 +23,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+    ];
+
+    protected $guarded = [
+        'avatar'
     ];
 
     /**
@@ -46,5 +52,31 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->role === 'admin';
+    }
+
+    public function avatar()
+    {
+        return $this->hasOne(Avatar::class);
+    }
+
+    public function getAvatarAttribute($size = 150)
+    {
+        $avatar = Avatar::where('user_id', $this->id)->first();
+
+        if ($avatar != null) {
+            if ($avatar->is_uploaded == 1) {
+                $path = asset('storage/' . $avatar->path);
+            }else  $path = $avatar->path;
+           
+            return "<img class='avatar-img' src='$path' alt='...' width='$size' height='$size'>";
+        } else {
+            $initials = '';
+            $words = preg_split("/\s+/", $this->name);
+            foreach ($words as $w) {
+                $initials .= mb_strtoupper(mb_substr($w, 0, 1));
+            }
+            $initials = mb_substr($initials, 0, 2);
+            return '<span class="avatar-title text-bg-primary-soft">' . $initials . '</span>';
+        }
     }
 }

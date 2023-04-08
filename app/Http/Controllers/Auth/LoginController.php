@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 use App\Models\User;
+use App\Models\Avatar;
 
 class LoginController extends Controller
 {
@@ -21,7 +22,7 @@ class LoginController extends Controller
     {
 
         $user = Socialite::driver('google')->user();
-
+       
         $existingUser = User::where('email', $user->getEmail())->first();
 
         if ($existingUser) {
@@ -31,8 +32,20 @@ class LoginController extends Controller
             $newUser->name = $user->getName();
             $newUser->email = $user->getEmail();
             $newUser->password = bcrypt('user');
-            
+
             $newUser->save();
+
+            // Save the user's avatar, if it exists
+            if ($user->avatar) {
+              // dd($newUser->id);
+                $avatar = new Avatar();
+                $avatar->user_id = $newUser->id;
+                $avatar->path = $user->avatar;
+                $avatar->is_uploaded = false;
+                $avatar->save();
+
+               
+            }
 
             Auth::login($newUser, true);
         }
