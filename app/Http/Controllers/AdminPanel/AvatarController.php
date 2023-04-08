@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class AvatarController extends Controller
 {
-    public function store(Request $request)
+    public function store($user_id, Request $request)
     {
         $user = Auth::user();
 
