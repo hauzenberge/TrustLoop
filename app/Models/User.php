@@ -65,7 +65,7 @@ class User extends Authenticatable
 
         if ($avatar != null) {
             if ($avatar->is_uploaded == 1) {
-                $path = asset('storage/' . $avatar->path);
+                $path = asset('storage/app/public/' . $avatar->path);
             }else  $path = $avatar->path;
            
             return "<img class='avatar-img' src='$path' alt='...' width='$size' height='$size'>";
