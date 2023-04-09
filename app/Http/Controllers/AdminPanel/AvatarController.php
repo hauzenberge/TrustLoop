@@ -16,17 +16,7 @@ class AvatarController extends Controller
     {
         $user = Auth::user();
 
-        $avatars = Avatar::where('user_id', $user->id);
-
-        if ($avatars->count() != 0) {
-            $avatar = $avatars->first();
-            if ($avatar->is_uploaded == 1) {
-              //  dd($avatar->path);
-              Storage::disk('public')->delete($avatar->path);
-            }
-             $avatars->delete();
-        }
-
+        Avatar::AvatarDelete($user->id);     
 
         $avatar = new Avatar();
         $avatar->user_id = $user->id;
