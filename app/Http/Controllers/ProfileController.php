@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+use App\Models\Avatar;
+
 class ProfileController extends Controller
 {
     /**
@@ -49,6 +51,8 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+       // dd($user->id);
+        Avatar::AvatarDelete($user->id);
 
         Auth::logout();
 

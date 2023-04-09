@@ -32,9 +32,9 @@ class Avatar extends Model
         if ($avatars->count() != 0) {
             $avatar = $avatars->first();
             if ($avatar->is_uploaded == 1) {
-              Storage::disk('public')->delete($avatar->path);
+                Storage::disk('public')->delete($avatar->path);
             }
-             $avatars->delete();
         }
+        $avatars->delete();
     }
 }
