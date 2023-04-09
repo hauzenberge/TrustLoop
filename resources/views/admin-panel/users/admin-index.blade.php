@@ -149,19 +149,6 @@
                             </td>
                         </tr>
                         @endforeach
-                        <tr>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
                     </tbody>
 
                     <!--

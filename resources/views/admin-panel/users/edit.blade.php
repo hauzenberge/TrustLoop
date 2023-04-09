@@ -69,7 +69,7 @@
             </li>
 
 
-            
+
             <li>
                 <a href="#countrySection" class="d-flex align-items-center py-3">
                     <svg viewBox="0 0 24 24" height="14" width="14" class="me-3" xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +79,7 @@
                     {{ __('Country') }}
                 </a>
             </li>
-        
+
 
 
             <li>
@@ -157,7 +157,7 @@
                         <div class="invalid-feedback">{{ __('Please add your full name') }}</div>
 
                         @if($errors->count() != 0)
-                      
+
                         @endif
                         <x-input-error class="mt-2" :messages="$errors->get('name')" />
                     </div>
@@ -203,7 +203,7 @@
         </div>
     </div>
 
-    
+
     <div class="card border-0 scroll-mt-3" id="countrySection">
         <div class="card-header">
             <h2 class="h3 mb-0">{{ __('Country') }}</h2>
@@ -226,7 +226,7 @@
             </form>
         </div>
     </div>
- 
+
 
     <!-- Card -->
     <div class="card border-0 scroll-mt-3" id="passwordSection">
@@ -236,23 +236,10 @@
 
         <div class="card-body">
 
-            <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
+            <form method="post" action="{{ url('users/'. $user->id .'/update') }}" class="mt-6 space-y-6">
                 @csrf
-                @method('put')
+                @method('patch')
 
-                <div class="row mb-4">
-                    <div class="col-lg-3">
-                        <label for="currentPassword" class="col-form-label">Current password</label>
-                    </div>
-
-                    <div class="col-lg">
-                        <input type="password" class="form-control" id="currentPassword">
-                        <div class="invalid-feedback">Please add your current password</div>
-                    </div>
-                    <div class="col-lg">
-                        <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" style="color:red;" />
-                    </div>
-                </div> <!-- / .row -->
 
                 <div class="row mb-4">
                     <div class="col-lg-3">
@@ -271,16 +258,6 @@
 
                     </div>
 
-                    <div class="col-lg">
-                        <div class="input-group input-group-merge">
-                            <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" autocomplete="new-passwordf" data-toggle-password-input placeholder="Confirm your new password">
-
-                            <button type="button" class="input-group-text px-4 text-secondary link-primary" data-toggle-password></button>
-                        </div>
-                        <br>
-                        <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" style="color:red;" />
-
-                    </div>
                 </div> <!-- / .row -->
 
                 <div class="row">
@@ -317,11 +294,9 @@
         <div class="card-header">
             <h2 class="h3 mb-0">Delete Account</h2>
         </div>
-
+        
         <div class="card-body">
-            <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
-                @csrf
-                @method('delete')
+            <div class="p-6">
 
                 <div class="alert text-bg-danger-soft d-flex align-items-center" role="alert">
                     <div>
@@ -332,25 +307,15 @@
                     <div>
                         <h4 class="mb-0">If you delete your account, you will lose all your data</h4>
                         Take a backup of your data
+                       
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <div class="form-check">
-
-                        <!-- Input -->
-                        <input type="checkbox" class="form-check-input" id="deleteAccount">
-
-                        <!-- Label -->
-                        <label class="form-check-label" for="deleteAccount">
-                            I confirm that I'd like to delete my account
-                        </label>
-                    </div>
-                </div>
 
                 <div class="d-flex justify-content-end mt-5">
                     <!-- Button -->
-                    <button type="submit" class="btn btn-danger">Delete account</button>
+                    
+                    <a href="{{$user->resource_url . '/delete'}}" class="btn btn-danger">Delete account</a>
                 </div>
         </div>
         </form>

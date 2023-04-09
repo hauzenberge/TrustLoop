@@ -26,7 +26,7 @@ class UsersController extends Controller
 
         switch (Auth::user()->role) {
             case 'admin': {
-                    $title = 'User List';                  
+                    $title = 'User List';
 
                     return view($view, [
                         'title' => $title,
@@ -66,17 +66,19 @@ class UsersController extends Controller
     public function edit($user_id)
     {
         $user = User::find($user_id);
-        $userData = UserData::where('id', $user->user_data_id)
-            ->with('country')
-            ->first();
+        if ($user != null) {
+            $userData = UserData::where('id', $user->user_data_id)
+                ->with('country')
+                ->first();
 
-        return view('admin-panel.users.edit', [
-            'user' => $user,
-            'title' => $user->name . " Profile",
-            'active' => null,
-            'userData' => $userData,
-            'countries' => Country::all()
-        ]);
+            return view('admin-panel.users.edit', [
+                'user' => $user,
+                'title' => $user->name . " Profile",
+                'active' => null,
+                'userData' => $userData,
+                'countries' => Country::all()
+            ]);
+        }else return redirect('users');
     }
     /**
      * Update the user's profile information.
@@ -87,7 +89,7 @@ class UsersController extends Controller
             'name' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($user_id)],
         ]);
-        
+
         $user = User::find($user_id);
 
         $user->update($validate);

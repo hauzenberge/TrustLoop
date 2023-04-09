@@ -48,6 +48,10 @@ class AdminRoleSeeder extends Seeder
             'role' => 'admin'
         ]);
 
+        $firstNames = ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank', 'Grace', 'Henry', 'Isabella', 'Jack', 'Kate', 'Liam', 'Mia', 'Noah', 'Olivia', 'Penny', 'Quinn', 'Ruby', 'Samantha', 'Tom', 'Ursula', 'Violet', 'William', 'Xander', 'Yvonne', 'Zachary'];
+        $lastNames = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson'];
+
+
         // Create 100 User users
         for ($i = 0; $i < 100; $i++) {
 
@@ -58,15 +62,15 @@ class AdminRoleSeeder extends Seeder
             $country = Country::inRandomOrder()->first();
 
             // Create a UserData record with the selected plan and country
-           $userData =  UserData::create([
+            $userData =  UserData::create([
                 'country_id' => $country->id,
                 'plan_id' => $plan->id,
             ]);
 
+            $firstName = $firstNames[rand(0, count($firstNames) - 1)];
 
-            $name = Str::random(10);
-            $surname = Str::random(10);
-            $email = $name . $surname . '@example.com';
+            $name =  $firstName . ' ' . $lastNames[rand(0, count($lastNames) - 1)];
+            $email = 'user' . $i . '@admin.com';
             $password = bcrypt('password');
             $role = 'user';
             $user_data_id = $userData->id;
