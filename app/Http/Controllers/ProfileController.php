@@ -51,7 +51,7 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
-       // dd($user->id);
+      
         Avatar::AvatarDelete($user->id);
 
         Auth::logout();
