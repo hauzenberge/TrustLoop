@@ -31,9 +31,6 @@ class DashboardController extends Controller
         $registrations_count = User::where('role', '!=', 'admin')->count();
         
         $total_users = User::all()->count();
-
-     //  $userList = User::getUserList();
-     //  dd($userList);
        
        
         return view($view, [

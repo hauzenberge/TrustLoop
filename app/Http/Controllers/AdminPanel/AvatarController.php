@@ -12,14 +12,15 @@ use Illuminate\Support\Facades\Storage;
 
 class AvatarController extends Controller
 {
-    public function store( Request $request)
+    public function store($user_id, Request $request)
     {
-        $user = Auth::user();
+        //dd($user_id);
+        //$user = Auth::user();
 
-        Avatar::AvatarDelete($user->id);     
+        Avatar::AvatarDelete($user_id);     
 
         $avatar = new Avatar();
-        $avatar->user_id = $user->id;
+        $avatar->user_id = $user_id;
 
         $avatar_path = $request->file('avatar')->store('avatars', 'public', $request->file('avatar')->getClientOriginalName());
     

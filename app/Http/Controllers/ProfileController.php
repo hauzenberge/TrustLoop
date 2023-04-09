@@ -29,7 +29,6 @@ class ProfileController extends Controller
 
         switch ($request->user()->role) {
             case 'user': {
-                    // dd($request->user()->role);
                     $userData = UserData::where('id', $request->user()->user_data_id)
                         ->with('country')
                         ->first();

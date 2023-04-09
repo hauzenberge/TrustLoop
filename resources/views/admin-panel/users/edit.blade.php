@@ -7,7 +7,7 @@
 
     <!-- Title -->
     <h1 class="h2">
-        Account
+        {{ $title }}
     </h1>
 
 </div>
@@ -18,7 +18,7 @@
         <!-- Card -->
         <div class="card border-0 sticky-md-top top-10px">
             <div class="card-body">
-                <form id="avatar-upload-form" action="{{  url('/upload-avatar/'.$user->id)  }}" method="POST" enctype="multipart/form-data">
+                <form id="avatar-upload-form" action="{{ url('/upload-avatar/'.$user->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="text-center mb-5">
                         <div class="avatar avatar-xxl avatar-circle mb-5">
@@ -50,7 +50,7 @@
                 </script>
 
 
-                <h3 class="mb-0">{{ Auth::user()->name }}</h3>
+                <h3 class="mb-0">{{ $user->name }}</h3>
             </div>
 
             <!-- Divider -->
@@ -69,7 +69,7 @@
             </li>
 
 
-            @if(Auth::user()->role === 'user')
+            
             <li>
                 <a href="#countrySection" class="d-flex align-items-center py-3">
                     <svg viewBox="0 0 24 24" height="14" width="14" class="me-3" xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +79,7 @@
                     {{ __('Country') }}
                 </a>
             </li>
-            @endif
+        
 
 
             <li>
@@ -143,7 +143,7 @@
         </div>
 
         <div class="card-body">
-            <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+            <form method="post" action="{{ url('users/'. $user->id .'/update') }}" class="mt-6 space-y-6">
                 @csrf
                 @method('patch')
 
@@ -157,7 +157,7 @@
                         <div class="invalid-feedback">{{ __('Please add your full name') }}</div>
 
                         @if($errors->count() != 0)
-                        
+                      
                         @endif
                         <x-input-error class="mt-2" :messages="$errors->get('name')" />
                     </div>
@@ -203,7 +203,7 @@
         </div>
     </div>
 
-    @if(Auth::user()->role === 'user')
+    
     <div class="card border-0 scroll-mt-3" id="countrySection">
         <div class="card-header">
             <h2 class="h3 mb-0">{{ __('Country') }}</h2>
@@ -226,7 +226,7 @@
             </form>
         </div>
     </div>
-    @endif
+ 
 
     <!-- Card -->
     <div class="card border-0 scroll-mt-3" id="passwordSection">

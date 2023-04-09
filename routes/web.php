@@ -27,6 +27,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
         Route::get('/', 'UsersController@index')->name('users');
         Route::prefix('{user_id}')->group(function () {
             Route::get('/delete', 'UsersController@delete')->name('user.destroy');
+            Route::get('/edit', 'UsersController@edit')->name('user.edit');
+            Route::patch('/update', 'UsersController@update')->name('user.update');       
         });
     });
 
@@ -40,7 +42,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
 
     Route::get('/settigns', 'SettignsController@index')->name('settigns');
    
-    Route::post('/upload-avatar', 'AvatarController@store')->name('avatar.upload');
+    Route::post('/upload-avatar/{user_id}', 'AvatarController@store')->name('avatar.upload');
 });
 
 
