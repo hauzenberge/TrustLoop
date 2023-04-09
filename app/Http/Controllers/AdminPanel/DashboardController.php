@@ -31,13 +31,17 @@ class DashboardController extends Controller
         $registrations_count = User::where('role', '!=', 'admin')->count();
         
         $total_users = User::all()->count();
+
+     //  $userList = User::getUserList();
+     //  dd($userList);
        
        
         return view($view, [
             'title' => $title,
             'active' => 'dashboard',
             'registrations_count' => $registrations_count,
-            'total_users' => $total_users
+            'total_users' => $total_users,
+            'userList' => User::getUserList()
         ]);
     }
 }

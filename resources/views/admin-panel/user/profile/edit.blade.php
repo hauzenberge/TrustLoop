@@ -35,7 +35,7 @@
                                 </span>
                                 <input type="file" name="avatar" class="d-none">
                             </label>
-                            {!! Auth::user()->getAvatarAttribute(112) !!}
+                            {!! $user->getAvatarAttribute(112) !!}
                         </div>
                 </form>
 
@@ -67,6 +67,19 @@
                     {{ __('Basic information') }}
                 </a>
             </li>
+
+
+            @if(Auth::user()->role === 'user')
+            <li>
+                <a href="#countrySection" class="d-flex align-items-center py-3">
+                    <svg viewBox="0 0 24 24" height="14" width="14" class="me-3" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.750 6.000 A5.250 5.250 0 1 0 17.250 6.000 A5.250 5.250 0 1 0 6.750 6.000 Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                        <path d="M2.25,23.25a9.75,9.75,0,0,1,19.5,0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    </svg>
+                    {{ __('Country') }}
+                </a>
+            </li>
+            @endif
 
 
             <li>
@@ -110,6 +123,10 @@
                 </a>
             </li>
         </ul>
+
+
+
+
 
         <div class="card-footer text-center">
 
@@ -185,6 +202,31 @@
             </form>
         </div>
     </div>
+
+    @if(Auth::user()->role === 'user')
+    <div class="card border-0 scroll-mt-3" id="countrySection">
+        <div class="card-header">
+            <h2 class="h3 mb-0">{{ __('Country') }}</h2>
+        </div>
+
+        <div class="card-body">
+            <form action="{{ route('user-data.country.update', $userData->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+
+                <div class="form-group">
+                    <label for="country_id">Оберіть країну</label>
+                    <select class="form-control" name="country_id" id="country_id">
+                        @foreach($countries as $country)
+                        <option value="{{ $country->id }}" {{ $userData->country_id == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Зберегти</button>
+            </form>
+        </div>
+    </div>
+    @endif
 
     <!-- Card -->
     <div class="card border-0 scroll-mt-3" id="passwordSection">

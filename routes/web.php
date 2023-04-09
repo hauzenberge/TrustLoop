@@ -25,11 +25,17 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
 
     Route::prefix('users')->group(function () {
         Route::get('/', 'UsersController@index')->name('users');
+        Route::prefix('{user_id}')->group(function () {
+            Route::get('/delete', 'UsersController@delete')->name('user.destroy');
+        });
     });
-
 
     Route::prefix('payments')->group(function () {
         Route::get('/', 'PaymentsContoller@index')->name('payments');
+    });
+
+    Route::prefix('user-data')->group(function () {
+        Route::put('{userData}/updateCountry', 'UserDataController@updateCountry')->name('user-data.country.update');
     });
 
     Route::get('/settigns', 'SettignsController@index')->name('settigns');

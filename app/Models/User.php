@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Avatar;
 use App\Models\UserData;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -62,7 +63,7 @@ class User extends Authenticatable
         return $this->hasOne(Avatar::class);
     }
 
-    public function userdata()
+    public function userData()
     {
         return $this->belongsTo(UserData::class, 'user_data_id');
     }
@@ -86,5 +87,32 @@ class User extends Authenticatable
             $initials = mb_substr($initials, 0, 2);
             return '<span class="avatar-title text-bg-primary-soft">' . $initials . '</span>';
         }
+    }
+
+    public function getResourceUrlAttribute()
+    {
+        return url('/users/' . $this->id);
+    }
+
+    public static function getUserList()
+    {
+        $return = User::where('role', 'user')
+            ->where('id', '!=', Auth::user()->id)
+            ->with('userData.country', 'userData.plan')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'avatar' => $item->getAvatarAttribute(30),
+                    'name' => $item->name,
+                    'email' => $item->email,
+                    'country' => $item->userData->country->name,
+                    'id' => "#" . $item->id,
+                    'account_type' => $item->userData->plan->name,
+                    'view_link' => '#',
+                    'edit_link' => $item->resource_url . '/edit',
+                    'delete_link' => $item->resource_url . '/delete'
+                ];
+            });
+        return $return;
     }
 }
