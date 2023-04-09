@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Avatar;
+use App\Models\UserData;
 
 class User extends Authenticatable
 {
@@ -24,6 +25,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+
+        'user_data_id'
     ];
 
     protected $guarded = [
@@ -59,6 +62,11 @@ class User extends Authenticatable
         return $this->hasOne(Avatar::class);
     }
 
+    public function userdata()
+    {
+        return $this->belongsTo(UserData::class, 'user_data_id');
+    }
+
     public function getAvatarAttribute($size = 150)
     {
         $avatar = Avatar::where('user_id', $this->id)->first();
@@ -66,8 +74,8 @@ class User extends Authenticatable
         if ($avatar != null) {
             if ($avatar->is_uploaded == 1) {
                 $path = asset('storage/app/public/' . $avatar->path);
-            }else  $path = $avatar->path;
-           
+            } else  $path = $avatar->path;
+
             return "<img class='avatar-img' src='$path' alt='...' width='$size' height='$size'>";
         } else {
             $initials = '';

@@ -21,7 +21,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(AdminRoleSeeder::class);
+        
+        $this->call(CountrySeeder::class);
+        $this->call(PlanSeeder::class);
 
+        $this->call(AdminRoleSeeder::class);
     }
 }

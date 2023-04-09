@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
+use App\Models\Country;
+use App\Models\Plan;
+use App\Models\UserData;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -36,11 +40,22 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $plan = Plan::where('name', 'Trial')->first();
+        $country = Country::where('name', 'USA')->first();
+
+        $userData = UserData::create([
+            'country_id' => $country->id,
+            'plan_id' => $plan->id,
+        ]);
+
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'user_data_id' => $userData->id
         ]);
+
 
         event(new Registered($user));
 
