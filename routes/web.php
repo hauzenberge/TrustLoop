@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\AdminPanel'], function () {
+Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Controllers\AdminPanel'], function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
     });
@@ -35,7 +35,7 @@ Route::group(['namespace' => 'App\Http\Controllers\AdminPanel'], function () {
     Route::get('/settigns', 'SettignsController@index')->name('settigns');
    
     Route::post('/upload-avatar', 'AvatarController@store')->name('avatar.upload');
-})->middleware(['auth', 'verified']);
+});
 
 
 Route::middleware('auth')->group(function () {
