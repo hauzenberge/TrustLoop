@@ -60,7 +60,7 @@ class UsersController extends Controller
     public function delete($user_id)
     {
         User::find($user_id)->delete();
-        return redirect()->back();
+        return redirect('users');
     }
 
     public function edit($user_id)
@@ -78,7 +78,7 @@ class UsersController extends Controller
                 'userData' => $userData,
                 'countries' => Country::all()
             ]);
-        }else return redirect('users');
+        } else return redirect()->back();
     }
     /**
      * Update the user's profile information.
@@ -95,5 +95,23 @@ class UsersController extends Controller
         $user->update($validate);
 
         return redirect()->back();
+    }
+
+    public function show($user_id)
+    {
+        $user = User::find($user_id);
+        if ($user != null) {
+            $userData = UserData::where('id', $user->user_data_id)
+                ->with('country')
+                ->first();
+
+            return view('admin-panel.users.show', [
+                'user' => $user,
+                'title' => $user->name . " Profile",
+                'active' => null,
+                'userData' => $userData,
+                'countries' => Country::all()
+            ]);
+        } else return redirect()->back();
     }
 }

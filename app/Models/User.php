@@ -108,7 +108,7 @@ class User extends Authenticatable
                     'country' => $item->userData->country->name,
                     'id' => "#" . $item->id,
                     'account_type' => $item->userData->plan->name,
-                    'view_link' => '#',
+                    'view_link' => $item->resource_url . '/show',
                     'edit_link' => $item->resource_url . '/edit',
                     'delete_link' => $item->resource_url . '/delete'
                 ];

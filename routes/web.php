@@ -28,7 +28,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
         Route::prefix('{user_id}')->group(function () {
             Route::get('/delete', 'UsersController@delete')->name('user.destroy');
             Route::get('/edit', 'UsersController@edit')->name('user.edit');
-            Route::patch('/update', 'UsersController@update')->name('user.update');       
+            Route::patch('/update', 'UsersController@update')->name('user.update');   
+            Route::get('/show', 'UsersController@show')->name('user.show');    
         });
     });
 
