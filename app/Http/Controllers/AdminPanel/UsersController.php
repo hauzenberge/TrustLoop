@@ -60,7 +60,7 @@ class UsersController extends Controller
     public function delete($user_id)
     {
         User::find($user_id)->delete();
-        return redirect('users');
+        return redirect()->back();
     }
 
     public function edit($user_id)
@@ -112,6 +112,6 @@ class UsersController extends Controller
                 'userData' => $userData,
                 'countries' => Country::all()
             ]);
-        } else return redirect()->back();
+        } else  return redirect('/dashboard');
     }
 }
