@@ -20,16 +20,28 @@ class UsersSurveysSeeder extends Seeder
     {
         $users = User::where('role', 'user')->get();
 
+        $questions = [
+            ['text' => 'How would you rate our service?', 'type' => 'rating'],
+            ['text' => 'How likely are you to recommend us?', 'type' => 'rating'],
+            ['text' => 'How satisfied are you with our product?', 'type' => 'rating'],
+            ['text' => 'What is your age?', 'type' => 'question'],
+            ['text' => 'What is your favorite color?', 'type' => 'question'],
+            ['text' => 'What is your favorite food?', 'type' => 'question'],
+        ];
+
         foreach ($users as $user) {
-            $survey = Survey::create(['title' => 'Survey Into '. $user->name]);
+            $survey = Survey::create(['title' => 'Survey Into ' . $user->name]);
 
-            $questions = [
-                ['text' => 'How would you rate our service?', 'type' => 'rating'],
-                ['text' => 'How likely are you to recommend us?', 'type' => 'rating'],
-                ['text' => 'How satisfied are you with our product?', 'type' => 'rating'],
-            ];
+            $questionsCount = count($questions);            
 
-            foreach ($questions as $questionData) {
+            $randomKeys = array_rand($questions, 3); 
+            $randomQuestions = [];
+            foreach ($randomKeys as $key) {
+                $randomQuestions[] = $questions[$key]; 
+            }
+
+
+            foreach ($randomQuestions as $questionData) {
                 $question = Question::create([
                     'text' => $questionData['text'],
                     'type' => $questionData['type'],

@@ -21,7 +21,7 @@ class DashboardController extends Controller
                     break;
                 }
             case 'user': {
-                    
+
                     if (Auth::user()->survey_id == null) {
                         $user = Auth::user();
 
@@ -31,8 +31,19 @@ class DashboardController extends Controller
                             ['text' => 'How would you rate our service?', 'type' => 'rating'],
                             ['text' => 'How likely are you to recommend us?', 'type' => 'rating'],
                             ['text' => 'How satisfied are you with our product?', 'type' => 'rating'],
+                            ['text' => 'What is your age?', 'type' => 'question'],
+                            ['text' => 'What is your favorite color?', 'type' => 'question'],
+                            ['text' => 'What is your favorite food?', 'type' => 'question'],
                         ];
-    
+
+                        $questionsCount = count($questions);
+
+                        $randomKeys = array_rand($questions, 3);
+                        $randomQuestions = [];
+                        foreach ($randomKeys as $key) {
+                            $randomQuestions[] = $questions[$key];
+                        }
+
                         foreach ($questions as $questionData) {
                             $question = Question::create([
                                 'text' => $questionData['text'],
@@ -40,7 +51,8 @@ class DashboardController extends Controller
                                 'survey_id' => $survey->id,
                             ]);
                         }
-                    }                   
+                        $user->survey()->associate($survey)->save();
+                    }
 
                     $title = 'Dashboard | TRUSTLOOP';
                     break;
