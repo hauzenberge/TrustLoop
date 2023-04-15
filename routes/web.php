@@ -31,8 +31,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
         Route::prefix('{user_id}')->group(function () {
             Route::get('/delete', 'UsersController@delete')->name('user.destroy');
             Route::get('/edit', 'UsersController@edit')->name('user.edit');
-            Route::patch('/update', 'UsersController@update')->name('user.update');   
-            Route::get('/show', 'UsersController@show')->name('user.show');    
+            Route::patch('/update', 'UsersController@update')->name('user.update');
+            Route::get('/show', 'UsersController@show')->name('user.show');
         });
     });
 
@@ -45,8 +45,12 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
     });
 
     Route::get('/settigns', 'SettignsController@index')->name('settigns');
-   
+
     Route::post('/upload-avatar/{user_id}', 'AvatarController@store')->name('avatar.upload');
+});
+
+Route::post('/modal', function () {
+    return view('modal')->render();
 });
 
 

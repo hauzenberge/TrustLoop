@@ -10,7 +10,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Avatar;
 use App\Models\UserData;
+
+use App\Models\Survey;
 use Illuminate\Support\Facades\Auth;
+
 
 class User extends Authenticatable
 {
@@ -27,7 +30,9 @@ class User extends Authenticatable
         'password',
         'role',
 
-        'user_data_id'
+        'user_data_id',
+
+        'survey_id'
     ];
 
     protected $guarded = [
@@ -66,6 +71,11 @@ class User extends Authenticatable
     public function userData()
     {
         return $this->belongsTo(UserData::class, 'user_data_id');
+    }
+
+    public function survey()
+    {
+        return $this->belongsTo(Survey::class, 'survey_id');
     }
 
     public function getAvatarAttribute($size = 150)
