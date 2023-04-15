@@ -20,23 +20,23 @@ class UsersSurveysSeeder extends Seeder
     {
         $users = User::where('role', 'user')->get();
 
-        $survey = Survey::create(['title' => 'User Survey']);
-
-        $questions = [
-            ['text' => 'How would you rate our service?', 'type' => 'rating'],
-            ['text' => 'How likely are you to recommend us?', 'type' => 'rating'],
-            ['text' => 'How satisfied are you with our product?', 'type' => 'rating'],
-        ];
-
-        foreach ($questions as $questionData) {
-            $question = Question::create([
-                'text' => $questionData['text'],
-                'type' => $questionData['type'],
-                'survey_id' => $survey->id,
-            ]);
-        }
-
         foreach ($users as $user) {
+            $survey = Survey::create(['title' => 'Survey Into '. $user->name]);
+
+            $questions = [
+                ['text' => 'How would you rate our service?', 'type' => 'rating'],
+                ['text' => 'How likely are you to recommend us?', 'type' => 'rating'],
+                ['text' => 'How satisfied are you with our product?', 'type' => 'rating'],
+            ];
+
+            foreach ($questions as $questionData) {
+                $question = Question::create([
+                    'text' => $questionData['text'],
+                    'type' => $questionData['type'],
+                    'survey_id' => $survey->id,
+                ]);
+            }
+
             $user->survey()->associate($survey)->save();
         }
     }

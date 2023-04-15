@@ -24,8 +24,6 @@ class Answer extends Model
         'created_at',
         'updated_at',
 
-        'question_id',
-        'user_id'
 
     ];
 
