@@ -17,6 +17,11 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
+
+            $table->text('popup_text')->nullable();
+            $table->text('review_text')->nullable();
+            $table->text('review_button_text')->nullable();
+            $table->text('link_url')->nullable();
             
             $table->timestamps();
         });

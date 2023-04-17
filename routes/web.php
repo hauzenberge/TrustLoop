@@ -44,7 +44,19 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
         Route::put('{userData}/updateCountry', 'UserDataController@updateCountry')->name('user-data.country.update');
     });
 
-    Route::get('/settigns', 'SettignsController@index')->name('settigns');
+    Route::prefix('settigns')->group(function () {
+        Route::get('/', 'SettignsController@index')->name('settigns');
+        Route::post('/update-survay/{survey_id}', 'SettignsController@SurveyUpdate')->name('survey.update');
+
+        Route::prefix('question/')->group(function () {
+            Route::post('/create', 'SettignsController@QuestionCreate')->name('question.create');
+            Route::prefix('{question_id}')->group(function () {
+                Route::post('/update', 'SettignsController@QuestionUpdate')->name('question.update');
+                Route::get('/delete', 'SettignsController@QuestionDelete')->name('settigns.QuestionDelete');
+            });
+        });
+    });
+
 
     Route::post('/upload-avatar/{user_id}', 'AvatarController@store')->name('avatar.upload');
 });

@@ -18,6 +18,11 @@ class Survey extends Model
 
         'title',
 
+        'popup_text',
+        'review_text',
+        'review_button_text',
+        'link_url',
+
         'created_at',
         'updated_at'
     ];
@@ -25,5 +30,12 @@ class Survey extends Model
     public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function getReviewButtonTextAttribute($value)
+    {
+        if ($value == null) {
+            return 'Send the review';
+        }else return $value;
     }
 }

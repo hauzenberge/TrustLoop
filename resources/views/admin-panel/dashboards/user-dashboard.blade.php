@@ -303,7 +303,7 @@
                     <p class='m-0'> } else {</p>
                     <p class='m-0'> </p>
                     <p class='m-0'> $.ajax({</p>
-                    <p class='m-0'> url: &quot;{{url('/api/surveys/')}}&quot; + formData.find(x =&gt; x.name === &#039;surveyId&#039;).value + &quot;/responses&quot;,</p>
+                    <p class='m-0'> url: &quot;{{url('/api/surveys/')}}&quot; + '/' + formData.find(x =&gt; x.name === &#039;surveyId&#039;).value + &quot;/responses&quot;,</p>
                     <p class='m-0'> type: &quot;POST&quot;,</p>
                     <p class='m-0'> data: formData,</p>
                     <p class='m-0'> dataType: &quot;json&quot;,</p>

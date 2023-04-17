@@ -16,8 +16,7 @@ class ResponseController extends Controller
 {
     public function store(Request $request, Survey $survey)
     {
-        //dd($survey->id);
-        //  dd($request->input("surveyId"));
+      // dd($survey);
         $validatedData = $request->validate([
             //   'surveyId' => 'required|exists:surveys,id',
             'answers' => 'required|array',
@@ -25,18 +24,14 @@ class ResponseController extends Controller
             'answers.*.value' => 'required',
         ]);
 
-        // dd($validatedData['surveyId']);
         $user = User::where('survey_id', $survey->id)->first();
-       // dd($user);
         foreach ($validatedData['answers'] as $answerData) {
-            // dd($answerData['value']);
             Answer::create([
                 'user_id' =>  $user->id,
                 'question_id' => $answerData['question_id'],
                 'text' => $answerData['value'],
             ]);
         }
-       // dd('lol');
 
         return [
             'status' => 'success', 

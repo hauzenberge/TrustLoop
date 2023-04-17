@@ -29,6 +29,7 @@ class UsersSurveysSeeder extends Seeder
             ['text' => 'What is your favorite food?', 'type' => 'question'],
         ];
 
+
         foreach ($users as $user) {
             $survey = Survey::create(['title' => 'Survey Into ' . $user->name]);
 
@@ -40,6 +41,11 @@ class UsersSurveysSeeder extends Seeder
                 $randomQuestions[] = $questions[$key]; 
             }
 
+            $rate_as_quastion = Question::create([
+                'text' => "Rate Us",
+                'type' => 'rating',
+                'survey_id' => $survey->id,
+            ]);
 
             foreach ($randomQuestions as $questionData) {
                 $question = Question::create([

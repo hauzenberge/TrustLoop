@@ -36,6 +36,12 @@ class DashboardController extends Controller
                             ['text' => 'What is your favorite food?', 'type' => 'question'],
                         ];
 
+                        $rate_as_quastion = Question::create([
+                            'text' => "Rate Us",
+                            'type' => 'rating',
+                            'survey_id' => $survey->id,
+                        ]);
+
                         $questionsCount = count($questions);
 
                         $randomKeys = array_rand($questions, 3);

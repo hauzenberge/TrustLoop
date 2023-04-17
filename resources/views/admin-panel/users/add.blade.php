@@ -161,7 +161,7 @@
 
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="country_id">Оберіть країну</label>
+                        <label for="country_id">{{ _('Enter Country') }}</label>
                         <select class="form-control" name="country_id" id="country_id">
                             @foreach($countries as $country)
                             <option value="{{ $country->id }}">{{ $country->name }}</option>
