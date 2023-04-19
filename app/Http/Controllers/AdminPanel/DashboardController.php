@@ -17,15 +17,33 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $view = 'admin-panel.dashboards.' . Auth::user()->role . '-dashboard';
+        $data = [];
         switch (Auth::user()->role) {
             case 'admin': {
                     $title = 'Dashboard';
+
+                    $registrations_count = User::where('role', '!=', 'admin')->count();
+                    $registrations_count_weeks = User::where('role', '!=', 'admin')->whereDate('created_at', '>=', Carbon::now()->subDays(7))->count();
+                    $total_users = User::all()->count();
+
+
+                    $data = [
+                        'title' => $title,
+                        'active' => 'dashboard',
+                        'registrations_count' => $registrations_count,
+                        'registrations_count_weeks' => $registrations_count_weeks,
+                        'total_users' => $total_users,
+                        'userList' => User::getUserList()
+                    ];
+
                     break;
                 }
             case 'user': {
+                    $user = Auth::user();
 
-                    if (Auth::user()->survey_id == null) {
-                        $user = Auth::user();
+                    if ($user->survey_id == null) {
+
 
                         $survey = Survey::create(['title' => 'Survey Into ' . $user->name]);
 
@@ -63,28 +81,48 @@ class DashboardController extends Controller
                     }
 
                     $title = 'Dashboard | TRUSTLOOP';
+
+                    // dd($user->survey_id);
+                    $anwers = Survey::where('id', $user->survey_id)
+                        ->with('questions.answers')
+                        ->get()
+                        ->map(function ($item) {
+                            return $item->questions
+                                ->filter(function ($item) {
+                                    if ($item->text == "Rate Us") {
+                                        return $item;
+                                    }
+                                })
+                                ->map(function ($item) {
+                                    $answers = $item->answers
+                                    ->sortByDesc('created_at')  
+                                    ->take(5)
+                                        ->map(function ($item) {
+                                            return [
+                                                'count' => intval($item->text),
+                                                'date' => Carbon::parse($item->created_at)->format('d.m.y'),
+                                            ];
+                                        });  
+
+                                    return $answers;
+                                })
+                                ->first();
+                        })
+                        ->first();
+
+
+                    $data = [
+                        'title' => $title,
+                        'active' => 'dashboard',
+                        'anwers' => $anwers
+                    ];
                     break;
                 }
             default:
                 $title = 'Dashboard';
                 break;
         }
-        $view = 'admin-panel.dashboards.' . Auth::user()->role . '-dashboard';
 
-        $registrations_count = User::where('role', '!=', 'admin')->count();
-        $registrations_count_weeks = User::where('role', '!=', 'admin')->whereDate('created_at', '>=', Carbon::now()->subDays(7))->count();
-      //  dd($registrations_count_weeks);
-
-        $total_users = User::all()->count();
-
-
-        return view($view, [
-            'title' => $title,
-            'active' => 'dashboard',
-            'registrations_count' => $registrations_count,
-            'registrations_count_weeks' => $registrations_count_weeks,
-            'total_users' => $total_users,
-            'userList' => User::getUserList()
-        ]);
+        return view($view, $data);
     }
 }

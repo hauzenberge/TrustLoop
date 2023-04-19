@@ -17,7 +17,7 @@
 
                 <!-- Title -->
                 <h2 class="card-header-title h4 text-uppercase ps-lg-1">
-                    LATEST REVIEWS
+                    LATEST REVIEWS 
                 </h2>
 
                 <!-- Dropdown -->
@@ -46,80 +46,33 @@
             </div>
 
             <!-- Table -->
-            <div class="table-responsive">
+            <div class="table-responsive  align-middle table-edge table-hover table-nowrap mb-0">
                 <table id="projectsTable" class="table align-middle text-center table-edge table-nowrap mb-0">
                     <thead class="thead-light">
                         <tr>
                             <th>Review</th>
-                            <th>Name</th>
                             <th>Data</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    @if($anwers->count() != 0)
+                    <tbody class="list">
+                        @foreach($anwers as $answer)
                         <tr>
                             <td class="text-start">
                                 <span class="stars-reviews">
+                                    @for($i = 0; $i < $answer["count"] ; $i++)
                                     <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
+                                    @endfor
                                 </span>
                             </td>
-                            <td class="text-muted">Jon Richardson</td>
-                            <td class="text-muted">28.02.23</td>
+                            <td class="text-muted">{{ $answer["date"] }}</td>
                         </tr>
-                        <tr>
-                            <td class="text-start">
-                                <span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span>
-                            </td>
-                            <td class="text-muted">Alba Monday</td>
-                            <td class="text-muted">28.02.23</td>
-                        </tr>
-                        <tr>
-                            <td class="text-start">
-                                <span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span>
-                            </td>
-                            <td class="text-muted">Rose Watson</td>
-                            <td class="text-muted">28.02.23</td>
-                        </tr>
-                        <tr>
-                            <td class="text-start">
-                                <span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span>
-                            </td>
-                            <td class="text-muted">Levente Kosa</td>
-                            <td class="text-muted">28.02.23</td>
-
-                        </tr>
-                        <tr>
-                            <td class="text-start">
-                                <span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span>
-                            </td>
-                            <td class="text-muted">Andy Webb</td>
-                            <td class="text-muted">28.02.23</td>
-                        </tr>
+                        @endforeach
                     </tbody>
+                    @endif
                 </table>
+
+                
             </div> <!-- / .table-responsive -->
         </div>
     </div>

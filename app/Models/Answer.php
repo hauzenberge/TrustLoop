@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Question;
 use App\Models\User;
 
+
 class Answer extends Model
 {
     use HasFactory;
