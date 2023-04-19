@@ -75,6 +75,9 @@ Route::middleware('auth')->group(function () {
 Route::get('auth/google', 'App\Http\Controllers\Auth\LoginController@redirectToGoogle')->name('auth.google');
 Route::get('auth/google/callback', 'App\Http\Controllers\Auth\LoginController@handleGoogleCallback');
 
+Route::get('demo-page',function () {
+    return view('demo_page');
+});
 
 /*
 Route::middleware('auth')->group(function () {
