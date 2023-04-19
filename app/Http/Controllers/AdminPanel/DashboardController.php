@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\Survey;
 use App\Models\Question;
 
+use Illuminate\Support\Carbon;
+
 class DashboardController extends Controller
 {
     public function index()
@@ -70,6 +72,8 @@ class DashboardController extends Controller
         $view = 'admin-panel.dashboards.' . Auth::user()->role . '-dashboard';
 
         $registrations_count = User::where('role', '!=', 'admin')->count();
+        $registrations_count_weeks = User::where('role', '!=', 'admin')->whereDate('created_at', '>=', Carbon::now()->subDays(7))->count();
+      //  dd($registrations_count_weeks);
 
         $total_users = User::all()->count();
 
@@ -78,6 +82,7 @@ class DashboardController extends Controller
             'title' => $title,
             'active' => 'dashboard',
             'registrations_count' => $registrations_count,
+            'registrations_count_weeks' => $registrations_count_weeks,
             'total_users' => $total_users,
             'userList' => User::getUserList()
         ]);

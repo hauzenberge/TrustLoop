@@ -52,7 +52,7 @@
 
                             <!-- Comment -->
                             <p class="fs-6 text-muted mb-0">
-                                + 11 to last week
+                                + {{ $registrations_count_weeks }} to last week
                             </p>
                         </div>
                     </div>

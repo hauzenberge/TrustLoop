@@ -16,7 +16,8 @@ class ResponseController extends Controller
 {
     public function store(Request $request, Survey $survey)
     {
-      // dd($survey);
+        //dd($survey->link_url);
+       // dd($request->input());
         $validatedData = $request->validate([
             //   'surveyId' => 'required|exists:surveys,id',
             'answers' => 'required|array',
@@ -34,8 +35,9 @@ class ResponseController extends Controller
         }
 
         return [
-            'status' => 'success', 
-            'text' => 'Thank you for your response!'
+            'status' => 'success',
+            'text' => 'Thank you for your response!',
+            'redirect_url' => $survey->link_url
         ];
     }
 }
