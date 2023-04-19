@@ -12,6 +12,8 @@ use Illuminate\View\View;
 use App\Models\Avatar;
 use App\Models\UserData;
 use App\Models\Country;
+use App\Models\Answer;
+use App\Models\Survey;
 
 class ProfileController extends Controller
 {
@@ -75,13 +77,22 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+        if ($user->survey_id != null) {
+            Answer::where('user_id', $user->id)
+                ->with('question')
+                ->delete();
+            Survey::find($user->survey_id)->delete();
+        }
+
 
         Avatar::AvatarDelete($user->id);
 
         Auth::logout();
 
         $user->delete();
-        UserData::find($user->user_data_id)->delete();
+        if ($user->user_data_id != null) {
+            UserData::find($user->user_data_id)->delete();
+        }
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

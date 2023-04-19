@@ -53,7 +53,7 @@ class UsersController extends Controller
                         ->groupBy(function ($answer) {
                             return $answer->created_at->format('d.m.Y');
                         })
-                        ->map(function ($item, $key) {    
+                        ->map(function ($item, $key) {
                             $rate_as = $item->filter(function ($item) {
                                 if ($item->question->text == "Rate Us") {
                                     return $item;
@@ -79,7 +79,7 @@ class UsersController extends Controller
                             ];
                         });
 
-                        $data['answers'] = $answers;
+                    $data['answers'] = $answers;
 
                     break;
                 }
@@ -95,7 +95,19 @@ class UsersController extends Controller
 
     public function delete($user_id)
     {
-        User::find($user_id)->delete();
+        $user = User::find($user_id);
+        if ($user->survey_id != null) {
+            Answer::where('user_id', $user->id)
+                ->with('question')
+                ->delete();
+            Survey::find($user->survey_id)->delete();
+        }
+        Avatar::AvatarDelete($user->id);
+
+        $user->delete();
+        if ($user->user_data_id != null) {
+            UserData::find($user->user_data_id)->delete();
+        }
         return redirect()->back();
     }
 
