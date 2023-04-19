@@ -53,8 +53,7 @@ class UsersController extends Controller
                         ->groupBy(function ($answer) {
                             return $answer->created_at->format('d.m.Y');
                         })
-                        ->map(function ($item, $key) {
-                            // dd($key);                
+                        ->map(function ($item, $key) {    
                             $rate_as = $item->filter(function ($item) {
                                 if ($item->question->text == "Rate Us") {
                                     return $item;
@@ -68,13 +67,11 @@ class UsersController extends Controller
                             })
                                 ->values()
                                 ->map(function ($item) {
-                                    //dd($item->text);
                                     return [
                                         'question' => $item->question->text,
                                         'answer' => $item->text
                                     ];
                                 })->toArray();
-                            // dd($all_questions);
                             return [
                                 'rate_as' => intval($rate_as),
                                 'date' => $key,
