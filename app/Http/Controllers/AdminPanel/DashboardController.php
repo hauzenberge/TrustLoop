@@ -82,7 +82,6 @@ class DashboardController extends Controller
 
                     $title = 'Dashboard | TRUSTLOOP';
 
-                    // dd($user->survey_id);
                     $anwers = Survey::where('id', $user->survey_id)
                         ->with('questions.answers')
                         ->get()

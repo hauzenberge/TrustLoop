@@ -4,7 +4,7 @@
 
 <!-- Title -->
 <h1 class="h1 mb-6">
-    Reviews
+    {{ $title }} 
 </h1>
 
 <div class="row">
@@ -75,11 +75,6 @@
                                     <input class="form-check-input" type="checkbox" value="" id="checkAllCheckboxes">
                                 </div>
                             </th>
-                            <th class="ps-3">
-                                <a href="javascript: void(0);" class="text-muted list-sort" data-sort="name">
-                                    Full name
-                                </a>
-                            </th>
                             <th>
                                 <a href="javascript: void(0);" class="text-muted list-sort" data-sort="review">
                                     Review
@@ -92,39 +87,45 @@
                             </th>
                             <th class="text-center">
                                 <a href="javascript: void(0);" class="text-muted list-sort" data-sort="comment">
-                                    Comment
+                                    All Questions
                                 </a>
                             </th>
+                            <!--
                             <th class="w-150px text-center">
                                 <a href="javascript: void(0);" class="text-muted">
                                     Edit
                                 </a>
                             </th>
+                            -->
                         </tr>
                     </thead>
 
                     <tbody class="list">
+                        @foreach($answers as $answer)
                         <tr>
                             <td class="pe-0">
                                 <div class="form-check mb-0">
                                     <input class="form-check-input" type="checkbox" value="">
                                 </div>
                             </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <img src="{{asset('assets_project/assets/images/profiles/profile-14.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                                </div>
-                                <span class="name fw-bold">Hakeem Chan</span>
+                            <td class="review">
+                                <span class="stars-reviews">
+                                    @for($i = 0; $i < $answer["rate_as"] ; $i++) 
+                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
+                                    @endfor
+                                </span>
                             </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
+                            <td class="date">{{ $answer['date'] }}</td>
+                            <td class="comment text-center">                               
+                                @if(count($answer["all_questions"]) > 0)                                
+                                @foreach($answer["all_questions"] as $question)
+                               
+                                <strong>{{ $question["question"] }}:</strong> {{ $question["answer"] }}
+                                <br>
+                                @endforeach
+                                @endif
+                            </td>
+                            <!--
                             <td class="edit text-center">
                                 <a class="view" href="javascript: void(0);">
                                     <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
@@ -136,396 +137,9 @@
                                     <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
                                 </a>
                             </td>
+                            -->
                         </tr>
-                        <tr>
-                            <td class="pe-0">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                            </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <img src="{{asset('assets_project/assets/images/profiles/profile-23.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                                </div>
-                                <span class="name fw-bold">Orli J. Goodman</span>
-                            </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pe-0">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                            </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <img src="{{asset('assets_project/assets/images/profiles/profile-16.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                                </div>
-                                <span class="name fw-bold">Halee P. Lane</span>
-                            </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pe-0">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                            </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <span class="avatar-title text-bg-primary-soft">KS</span>
-                                </div>
-                                <span class="name fw-bold">Kimberly Salinas</span>
-                            </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pe-0">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                            </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <img src="{{asset('assets_project/assets/images/profiles/profile-17.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                                </div>
-                                <span class="name fw-bold">Galena Oliver</span>
-                            </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pe-0">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                            </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <img src="{{asset('assets_project/assets/images/profiles/profile-19.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                                </div>
-                                <span class="name fw-bold">Kelly Doyle</span>
-                            </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pe-0">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                            </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <img src="{{asset('assets_project/assets/images/profiles/profile-20.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                                </div>
-                                <span class="name fw-bold">Keane Wyatt</span>
-                            </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pe-0">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                            </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <span class="avatar-title text-bg-success-soft">NA</span>
-                                </div>
-                                <span class="name fw-bold">Nasim Aguirre</span>
-                            </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pe-0">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                            </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <img src="{{asset('assets_project/assets/images/profiles/profile-25.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                                </div>
-                                <span class="name fw-bold">Leo Johnston</span>
-                            </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pe-0">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                            </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <img src="{{asset('assets_project/assets/images/profiles/profile-26.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                                </div>
-                                <span class="name fw-bold">Macon Dean</span>
-                            </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pe-0">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                            </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <img src="{{asset('assets_project/assets/images/profiles/profile-11.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                                </div>
-                                <span class="name fw-bold">Yoko Grimes</span>
-                            </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pe-0">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                            </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <img src="{{asset('assets_project/assets/images/profiles/profile-27.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                                </div>
-                                <span class="name fw-bold">Jordan Douglas</span>
-                            </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pe-0">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                            </td>
-                            <td class="ps-3">
-                                <div class="avatar avatar-circle avatar-xs me-2">
-                                    <img src="{{asset('assets_project/assets/images/profiles/profile-30.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                                </div>
-                                <span class="name fw-bold">Carly Beard</span>
-                            </td>
-                            <td class="review"><span class="stars-reviews">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                    <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                </span></td>
-                            <td class="date">28.02.23</td>
-                            <td class="comment text-center">Experimental review checking...</td>
-                            <td class="edit text-center">
-                                <a class="view" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                                </a>
-                                <a class="edit mx-5" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                                </a>
-                                <a class="delete" href="javascript: void(0);">
-                                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                                </a>
-                            </td>
-                        </tr>
-
+                        @endforeach
                     </tbody>
                 </table>
             </div> <!-- / .table-responsive -->

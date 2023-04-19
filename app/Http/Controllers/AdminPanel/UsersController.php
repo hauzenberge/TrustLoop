@@ -12,6 +12,8 @@ use App\Models\Avatar;
 use App\Models\UserData;
 use App\Models\Country;
 use App\Models\Plan;
+use App\Models\Survey;
+use App\Models\Answer;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
@@ -19,43 +21,79 @@ use Illuminate\Support\Facades\Redirect;
 
 use Illuminate\Validation\Rule;
 
+use Illuminate\Support\Carbon;
+
 class UsersController extends Controller
 {
     public function index()
     {
         $view = 'admin-panel.users.' . Auth::user()->role . '-index';
 
+        $data = [
+            'active' => 'users'
+        ];
         switch (Auth::user()->role) {
             case 'admin': {
                     $title = 'User List';
 
-                    return view($view, [
-                        'title' => $title,
-                        'active' => 'users',
-                        'userList' => User::getUserList()
-                    ]);
+                    $data['title'] = $title;
+                    $data['userList'] = User::getUserList();
+
                     break;
                 }
             case 'user': {
                     $title = ' User Reviews';
 
-                    return view($view, [
-                        'title' => $title,
-                        'active' => 'users'
-                    ]);
+                    $data['title'] = $title;
+
+
+                    $answers = Answer::where('user_id', Auth::user()->id)
+                        ->with('question')
+                        ->get()
+                        ->groupBy(function ($answer) {
+                            return $answer->created_at->format('d.m.Y');
+                        })
+                        ->map(function ($item, $key) {
+                            // dd($key);                
+                            $rate_as = $item->filter(function ($item) {
+                                if ($item->question->text == "Rate Us") {
+                                    return $item;
+                                }
+                            })->first()->text;
+
+                            $all_questions = $item->filter(function ($item) {
+                                if ($item->question->text != "Rate Us") {
+                                    return $item;
+                                }
+                            })
+                                ->values()
+                                ->map(function ($item) {
+                                    //dd($item->text);
+                                    return [
+                                        'question' => $item->question->text,
+                                        'answer' => $item->text
+                                    ];
+                                })->toArray();
+                            // dd($all_questions);
+                            return [
+                                'rate_as' => intval($rate_as),
+                                'date' => $key,
+                                'all_questions' => $all_questions
+                            ];
+                        });
+
+                        $data['answers'] = $answers;
 
                     break;
                 }
             default:
                 $title = 'Users';
 
-                return view($view, [
-                    'title' => $title,
-                    'active' => 'users'
-                ]);
+                $data['title'] = $title;
 
                 break;
         }
+        return view($view, $data);
     }
 
     public function delete($user_id)
@@ -134,7 +172,7 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-       // dd($request->input());
+        // dd($request->input());
 
         $plan = Plan::inRandomOrder()->first();
 
