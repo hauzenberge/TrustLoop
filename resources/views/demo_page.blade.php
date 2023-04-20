@@ -297,7 +297,8 @@ text-align: center;
                 axios.get(this.base_url + 102)
                     .then(response => {
                         setTimeout(() => {
-                            console.log(response);
+                            console.log(response.data);
+
                             this.survey = response.data.survey;
                             this.buttonText = response.data.survey.review_button_text;
                             this.questions = response.data.questions;
