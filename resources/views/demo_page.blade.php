@@ -269,7 +269,7 @@ text-align: center;
                         const response = await axios.get('https://trustloop.dev.wprollers.com/api/surveys/102');
                         console.log(response.data);
                         vm.survey = response.data.survey;
-                        vm.buttonText = response.data.review_button_text;
+                        vm.buttonText = response.data.survey.review_button_text;
                         vm.questions = response.data.questions;
                         vm.rateAs_index = this.questions.findIndex(value => {
                             return (value.text === 'Rate Us') || (value.type === 'rating')
