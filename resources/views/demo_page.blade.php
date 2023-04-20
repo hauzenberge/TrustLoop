@@ -160,7 +160,7 @@ text-align: center;
 
                                             <label for="rating" class="text-center mb-2" id="form-label">
 
-                                                {{ value.text }}
+                                                @{{ value.text }}
 
                                             </label>
 
@@ -180,7 +180,7 @@ text-align: center;
 
                                                 <label for="rating" class="text-center mb-2">
 
-                                                    {{ value.text }}
+                                                    @{{ value.text }}
 
                                                 </label>
 
@@ -192,7 +192,7 @@ text-align: center;
 
                                             <div class="form-group d-flex flex-column" v-if="value.type === 'question'">
 
-                                                <label for="message" class="text-center mb-2">{{ value.text }}</label>
+                                                <label for="message" class="text-center mb-2">@{{ value.text }}</label>
 
                                                 <textarea class="form-control" v-model="questions[key].value"
                                                     id="message" rows="3"></textarea>
@@ -210,7 +210,7 @@ text-align: center;
 
                                     <button type="submit" class="btn btn-primary" id="btn-submit">
 
-                                        {{ buttonText }}
+                                        @{{ buttonText }}
 
                                     </button>
 
