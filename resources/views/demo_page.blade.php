@@ -277,15 +277,15 @@ text-align: center;
             },
 
             mounted() {
-
+                const vm = this;
                 async function fetchData() {
                     try {
                         const response = await axios.get('https://trustloop.dev.wprollers.com/api/surveys/102');
                         console.log(response.data);
-                        this.survey = response.data.survey;
-                        this.buttonText = response.data.review_button_text;
-                        this.questions = response.data.questions;
-                        this.rateAs_index = this.questions.findIndex(value => {
+                        vm.survey = response.data.survey;
+                        vm.buttonText = response.data.review_button_text;
+                        vm.questions = response.data.questions;
+                        vm.rateAs_index = this.questions.findIndex(value => {
                             return (value.text === 'Rate Us') || (value.type === 'rating')
                         });
                     } catch (error) {
