@@ -135,50 +135,32 @@ text-align: center;
                     </p>
 
                 </div>
+                <div class="survey-container" v-if="survey?.id">
+                    <!-- Button trigger modal -->
 
-                <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
 
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                        Leave a review
 
-                    Leave a review
+                    </button>
 
-                </button>
+                    <!-- Bootstrap Modal -->
 
-                <!-- Bootstrap Modal -->
+                    <div class="modal" id="myModal">
 
-                <div class="modal" id="myModal">
+                        <div class="modal-dialog">
 
-                    <div class="modal-dialog">
+                            <div class="modal-content" id="demo-content">
 
-                        <div class="modal-content" id="demo-content">
+                                <form @submit.prevent="onSubmit">
 
-                            <form @submit.prevent="onSubmit">
+                                    <div v-for="(value, key) in questions">
 
-                                <div v-for="(value, key) in questions">
+                                        <div v-if="(value.text === 'Rate Us') || (value.type === 'rating')" v-bind="rateAs_index = key">
 
-                                    <div v-if="(value.text === 'Rate Us') || (value.type === 'rating')" v-bind="rateAs_index = key">
+                                            <div class="form-group d-flex flex-column">
 
-                                        <div class="form-group d-flex flex-column">
-
-                                            <label for="rating" class="text-center mb-2" id="form-label">
-
-                                                @{{ value.text }}
-
-                                            </label>
-
-                                            <b-form-rating id="rating" size="sm" variant="warning" no-border v-model="questions[key].value" :max="5" :inline="true"></b-form-rating>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div v-else>
-
-                                        <div v-if="(questions[rateAs_index].value < 5) && (questions[rateAs_index].value > 0)">
-
-                                            <div class="form-group d-flex flex-column" v-if="(value.type === 'rating')">
-
-                                                <label for="rating" class="text-center mb-2">
+                                                <label for="rating" class="text-center mb-2" id="form-label">
 
                                                     @{{ value.text }}
 
@@ -188,11 +170,31 @@ text-align: center;
 
                                             </div>
 
-                                            <div class="form-group d-flex flex-column" v-if="value.type === 'question'">
+                                        </div>
 
-                                                <label for="message" class="text-center mb-2">@{{ value.text }}</label>
+                                        <div v-else>
 
-                                                <textarea class="form-control" v-model="questions[key].value" id="message" rows="3"></textarea>
+                                            <div v-if="(questions[rateAs_index].value < 5) && (questions[rateAs_index].value > 0)">
+
+                                                <div class="form-group d-flex flex-column" v-if="(value.type === 'rating')">
+
+                                                    <label for="rating" class="text-center mb-2">
+
+                                                        @{{ value.text }}
+
+                                                    </label>
+
+                                                    <b-form-rating id="rating" size="sm" variant="warning" no-border v-model="questions[key].value" :max="5" :inline="true"></b-form-rating>
+
+                                                </div>
+
+                                                <div class="form-group d-flex flex-column" v-if="value.type === 'question'">
+
+                                                    <label for="message" class="text-center mb-2">@{{ value.text }}</label>
+
+                                                    <textarea class="form-control" v-model="questions[key].value" id="message" rows="3"></textarea>
+
+                                                </div>
 
                                             </div>
 
@@ -200,24 +202,23 @@ text-align: center;
 
                                     </div>
 
-                                </div>
+                                    <div class="form-group text-center" v-if="questions[rateAs_index]?.value > 0" style="padding: 45px;">
 
-                                <div class="form-group text-center" v-if="questions[rateAs_index]?.value > 0" style="padding: 45px;">
+                                        <button type="submit" class="btn btn-primary" id="btn-submit">
 
-                                    <button type="submit" class="btn btn-primary" id="btn-submit">
+                                            @{{ buttonText }}
 
-                                        @{{ buttonText }}
+                                        </button>
 
-                                    </button>
+                                    </div>
 
-                                </div>
+                                </form>
 
-                            </form>
+                            </div>
 
                         </div>
 
                     </div>
-
                 </div>
 
             </div>
