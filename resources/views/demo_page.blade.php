@@ -131,6 +131,14 @@ text-align: center;
 
                     </p>
 
+                    <p>
+                        @{{ survey }}
+                    </p>
+
+                    <p>
+                        @{{ questions }}
+                    </p>
+
                 </div>
 
                 <!-- Button trigger modal -->
