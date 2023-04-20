@@ -231,29 +231,17 @@ text-align: center;
 
     <script>
         var app = new Vue({
-
             el: '#app',
-
             data: {
-
                 base_url: 'https://trustloop.dev.wprollers.com/api/surveys' + '/',
-
                 rating: null,
-
                 comment: '',
-
                 survey: {},
-
                 questions: {},
-
                 buttonText: '',
-
                 rateAs_index: null
-
             },
-
             methods: {
-
                 onSubmit: function() {
                     let formData = new FormData();
                     formData.append('answers', this.questions);
@@ -266,13 +254,10 @@ text-align: center;
                                 window.location.assign(response.data.redirect_url);
                             }
                         })
-
                         .catch(error => {
-
+                            console.log(error)
                             // handle error
-
                         });
-
                 },
 
             },
@@ -289,6 +274,7 @@ text-align: center;
                         vm.rateAs_index = this.questions.findIndex(value => {
                             return (value.text === 'Rate Us') || (value.type === 'rating')
                         });
+                        console.log(vm.rateAs_index);
                     } catch (error) {
                         console.log(error);
                     }
