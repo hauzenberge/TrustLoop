@@ -156,7 +156,7 @@ text-align: center;
 
                                     <div v-for="(value, key) in questions">
 
-                                        <div v-if="(value.text === 'Rate Us') || (value.type === 'rating')" v-bind="rateAs_index = key">
+                                        <div v-if="(value.text === 'Rate Us') && (value.type === 'rating')" v-bind="rateAs_index = key">
 
                                             <div class="form-group d-flex flex-column">
 
