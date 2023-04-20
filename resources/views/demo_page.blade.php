@@ -10,22 +10,17 @@
 
     <!-- Підключення Bootstrap CSS -->
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- Підключення VueJS та Bootstrap JS -->
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <!-- Підключення BootstrapVue -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.21.2/bootstrap-vue.min.js"
-        integrity="sha512-Z0dNfC81uEXC2iTTXtE0rM18I3ATkwn1m8Lxe0onw/uPEEkCmVZd+H8GTeYGkAZv50yvoSR5N3hoy/Do2hNSkw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.21.2/bootstrap-vue.min.js" integrity="sha512-Z0dNfC81uEXC2iTTXtE0rM18I3ATkwn1m8Lxe0onw/uPEEkCmVZd+H8GTeYGkAZv50yvoSR5N3hoy/Do2hNSkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <style>
         .b-rating-icon {
@@ -161,8 +156,7 @@ text-align: center;
 
                                 <div v-for="(value, key) in questions">
 
-                                    <div v-if="(value.text === 'Rate Us') || (value.type === 'rating')"
-                                        v-bind="rateAs_index = key">
+                                    <div v-if="(value.text === 'Rate Us') || (value.type === 'rating')" v-bind="rateAs_index = key">
 
                                         <div class="form-group d-flex flex-column">
 
@@ -172,8 +166,7 @@ text-align: center;
 
                                             </label>
 
-                                            <b-form-rating id="rating" size="sm" variant="warning" no-border
-                                                v-model="questions[key].value" :max="5" :inline="true"></b-form-rating>
+                                            <b-form-rating id="rating" size="sm" variant="warning" no-border v-model="questions[key].value" :max="5" :inline="true"></b-form-rating>
 
                                         </div>
 
@@ -181,8 +174,7 @@ text-align: center;
 
                                     <div v-else>
 
-                                        <div
-                                            v-if="(questions[rateAs_index].value < 5) && (questions[rateAs_index].value > 0)">
+                                        <div v-if="(questions[rateAs_index].value < 5) && (questions[rateAs_index].value > 0)">
 
                                             <div class="form-group d-flex flex-column" v-if="(value.type === 'rating')">
 
@@ -192,9 +184,7 @@ text-align: center;
 
                                                 </label>
 
-                                                <b-form-rating id="rating" size="sm" variant="warning" no-border
-                                                    v-model="questions[key].value" :max="5"
-                                                    :inline="true"></b-form-rating>
+                                                <b-form-rating id="rating" size="sm" variant="warning" no-border v-model="questions[key].value" :max="5" :inline="true"></b-form-rating>
 
                                             </div>
 
@@ -202,8 +192,7 @@ text-align: center;
 
                                                 <label for="message" class="text-center mb-2">@{{ value.text }}</label>
 
-                                                <textarea class="form-control" v-model="questions[key].value"
-                                                    id="message" rows="3"></textarea>
+                                                <textarea class="form-control" v-model="questions[key].value" id="message" rows="3"></textarea>
 
                                             </div>
 
@@ -213,8 +202,7 @@ text-align: center;
 
                                 </div>
 
-                                <div class="form-group text-center" v-if="questions[rateAs_index]?.value > 0"
-                                    style="padding: 45px;">
+                                <div class="form-group text-center" v-if="questions[rateAs_index]?.value > 0" style="padding: 45px;">
 
                                     <button type="submit" class="btn btn-primary" id="btn-submit">
 
@@ -241,7 +229,6 @@ text-align: center;
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
-
         var app = new Vue({
 
             el: '#app',
@@ -266,12 +253,12 @@ text-align: center;
 
             methods: {
 
-                onSubmit: function () {
+                onSubmit: function() {
                     let formData = new FormData();
                     formData.append('answers', this.questions);
                     axios.post(this.base_url + this.survey.id + '/responses', {
-                        answers: this.questions.filter(question => question.value !== null)
-                    })
+                            answers: this.questions.filter(question => question.value !== null)
+                        })
                         .then(response => {
                             console.log(response.data.redirect_url);
                             if (response.data.redirect_url != null) {
@@ -294,9 +281,9 @@ text-align: center;
                 async function fetchData() {
                     try {
                         const response = await axios.get('https://trustloop.dev.wprollers.com/api/surveys/102');
-                        console.log(response.data);
+                        console.log(response);
                         this.survey = response.data.survey;
-                        this.buttonText = response.data.survey.review_button_text;
+                        this.buttonText = response.data.review_button_text;
                         this.questions = response.data.questions;
                         this.rateAs_index = this.questions.findIndex(value => {
                             return (value.text === 'Rate Us') || (value.type === 'rating')
@@ -304,14 +291,14 @@ text-align: center;
                     } catch (error) {
                         console.log(error);
                     }
-                };
+                }
 
                 fetchData();
+
 
             },
 
         });
-
     </script>
 
 </body>
