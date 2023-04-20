@@ -286,7 +286,7 @@ text-align: center;
                 async function fetchData() {
                     try {
                         const response = await axios.get('https://trustloop.dev.wprollers.com/api/surveys/102');
-                        console.log(response);
+                        console.log(response.data);
                         this.survey = response.data.survey;
                         this.buttonText = response.data.survey.review_button_text;
                         this.questions = response.data.questions;
