@@ -295,6 +295,8 @@ text-align: center;
 
                 fetchData();
 
+                console.log(this.survey);
+
 
             },
 
