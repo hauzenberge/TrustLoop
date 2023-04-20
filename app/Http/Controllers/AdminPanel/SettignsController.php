@@ -14,7 +14,6 @@ class SettignsController extends Controller
     public function index()
     {
         $data = [
-            //  'title' => $title,
             'active' => 'settigns'
         ];
 

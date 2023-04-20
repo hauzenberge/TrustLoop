@@ -51,7 +51,7 @@ class UsersController extends Controller
                         ->with('question')
                         ->get()
                         ->groupBy(function ($answer) {
-                            return $answer->created_at->format('d.m.Y');
+                            return $answer->created_at->format('d.m.Y h:m:s');
                         })
                         ->map(function ($item, $key) {
                             $rate_as = $item->filter(function ($item) {
