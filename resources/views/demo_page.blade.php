@@ -259,27 +259,16 @@ text-align: center;
             methods: {
 
                 onSubmit: function () {
-
                     let formData = new FormData();
-
                     formData.append('answers', this.questions);
-
                     axios.post(this.base_url + this.survey.id + '/responses', {
-
                         answers: this.questions.filter(question => question.value !== null)
-
                     })
-
                         .then(response => {
-
                             console.log(response.data.redirect_url);
-
                             if (response.data.redirect_url != null) {
-
                                 window.location.assign(response.data.redirect_url);
-
                             }
-
                         })
 
                         .catch(error => {
@@ -294,22 +283,22 @@ text-align: center;
 
             mounted() {
 
-                axios.get(this.base_url + 102)
-                    .then(response => {
-                        setTimeout(() => {
-                            console.log(response.data);
-
-                            this.survey = response.data.survey;
-                            this.buttonText = response.data.survey.review_button_text;
-                            this.questions = response.data.questions;
-                            this.rateAs_index = this.questions.findIndex(value => {
-                                return (value.text === 'Rate Us') || (value.type === 'rating')
-                            });
-                        }, 500);
-                    })
-                    .catch(error => {
+                async function fetchData() {
+                    try {
+                        const response = await axios.get('https://trustloop.dev.wprollers.com/api/surveys/102');
+                        console.log(response);
+                        this.survey = response.data.survey;
+                        this.buttonText = response.data.survey.review_button_text;
+                        this.questions = response.data.questions;
+                        this.rateAs_index = this.questions.findIndex(value => {
+                            return (value.text === 'Rate Us') || (value.type === 'rating')
+                        });
+                    } catch (error) {
                         console.log(error);
-                    });
+                    }
+                };
+
+                fetchData();
 
             },
 
