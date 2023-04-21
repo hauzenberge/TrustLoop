@@ -55,10 +55,17 @@ class UsersController extends Controller
                         })
                         ->map(function ($item, $key) {
                             $rate_as = $item->filter(function ($item) {
-                                if ($item->question->text == "Rate Us") {
+                                if (($item->question->text == "Rate Us")){
                                     return $item;
                                 }
-                            })->first()->text;
+                            })->first();
+                           // dd($rate_as);
+
+                           if ($rate_as) {
+                            $rate_as = $rate_as->text;
+                        } else {
+                            $rate_as = '0'; 
+                        }
 
                             $all_questions = $item->filter(function ($item) {
                                 if ($item->question->text != "Rate Us") {
