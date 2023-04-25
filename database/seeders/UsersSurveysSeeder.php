@@ -21,9 +21,9 @@ class UsersSurveysSeeder extends Seeder
         $users = User::where('role', 'user')->get();
 
         $questions = [
-            ['text' => 'How would you rate our service?', 'type' => 'rating'],
-            ['text' => 'How likely are you to recommend us?', 'type' => 'rating'],
-            ['text' => 'How satisfied are you with our product?', 'type' => 'rating'],
+            ['text' => 'How would you rate our service?', 'type' => 'question'],
+            ['text' => 'How likely are you to recommend us?', 'type' => 'question'],
+            ['text' => 'How satisfied are you with our product?', 'type' => 'question'],
             ['text' => 'What is your age?', 'type' => 'question'],
             ['text' => 'What is your favorite color?', 'type' => 'question'],
             ['text' => 'What is your favorite food?', 'type' => 'question'],

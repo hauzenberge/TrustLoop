@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->text('text');
-            $table->enum('type', ['question', 'rating']);
+            $table->enum('type', ['question', 'rating'])->defoult('question');
             $table->unsignedBigInteger('survey_id');
 
             $table->timestamps();

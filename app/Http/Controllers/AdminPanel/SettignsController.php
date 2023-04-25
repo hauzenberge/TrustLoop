@@ -25,19 +25,9 @@ class SettignsController extends Controller
             case 'user': {
                     $data['title'] = 'User Settings | TRUSTLOOP';
                     $survey =  Auth::user()->survey()->with('questions')->first();
-                   // dd($survey);
+                    // dd($survey);
                     $data['survey'] = $survey;
                     $data['questions'] =  $survey->questions->where("text", '!=', 'Rate Us');
-                    $data['question_types'] = [
-                        [
-                            'value' => 'question',
-                            'text' => 'Question'
-                        ],
-                        [
-                            'value' => 'rating',
-                            'text' => 'Rating'
-                        ]
-                    ];
                     break;
                 }
             default: {
@@ -80,8 +70,14 @@ class SettignsController extends Controller
     {
         $question = Question::find($question_id);
 
-        $question->text = $request->input('text');
-        $question->type = $request->input('type');
+        $text = $request->input('text');
+
+        if (substr($text, -1) !== '?') { 
+            $text .= '?'; 
+        }
+
+        $question->text = $text;
+        // $question->type = $request->input('type');
         $question->save();
         return redirect()->back();
     }

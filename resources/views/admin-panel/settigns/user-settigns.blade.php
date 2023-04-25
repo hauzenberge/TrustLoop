@@ -83,13 +83,6 @@
                         <x-input-error class="mt-2" :messages="$errors->get('text')" style="color: red;" />
                     </div>
                     <div class="form-group">
-                        <select class="form-control" name="type">
-                            @foreach($question_types as $question_type)
-                            <option value="{{ $question_type['value'] }}" {{ $question->type == $question_type['value'] ? 'selected' : '' }}>{{ $question_type['text'] }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
