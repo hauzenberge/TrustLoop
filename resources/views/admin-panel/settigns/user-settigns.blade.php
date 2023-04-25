@@ -18,7 +18,8 @@
                 </label>
 
                 <!-- Textarea -->
-                <textarea class="form-control bg-white" rows="5" placeholder="What do you think so far?"></textarea>
+                <textarea class="form-control bg-white" rows="5" name="popup_text"  value="{{ $survey->popup_text }}" placeholder="What do you think so far?">{{ $survey->popup_text }}</textarea>
+                <x-input-error class="mt-2" :messages="$errors->get('popup_text')" style="color: red;" />
             </div>
             <div class="mb-4">
                 <!-- Label -->
@@ -27,8 +28,8 @@
                 </label>
 
                 <!-- Textarea -->
-                <textarea class="form-control bg-white" rows="5" name="popup_text" placeholder="What feedback must be implemented before you increase your rating to 5-stars?">{{ $survey->popup_text }}</textarea>
-                <x-input-error class="mt-2" :messages="$errors->get('popup_text')" style="color: red;" />
+                <textarea class="form-control bg-white" rows="5" name="feedback_request" placeholder="What feedback must be implemented before you increase your rating to 5-stars?">{{ $survey->popup_text }}</textarea>
+                <x-input-error class="mt-2" :messages="$errors->get('feedback_request')" style="color: red;" />
             </div>
             <div class="mb-4">
                 <!-- Label -->
@@ -57,7 +58,7 @@
                 </label>
 
                 <!-- Input -->
-                <input type="text" name="link_url" class="form-control bg-white" id="url" placeholder="https://www.trustpilot.com/review/trustloop.co" value="{{ $survey->link_url }}">
+                <input type="text" name="link_url" class="form-control bg-white" id="url" placeholder="https://www.trustpilot.com/review/trustloop.co" value="{{ $survey->link_url }}" required>
                 <x-input-error class="mt-2" :messages="$errors->get('link_url')" style="color: red;" />
 
                 <!-- Button -->
@@ -66,46 +67,6 @@
         </form>
     </div>
     <div class="col-12 col-xl-6 mt-6 pt-xl-1">
-        <!--
-            <div class="d-flex question-body border rounded border-gray-300 bg-white mb-4">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="me-4" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 5C3 4.44772 3.44772 4 4 4H20C20.5523 4 21 4.44772 21 5C21 5.55228 20.5523 6 20 6H4C3.44772 6 3 5.55228 3 5ZM3 12C3 11.4477 3.44772 11 4 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H4C3.44772 13 3 12.5523 3 12ZM4 18C3.44772 18 3 18.4477 3 19C3 19.5523 3.44772 20 4 20H20C20.5523 20 21 19.5523 21 19C21 18.4477 20.5523 18 20 18H4Z" fill="#A5ABB3" />
-                </svg>
-                <h3 class="fw-semibold mb-0 ps-1 me-auto">How can we improve our service?</h3>
-                <a class="edit mx-5" href="javascript: void(0);">
-                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                </a>
-                <a class="delete" href="javascript: void(0);">
-                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                </a>
-            </div>
-
-            <div class="d-flex question-body border rounded border-gray-300 bg-white mb-4">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="me-4" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 5C3 4.44772 3.44772 4 4 4H20C20.5523 4 21 4.44772 21 5C21 5.55228 20.5523 6 20 6H4C3.44772 6 3 5.55228 3 5ZM3 12C3 11.4477 3.44772 11 4 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H4C3.44772 13 3 12.5523 3 12ZM4 18C3.44772 18 3 18.4477 3 19C3 19.5523 3.44772 20 4 20H20C20.5523 20 21 19.5523 21 19C21 18.4477 20.5523 18 20 18H4Z" fill="#A5ABB3" />
-                </svg>
-                <h3 class="fw-semibold mb-0 ps-1 me-auto">Was delivery made on time?</h3>
-                <a class="edit mx-5" href="javascript: void(0);">
-                    <img src="{{asset('assets_project//assets/images/pencil.svg')}}" alt="...">
-                </a>
-                <a class="delete" href="javascript: void(0);">
-                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                </a>
-            </div>
-
-            <div class="d-flex question-body border rounded border-gray-300 bg-white">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="me-4" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 5C3 4.44772 3.44772 4 4 4H20C20.5523 4 21 4.44772 21 5C21 5.55228 20.5523 6 20 6H4C3.44772 6 3 5.55228 3 5ZM3 12C3 11.4477 3.44772 11 4 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H4C3.44772 13 3 12.5523 3 12ZM4 18C3.44772 18 3 18.4477 3 19C3 19.5523 3.44772 20 4 20H20C20.5523 20 21 19.5523 21 19C21 18.4477 20.5523 18 20 18H4Z" fill="#A5ABB3" />
-                </svg>
-                <h3 class="fw-semibold mb-0 ps-1 me-auto">Can you recommend us to your friends?</h3>
-                <a class="edit mx-5" href="javascript: void(0);">
-                    <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                </a>
-                <a class="delete" href="javascript: void(0);">
-                    <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                </a>
-            </div>
-        -->
 
         @foreach($questions as $question)
         <div class="d-flex question-body border rounded border-gray-300 bg-white">
@@ -118,7 +79,7 @@
                 <form class="form-inline" action="{{ url('settigns/question/' . $question->id . '/update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <input type="text" name="text" class="form-control mr-2" id="url" placeholder="https://www.trustpilot.com/review/trustloop.co" value="{{ $question->text }}">
+                        <input type="text" name="text" class="form-control mr-2" id="url" placeholder="https://www.trustpilot.com/review/trustloop.co" value="{{ $question->text }}" required>
                         <x-input-error class="mt-2" :messages="$errors->get('text')" style="color: red;" />
                     </div>
                     <div class="form-group">
@@ -172,7 +133,7 @@
                 </label>
 
                 <!-- Input -->
-                <input name="text" type="text" class="form-control bg-white" placeholder="What do you think so far?">
+                <input name="text" type="text" class="form-control bg-white" placeholder="What do you think so far?" required>
                 <!-- Button -->
                 <button type="submit" class="btn w-100 btn-primary mt-6 mb-2">Add a question</button>
 

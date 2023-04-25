@@ -19,6 +19,7 @@ class Survey extends Model
         'title',
 
         'popup_text',
+        'feedback_request',
         'review_text',
         'review_button_text',
         'link_url',

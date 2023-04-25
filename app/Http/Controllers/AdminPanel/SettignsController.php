@@ -25,6 +25,7 @@ class SettignsController extends Controller
             case 'user': {
                     $data['title'] = 'User Settings | TRUSTLOOP';
                     $survey =  Auth::user()->survey()->with('questions')->first();
+                   // dd($survey);
                     $data['survey'] = $survey;
                     $data['questions'] =  $survey->questions->where("text", '!=', 'Rate Us');
                     $data['question_types'] = [
@@ -54,11 +55,12 @@ class SettignsController extends Controller
     public function SurveyUpdate($survey_id, Request $request)
     {
         $validate = $request->validate([
-            'popup_text' => 'nullable|string',
-            'review_text' => 'nullable|string',
-            'review_button_text' => 'nullable|string',
+            'popup_text' => 'required|string',
+            'feedback_request' => 'required|string',
+            'review_text' => 'required|string',
+            'review_button_text' => 'required|string',
 
-            'link_url' => 'nullable|url',
+            'link_url' => 'required|url',
         ]);
 
         $survay = Survey::find($survey_id);

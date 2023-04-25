@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('title');
 
             $table->text('popup_text')->nullable();
+            $table->text('feedback_request')->nullable();
             $table->text('review_text')->nullable();
             $table->text('review_button_text')->nullable();
             $table->text('link_url')->nullable();
