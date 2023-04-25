@@ -10,27 +10,32 @@
 
     <!-- Bootstrap CSS -->
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- VueJS and Bootstrap JS -->
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <!-- BootstrapVue -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.21.2/bootstrap-vue.min.js"
-        integrity="sha512-Z0dNfC81uEXC2iTTXtE0rM18I3ATkwn1m8Lxe0onw/uPEEkCmVZd+H8GTeYGkAZv50yvoSR5N3hoy/Do2hNSkw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.21.2/bootstrap-vue.min.js" integrity="sha512-Z0dNfC81uEXC2iTTXtE0rM18I3ATkwn1m8Lxe0onw/uPEEkCmVZd+H8GTeYGkAZv50yvoSR5N3hoy/Do2hNSkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <style>
         .b-rating-icon {
             font-size: 43.3px;
             line-height: 41.35px;
+        }
+
+        #modal_button {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translate(42px, -60px) rotate(270deg);
+            background: #5083C1;
+            border-radius: 10px 10px 0px 0px;
+
         }
 
 
@@ -92,7 +97,7 @@
                 </div>
                 <div class="survey-container" v-if="survey?.id">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <button id="modal_button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
                         Leave a review
                     </button>
 
@@ -102,47 +107,38 @@
                             <div class="modal-content" id="demo-content">
                                 <form @submit.prevent="onSubmit">
                                     <div v-for="(value, key) in questions">
-                                        <div v-if="(value.text === 'Rate Us') && (value.type === 'rating')"
-                                            v-bind="rateAs_index = key">
+                                        <div v-if="(value.text === 'Rate Us') && (value.type === 'rating')" v-bind="rateAs_index = key">
                                             <div class="form-group d-flex flex-column">
                                                 <label for="rating" class="text-center mb-2" id="form-label">
-                                                    @{{ value.text }} 
+                                                    @{{ value.text }}
                                                 </label>
 
-                                                <b-form-rating v-bind:id="value.question_id" size="sm" variant="warning" color="#C2C2C2"
-                                                    no-border v-model="questions[key].value" :max="5" :inline="true">
+                                                <b-form-rating v-bind:id="value.question_id" size="sm" variant="warning" color="#C2C2C2" no-border v-model="questions[key].value" :max="5" :inline="true">
                                                 </b-form-rating>
                                             </div>
                                         </div>
 
                                         <div v-else>
-                                            <div
-                                                v-if="(questions[rateAs_index].value < 5) && (questions[rateAs_index].value > 0)">
-                                                <div class="form-group d-flex flex-column"
-                                                    v-if="(value.type === 'rating')">
+                                            <div v-if="(questions[rateAs_index].value < 5) && (questions[rateAs_index].value > 0)">
+                                                <div class="form-group d-flex flex-column" v-if="(value.type === 'rating')">
                                                     <label for="rating" class="text-center mb-2">
                                                         @{{ value.text }}
                                                     </label>
-                                                    <b-form-rating v-bind:id=" value.question_id" size="sm" color="#C2C2C2" variant="warning" no-border
-                                                        v-model="questions[key].value" :max="5"
-                                                        :inline="true"></b-form-rating>
+                                                    <b-form-rating v-bind:id=" value.question_id" size="sm" color="#C2C2C2" variant="warning" no-border v-model="questions[key].value" :max="5" :inline="true"></b-form-rating>
                                                 </div>
 
-                                                <div class="form-group d-flex flex-column"
-                                                    v-if="value.type === 'question'">
+                                                <div class="form-group d-flex flex-column" v-if="value.type === 'question'">
                                                     <label for="message" class="text-center mb-2">
                                                         @{{ value.text }}
                                                     </label>
 
-                                                    <textarea class="form-control" v-model="questions[key].value"
-                                                        id="message" rows="3"></textarea>
+                                                    <textarea class="form-control" v-model="questions[key].value" id="message" rows="3"></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-group text-center" v-if="questions[rateAs_index]?.value > 0"
-                                        style="padding: 45px;">
+                                    <div class="form-group text-center" v-if="questions[rateAs_index]?.value > 0" style="padding: 45px;">
                                         <button type="submit" class="btn btn-primary" id="btn-submit">
                                             @{{ buttonText }}
                                         </button>
@@ -177,7 +173,7 @@
                                 const ratingValue = question.value;
                                 const ratingComponent = document?.getElementById(question.question_id);
                                 const ratingStars = ratingComponent?.querySelectorAll('.b-rating-icon');
-                               // console.log(ratingStars);
+                                // console.log(ratingStars);
 
                                 ratingStars.forEach((star, index) => {
                                     if (index < ratingValue) {
@@ -192,16 +188,15 @@
                     },
                     deep: true
                 }
-            }
-            ,
+            },
 
             methods: {
-                onSubmit: function () {
+                onSubmit: function() {
                     let formData = new FormData();
                     formData.append('answers', this.questions);
                     axios.post(BASE_URL + +this.survey.id + '/responses', {
-                        answers: this.questions.filter(question => question.value !== null)
-                    })
+                            answers: this.questions.filter(question => question.value !== null)
+                        })
                         .then(response => {
                             if (response.data.redirect_url != null) {
                                 window.location.assign(response.data.redirect_url);
