@@ -99,7 +99,7 @@ class DashboardController extends Controller
                                         ->map(function ($item) {
                                             return [
                                                 'count' => intval($item->text),
-                                                'date' => Carbon::parse($item->created_at)->format('d.m.y'),
+                                                'date' => Carbon::parse($item->created_at)->format('d/m/y'),
                                             ];
                                         });  
 
