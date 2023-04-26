@@ -109,7 +109,7 @@
                                     <div v-for="(value, key) in questions">
                                         <div v-if="(value.text === 'Rate Us') && (value.type === 'rating')" v-bind="rateAs_index = key">
                                             <div class="form-group d-flex flex-column">
-                                                <label for="rating" class="text-center mb-2" id="form-label">
+                                                <label for="rating" class="text-center mb-2" id="form-label" v-if="!questions[key].value">
                                                     @{{ value.text }}
                                                 </label>
 
@@ -139,7 +139,11 @@
                                     </div>
 
                                     <div class="form-group text-center" v-if="questions[rateAs_index]?.value > 0" style="padding: 45px;">
-                                        <button type="submit" class="btn btn-primary" id="btn-submit">
+                                        <button type="submit" class="btn btn-primary" id="btn-submit" style="
+                                                                                            border-color: white;
+                                                                                            background: #5083C1;
+                                                                                            border-radius: 4px;
+                                                                                        ">
                                             @{{ buttonText }}
                                         </button>
                                     </div>

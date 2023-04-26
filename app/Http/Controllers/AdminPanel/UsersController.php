@@ -188,7 +188,6 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->input());
 
         $plan = Plan::inRandomOrder()->first();
 
