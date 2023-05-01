@@ -64,7 +64,7 @@
     <div class="form-check mb-0">
 
         <!-- Input -->
-        <input name="remember" type="checkbox" class="form-check-input" id="remember">
+        <input name="remember" type="checkbox" class="form-check-input" id="remember" checked>
 
         <!-- Label -->
         <label class="form-check-label" for="remember">

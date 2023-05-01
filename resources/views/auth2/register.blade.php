@@ -93,7 +93,7 @@
     <div class="form-check">
 
         <!-- Input -->
-        <input type="checkbox" class="form-check-input" id="agree">
+        <input type="checkbox" class="form-check-input" id="agree" checked>
 
         <!-- Label -->
         <label class="form-check-label" for="agree">
