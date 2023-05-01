@@ -72,11 +72,24 @@
         </label>
     </div>
 
-    <div class="row align-items-center text-center">
+    <div class="row align-items-center text-center" style="
+                                                            gap: 20px;
+                                                        ">
         <div class="col-12">
 
             <!-- Button -->
-            <button type="submit" class="btn w-100 btn-primary mt-6 mb-2">{{ __('Sign in')}}</button>
+            <button type="submit" class="btn w-100 btn-primary mt-6 mb-2" style="
+                                                                                background: #5083C1;
+                                                                                border-radius: 10px;
+                                                                                font-family: 'Open Sans';
+                                                                                font-style: normal;
+                                                                                font-weight: 700;
+                                                                                font-size: 14px;
+                                                                                line-height: 19px;
+                                                                                text-align: center;
+                                                                            ">
+                {{ __('Sign in')}}
+            </button>
         </div>
         @if (Route::has('auth.google'))
         <div class="col-12">
@@ -86,7 +99,7 @@
                                                                                             box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
                                                                                             border-radius: 10px;
                                                                                         ">
-                <svg width="182" height="24" viewBox="0 0 182 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg max-width="182" height="24" viewBox="0 0 182 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_124_2960)">
                         <path d="M18.8147 12.2074C18.8147 11.5956 18.7623 10.9805 18.6506 10.3787H9.68994V13.8444H14.8213C14.6084 14.9622 13.9242 15.951 12.9224 16.5793V18.828H15.9837C17.7815 17.2605 18.8147 14.9456 18.8147 12.2074Z" fill="#4285F4" />
                         <path d="M9.69 21.0005C12.2522 21.0005 14.4129 20.2035 15.9873 18.8278L12.9259 16.579C12.0742 17.128 10.9746 17.4389 9.69349 17.4389C7.21508 17.4389 5.11366 15.8548 4.35967 13.7251H1.20056V16.0433C2.81328 19.0824 6.09805 21.0005 9.69 21.0005V21.0005Z" fill="#34A853" />
