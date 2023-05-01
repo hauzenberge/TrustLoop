@@ -110,7 +110,6 @@
         <p class="fs-3 fw-semibold">
              Website Tracking  
              <a href="{{ url('demo-page/' . Auth::user()->id ) }}" target="_blank">Demo Link</a> 
-             <a href="{{ url('demo-page-2/' . Auth::user()->id ) }}" target="_blank">Demo Link 2</a> 
             </p>
         <p class="fs-3 fw-semibold">Please add to site &lt;HEAD&gt; (trustloop.js)</p>
         <div class="row">

@@ -61,9 +61,6 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
     Route::post('/upload-avatar/{user_id}', 'AvatarController@store')->name('avatar.upload');
 });
 
-Route::post('/modal', function () {
-    return view('modal')->render();
-});
 
 
 Route::middleware('auth')->group(function () {
@@ -77,11 +74,6 @@ Route::get('auth/google/callback', 'App\Http\Controllers\Auth\LoginController@ha
 
 Route::get('demo-page/{user_id}',function ($user_id) {
     return view('demo_page',[
-        'user_id' => $user_id
-    ]);
-});
-Route::get('demo-page-2/{user_id}',function ($user_id) {
-    return view('demo_page_2',[
         'user_id' => $user_id
     ]);
 });
