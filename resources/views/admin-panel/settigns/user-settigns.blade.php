@@ -28,7 +28,7 @@
                 </label>
 
                 <!-- Textarea -->
-                <textarea class="form-control bg-white" rows="5" name="feedback_request" placeholder="What feedback must be implemented before you increase your rating to 5-stars?">{{ $survey->popup_text }}</textarea>
+                <textarea class="form-control bg-white" rows="5" name="feedback_request" placeholder="What feedback must be implemented before you increase your rating to 5-stars?">{{ $survey->feedback_request }}</textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('feedback_request')" style="color: red;" />
             </div>
             <div class="mb-4">

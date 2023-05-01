@@ -39,4 +39,18 @@ class Survey extends Model
             return 'Send the review';
         }else return $value;
     }
+
+    public function getFeedbackRequestAttribute($value)
+    {
+        if ($value == null) {
+            return 'Thank you!';
+        }else return $value;
+    }    
+
+    public function getLinkUrlAttribute($value)
+    {
+        if ($value == null) {
+            return url('/');
+        }else return $value;
+    } 
 }

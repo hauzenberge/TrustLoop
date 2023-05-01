@@ -80,6 +80,11 @@ Route::get('demo-page/{user_id}',function ($user_id) {
         'user_id' => $user_id
     ]);
 });
+Route::get('demo-page-2/{user_id}',function ($user_id) {
+    return view('demo_page_2',[
+        'user_id' => $user_id
+    ]);
+});
 
 /*
 Route::middleware('auth')->group(function () {

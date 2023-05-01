@@ -53,6 +53,8 @@ class SettignsController extends Controller
             'link_url' => 'required|url',
         ]);
 
+      //  dd($validate);
+
         $survay = Survey::find($survey_id);
         $survay->update($validate);
 
