@@ -123,7 +123,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-xl-6">
+            <div class="col-12 col-xl-8">
                 <div class="fs-11 border border-dark rounded py-4 px-5">
                     @include('admin-panel.dashboards.demo-html')
                 </div>
