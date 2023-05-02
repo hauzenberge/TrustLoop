@@ -125,7 +125,9 @@
     <title>Sign In | TRUSTLOOP</title>
 </head>
 
-<body class="d-flex align-items-center">
+<body class="d-flex align-items-center" style="
+    background: #FFFFFF;
+">
 
     <!-- THEME CONFIGURATION -->
     <script>
