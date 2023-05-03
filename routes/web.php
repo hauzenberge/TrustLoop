@@ -78,6 +78,13 @@ Route::get('demo-page/{user_id}',function ($user_id) {
     ]);
 });
 
+Route::get('modal/{user_id}',function ($user_id) {
+    return view('modal',[
+        'user_id' => $user_id
+    ]);
+});
+
+
 /*
 Route::middleware('auth')->group(function () {
     Route::get('/profile', 'App\Http\Controllers\Web\ProfileController@edit')->name('profile.edit');

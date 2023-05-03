@@ -125,7 +125,7 @@
         <div class="row">
             <div class="col-12 col-xl-8">
                 <div class="fs-11 border border-dark rounded py-4 px-5">
-                    @include('admin-panel.dashboards.demo-html')
+                    @include('admin-panel.dashboards.demo-modal')
                 </div>
             </div>
         </div>

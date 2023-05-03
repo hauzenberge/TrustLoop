@@ -21,4 +21,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/surveys/{user}', 'SurveyController@getSurveysByUser');
 Route::post('/surveys/{survey}/responses', 'ResponseController@store');
-
