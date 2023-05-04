@@ -78,11 +78,7 @@ Route::get('demo-page/{user_id}',function ($user_id) {
     ]);
 });
 
-Route::get('modal/{user_id}',function ($user_id) {
-    return view('modal',[
-        'user_id' => $user_id
-    ]);
-});
+Route::get('modal/{user_id}','App\Http\Controllers\AdminPanel\ModalController@index');
 
 
 /*

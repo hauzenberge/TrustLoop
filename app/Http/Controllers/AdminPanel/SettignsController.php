@@ -56,7 +56,7 @@ class SettignsController extends Controller
         
         if ($request->input("static_request") != null) {
             $validate["static_request"] = true;
-        }
+        }else $validate["static_request"] = false;
 
         $survay = Survey::find($survey_id);
         $survay->update($validate);

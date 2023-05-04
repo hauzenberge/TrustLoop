@@ -150,15 +150,7 @@
     });
 </script>
 
-<script>
-    var listener = document.addEventListener('mouseleave', function(e){
-    var btn = document.getElementById('modal_button');
-    if(btn){
-        e.preventDefault();
-        btn.dispatchEvent(new Event('click'));
-    }
-    });
-</script>
+{!! $script !!}
 
 <style>
     .b-rating-icon {
