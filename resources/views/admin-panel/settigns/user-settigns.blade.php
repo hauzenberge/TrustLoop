@@ -18,7 +18,7 @@
                 </label>
 
                 <!-- Textarea -->
-                <textarea class="form-control bg-white" rows="5" name="popup_text"  value="{{ $survey->popup_text }}" placeholder="What do you think so far?">{{ $survey->popup_text }}</textarea>
+                <textarea class="form-control bg-white" rows="5" name="popup_text" value="{{ $survey->popup_text }}" placeholder="What do you think so far?">{{ $survey->popup_text }}</textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('popup_text')" style="color: red;" />
             </div>
             <div class="mb-4">
@@ -51,6 +51,28 @@
                 <textarea name="review_button_text" class="form-control bg-white" rows="5" placeholder="Submit Review">{{ $survey->review_button_text }}</textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('review_button_text')" style="color: red;" />
             </div>
+
+            <div class="mb-4">
+
+                <!-- Label -->
+                <label class="form-label">
+                    Static feedback request
+                </label>
+                <br>
+                
+                {{-- dd($survey->static_request) --}}
+                <!-- Rounded switch -->
+                <label class="switch">
+                    <input name="static_request" type="checkbox"
+                    
+                        @if($survey->static_request == 1)
+                        checked
+                        @endif
+                    >
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
             <div class="mb-4">
                 <!-- Label -->
                 <label class="form-label">
@@ -119,7 +141,7 @@
 
         <div class="mt-4">
             <form method="post" action="{{ route('question.create') }}" class="mt-6 space-y-6">
-            @csrf
+                @csrf
                 <!-- Label -->
                 <label class="form-label">
                     Your question

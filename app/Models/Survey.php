@@ -24,6 +24,8 @@ class Survey extends Model
         'review_button_text',
         'link_url',
 
+        'static_request',
+
         'created_at',
         'updated_at'
     ];
