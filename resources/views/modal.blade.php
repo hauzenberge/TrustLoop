@@ -177,6 +177,8 @@
         border-color: white;
         background: #5083C1;
         border-radius: 4px;
+        min-width: 171px;
+        min-height: 37px;
     }
 
     #demo-content {
@@ -194,12 +196,6 @@
         flex-direction: column;
         padding: 55px 76px;
         gap: 45px;
-    }
-
-    #btn-submit {
-        border-radius: 4px;
-        width: 171px;
-        height: 37px;
     }
 
     #form-label {
