@@ -14,7 +14,7 @@ class ModalController extends Controller
      //   dd($survey->static_request);
         $script = null;
 
-        if ($survey->static_request == 1) {
+        if ($survey->static_request == 0) {
             $script = "
             <script>
                 var listener = document.addEventListener('mouseleave', function(e){
