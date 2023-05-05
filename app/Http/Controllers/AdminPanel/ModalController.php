@@ -26,11 +26,16 @@ class ModalController extends Controller
                 });
             </script>
             ";
-        }
+
+            $button_style = 'style="
+            display: none;
+        "';
+        }else $button_style = '';
 
         return view('modal', [
             'user_id' => $user_id,
-            'script' => $script
+            'script' => $script,
+            'button_style' => $button_style
         ]);
     }
 }

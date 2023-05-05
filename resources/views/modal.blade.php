@@ -4,7 +4,7 @@
             <div class="survey-container" v-if="survey?.id">
 
                 <!-- Button trigger modal -->
-                <button id="modal_button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                <button id="modal_button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" {!! $button_style !!}>
                     Leave a review
                 </button>
 
