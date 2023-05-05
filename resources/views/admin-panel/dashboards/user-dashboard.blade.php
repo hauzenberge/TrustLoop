@@ -111,17 +111,7 @@
              Website Tracking  
              <a href="{{ url('demo-page/' . Auth::user()->id ) }}" target="_blank">Demo Link</a> 
             </p>
-        <p class="fs-3 fw-semibold">Please add to site &lt;HEAD&gt; (trustloop.js)</p>
-        <div class="row">
-            <div class="col-12 col-xl-9">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor
-                    incididunt ut
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute </p>
-            </div>
-        </div>
+        <p class="fs-3 fw-semibold">Please copy the piece of code below and insert it in to the  &lt;head&gt; section of your website.</p>
         <div class="row">
             <div class="col-12 col-xl-8">
                 <div class="fs-11 border border-dark rounded py-4 px-5">
