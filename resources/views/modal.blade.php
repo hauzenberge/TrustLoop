@@ -17,7 +17,7 @@
                                 <div class="form-group d-flex flex-column">
                                     <label for="rating" class="text-center mb-2" id="form-label">
                                         <div v-if="!questions[rateAs_index].value">
-                                            @{{ questions[rateAs_index].text }}
+                                            @{{ survey.popup_text }}
                                         </div>
                                     </label>
 
@@ -136,6 +136,7 @@
                 try {
                     const response = await axios.get(BASE_URL + '<?php echo $user_id ?>');
                     vm.survey = response.data.survey;
+                    console.log(vm.survey.popup_text);
                     vm.buttonText = response.data.survey.review_button_text;
                     vm.questions = response.data.questions;
                     vm.rateAs_index = vm.questions.findIndex(value => {
