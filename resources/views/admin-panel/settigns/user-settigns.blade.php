@@ -20,7 +20,7 @@
                 <!-- Textarea -->
                 <textarea class="form-control bg-white" rows="5" name="popup_text" value="{{ $survey->popup_text }}" placeholder="What do you think so far?">{{ $survey->popup_text }}</textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('popup_text')" style="color: red;" />
-            </div>            
+            </div>
             <div class="mb-4">
                 <!-- Label -->
                 <label class="form-label">
@@ -86,6 +86,10 @@
         </form>
     </div>
     <div class="col-12 col-xl-6 mt-6 pt-xl-1">
+
+        <div class="text-center">
+            <h1>Questions</h1>
+        </div>
 
         @foreach($questions as $question)
         <div class="d-flex question-body border rounded border-gray-300 bg-white">
