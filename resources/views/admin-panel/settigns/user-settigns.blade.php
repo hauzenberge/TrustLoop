@@ -14,7 +14,7 @@
             <div class="mb-4">
                 <!-- Label -->
                 <label class="form-label">
-                    Popup text
+                    *Popup text
                 </label>
 
                 <!-- Textarea -->
@@ -24,7 +24,7 @@
             <div class="mb-4">
                 <!-- Label -->
                 <label class="form-label">
-                    Thanks for the feedback text
+                    *Thanks for the feedback text
                 </label>
 
                 <!-- Textarea -->
@@ -34,7 +34,7 @@
             <div class="mb-4">
                 <!-- Label -->
                 <label class="form-label">
-                    Review request
+                    *Review request
                 </label>
 
                 <!-- Textarea -->
@@ -44,7 +44,7 @@
             <div class="mb-4">
                 <!-- Label -->
                 <label class="form-label">
-                    Review Button Text
+                    *Review Button Text
                 </label>
 
                 <!-- Textarea -->
@@ -56,7 +56,7 @@
 
                 <!-- Label -->
                 <label class="form-label">
-                    Static feedback request
+                    *Static feedback request
                 </label>
                 <br>
 
@@ -73,7 +73,7 @@
             <div class="mb-4">
                 <!-- Label -->
                 <label class="form-label">
-                    Link URL
+                    *Link URL
                 </label>
 
                 <!-- Input -->
