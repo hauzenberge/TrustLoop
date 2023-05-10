@@ -19,6 +19,10 @@
                                         <div v-if="!questions[rateAs_index].value">
                                             @{{ survey.popup_text }}
                                         </div>
+
+                                        <div v-if="questions[rateAs_index].value == 5">
+                                            @{{ survey.review_text }}
+                                        </div>
                                     </label>
 
                                     <b-form-rating v-bind:id="questions[rateAs_index].question_id" size="sm" variant="warning" color="#C2C2C2" no-border v-model="questions[rateAs_index].value" :max="5" :inline="true">
@@ -136,7 +140,6 @@
                 try {
                     const response = await axios.get(BASE_URL + '<?php echo $user_id ?>');
                     vm.survey = response.data.survey;
-                    console.log(vm.survey.popup_text);
                     vm.buttonText = response.data.survey.review_button_text;
                     vm.questions = response.data.questions;
                     vm.rateAs_index = vm.questions.findIndex(value => {
