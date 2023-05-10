@@ -20,6 +20,16 @@
                 <!-- Textarea -->
                 <textarea class="form-control bg-white" rows="5" name="popup_text" value="{{ $survey->popup_text }}" placeholder="What do you think so far?">{{ $survey->popup_text }}</textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('popup_text')" style="color: red;" />
+            </div>            
+            <div class="mb-4">
+                <!-- Label -->
+                <label class="form-label">
+                    *Review request
+                </label>
+
+                <!-- Textarea -->
+                <textarea class="form-control bg-white" name="review_text" rows="5" placeholder="Thank you! If you have a minute, please leave us a review.">{{ $survey->review_text }}</textarea>
+                <x-input-error class="mt-2" :messages="$errors->get('review_text')" style="color: red;" />
             </div>
             <div class="mb-4">
                 <!-- Label -->
@@ -30,16 +40,6 @@
                 <!-- Textarea -->
                 <textarea class="form-control bg-white" rows="5" name="feedback_request" placeholder="What feedback must be implemented before you increase your rating to 5-stars?">{{ $survey->feedback_request }}</textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('feedback_request')" style="color: red;" />
-            </div>
-            <div class="mb-4">
-                <!-- Label -->
-                <label class="form-label">
-                    *Review request
-                </label>
-
-                <!-- Textarea -->
-                <textarea class="form-control bg-white" name="review_text" rows="5" placeholder="Thank you! If you have a minute, please leave us a review.">{{ $survey->review_text }}</textarea>
-                <x-input-error class="mt-2" :messages="$errors->get('review_text')" style="color: red;" />
             </div>
             <div class="mb-4">
                 <!-- Label -->
