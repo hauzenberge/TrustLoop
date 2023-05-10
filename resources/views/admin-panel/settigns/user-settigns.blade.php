@@ -24,7 +24,7 @@
             <div class="mb-4">
                 <!-- Label -->
                 <label class="form-label">
-                    Internal feedback request
+                    Thanks for the feedback text
                 </label>
 
                 <!-- Textarea -->
@@ -59,15 +59,12 @@
                     Static feedback request
                 </label>
                 <br>
-                
-                {{-- dd($survey->static_request) --}}
+
                 <!-- Rounded switch -->
                 <label class="switch">
-                    <input name="static_request" type="checkbox"
-                    
-                        @if($survey->static_request == 1)
-                        checked
-                        @endif
+                    <input name="static_request" type="checkbox" @if($survey->static_request == 1)
+                    checked
+                    @endif
                     >
                     <span class="slider round"></span>
                 </label>
