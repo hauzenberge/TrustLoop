@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_data', function (Blueprint $table) {
+        Schema::create('cards', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('country_id');
-            $table->unsignedBigInteger('plan_id')->nullable();
+            $table->string('card_number');
+            $table->string('exp_month');
+            $table->string('exp_year');
+            $table->string('cvc');
 
             $table->timestamps();
-
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
-          
         });
     }
 
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_data');
+        Schema::dropIfExists('cards');
     }
 };

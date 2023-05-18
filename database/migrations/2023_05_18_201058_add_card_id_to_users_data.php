@@ -13,18 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('plans', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('name');
-
-            $table->string('alias')->default('no_trial');
-
-            $table->decimal('price', 8, 2);
-            $table->text('description');
-            $table->string('max_request');
-
-            $table->timestamps();
+        Schema::table('users_data', function (Blueprint $table) {
+            $table->unsignedBigInteger('card_id')->nullable();
+            $table->foreign('card_id')->references('id')->on('cards');
         });
     }
 
@@ -35,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plans');
+        Schema::table('users_data', function (Blueprint $table) {
+            //
+        });
     }
 };

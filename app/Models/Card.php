@@ -5,23 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Plan extends Model
+class Card extends Model
 {
     use HasFactory;
 
-    protected $table = 'plans';
+    protected $table = 'cards';
 
     protected $fillable = [
         'id',
 
-        'name',
-
-        'alias',
-        
-        'price', 
-        'description',
-
-        'max_request',
+        'card_number',
+        'exp_month',
+        'exp_year',
+        'cvc',
 
         'created_at',
         'updated_at'
