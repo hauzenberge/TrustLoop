@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Country;
 use App\Models\Plan;
 
+use App\Models\Card;
+
 class UserData extends Model
 {
     use HasFactory;
@@ -18,6 +20,8 @@ class UserData extends Model
 
         'country_id',
         'plan_id',
+
+        'card_id',
 
         'created_at',
         'updated_at'
@@ -31,5 +35,10 @@ class UserData extends Model
     public function plan()
     {
         return $this->belongsTo(Plan::class, 'plan_id');
+    }    
+
+    public function card()
+    {
+        return $this->belongsTo(Card::class, 'card_id');
     }
 }
