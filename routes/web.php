@@ -59,6 +59,21 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
 
 
     Route::post('/upload-avatar/{user_id}', 'AvatarController@store')->name('avatar.upload');
+  
+
+    Route::prefix('enable-plan')->group(function () {
+        Route::get('/', 'EnablePlanController@index');
+
+        Route::get('/choose/{user}/{plan}', 'EnablePlanController@choose');
+    });
+
+    Route::get('/user-card', function () {
+        return view('admin-panel.card',[
+            'title' => 'User Card'
+        ]);
+    });
+
+    Route::post('save-card', 'EnablePlanController@saveCard');
 });
 
 

@@ -40,12 +40,12 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $plan = Plan::where('name', 'Trial')->first();
+      //  $plan = Plan::where('name', 'Trial')->first();
         $country = Country::where('name', 'USA')->first();
 
         $userData = UserData::create([
             'country_id' => $country->id,
-            'plan_id' => $plan->id,
+           // 'plan_id' => $plan->id,
         ]);
 
 

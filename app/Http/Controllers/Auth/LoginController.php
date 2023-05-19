@@ -16,6 +16,8 @@ use App\Models\Country;
 use App\Models\Plan;
 use App\Models\UserData;
 
+use App\Services\UserDataService;
+
 class LoginController extends Controller
 {
     public function redirectToGoogle()
@@ -25,7 +27,6 @@ class LoginController extends Controller
 
     public function handleGoogleCallback()
     {
-
         $user = Socialite::driver('google')->user();
 
         $existingUser = User::where('email', $user->getEmail())->first();
@@ -33,12 +34,12 @@ class LoginController extends Controller
         if ($existingUser) {
             Auth::login($existingUser, true);
         } else {
-            $plan = Plan::where('name', 'Trial')->first();
+            // $plan = Plan::where('name', 'Trial')->first();
             $country = Country::where('name', 'USA')->first();
 
-            $userData = UserData::create([
+            $userData = UserDataService::create([
                 'country_id' => $country->id,
-                'plan_id' => $plan->id,
+                //  'plan_id' => $plan->id,
             ]);
 
             $newUser = new User;

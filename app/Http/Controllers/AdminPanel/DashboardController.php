@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Survey;
 use App\Models\Question;
-
+use App\Models\UserData;
 use Illuminate\Support\Carbon;
 
 class DashboardController extends Controller
@@ -42,8 +42,13 @@ class DashboardController extends Controller
             case 'user': {
                     $user = Auth::user();
 
-                    if ($user->survey_id == null) {
+                    $userData = UserData::find($user->user_data_id);
+                    
+                    if ($userData->plan_id == null) {
+                        return redirect('enable-plan');
+                    }
 
+                    if ($user->survey_id == null) {
 
                         $survey = Survey::create(['title' => 'Survey Into ' . $user->name]);
 
