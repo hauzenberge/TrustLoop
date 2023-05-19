@@ -6,7 +6,7 @@
 
     @foreach($plans as $plan)
        
-        <div class="col-xl-4">
+        <div class="col-xl-3">
         <!-- Card -->
         <div class="card pricing-card border-1 border-primary py-4 px-5 mb-6 mb-xl-3">
             <div class="card-body px-1 py-0">
