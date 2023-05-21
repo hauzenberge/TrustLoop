@@ -37,7 +37,7 @@ return [
         'redirect' => env('GOOGLE_REDIRECT_URI'),
     ],
 
-    'stripe' => [
+    'Stripe' => [
         'model' => App\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
