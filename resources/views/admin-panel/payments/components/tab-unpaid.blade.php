@@ -61,149 +61,103 @@
     </div>
     <!-- Table -->
     <div class="table-responsive">
-        <table class="table user-table align-middle table-edge table-hover table-nowrap mb-0">
-            <thead class="thead-light">
-                <tr>
-                    <th class="w-60px pe-0">
-                        <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" value="" id="checkAllCheckboxes">
-                        </div>
-                    </th>
-                    <th class="ps-3">
-                        <a href="javascript: void(0);" class="text-muted list-sort" data-sort="number">
-                            #
-                        </a>
-                    </th>
-                    <th>
-                        <a href="javascript: void(0);" class="text-muted list-sort" data-sort="name">
-                            User name
-                        </a>
-                    </th>
-                    <th>
-                        <a href="javascript: void(0);" class="text-muted list-sort" data-sort="date">
-                            Create date
-                        </a>
-                    </th>
-                    <th>
-                        <a href="javascript: void(0);" class="text-muted list-sort" data-sort="system">
-                            Payment system
-                        </a>
-                    </th>
-                    <th>
-                        <a href="javascript: void(0);" class="text-muted list-sort" data-sort="quantity">
-                            Quantity
-                        </a>
-                    </th>
-                    <th>
-                        <a href="javascript: void(0);" class="text-muted list-sort" data-sort="status">
-                            Status
-                        </a>
-                    </th>
-                    <th class="w-150px text-center">
-                        <a href="javascript: void(0);" class="text-muted">
-                            Actions
-                        </a>
-                    </th>
-                </tr>
-            </thead>
 
-            <tbody class="list">
-                <tr>
-                    <td class="pe-0">
-                        <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" value="">
-                        </div>
-                    </td>
-                    <td class="number ps-3">2</td>
-                    <td>
-                        <div class="avatar avatar-circle avatar-xs me-2">
-                            <img src="{{asset('assets_project/assets/images/profiles/profile-23.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                        </div>
-                        <span class="name fw-bold">Orli J. Goodman</span>
-                    </td>
-                    <td class="date">05/01/22</td>
-                    <td class="system">
-                        <img src="{{asset('assets_project/assets/images/logos/stripe..png')}}" alt="stripe">
-                    </td>
-                    <td class="quantity">1000</td>
-                    <td class="status"><span class="status-unpaid">Unpaid</span></td>
-                    <td class="edit text-center">
-                        <a class="view" href="javascript: void(0);">
-                            <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                        </a>
-                        <a class="edit mx-5" href="javascript: void(0);">
-                            <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                        </a>
-                        <a class="delete" href="javascript: void(0);">
-                            <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="pe-0">
-                        <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" value="">
-                        </div>
-                    </td>
-                    <td class="number ps-3">7</td>
-                    <td>
-                        <div class="avatar avatar-circle avatar-xs me-2">
-                            <img src="{{asset('assets_project/assets/images/profiles/profile-20.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                        </div>
-                        <span class="name fw-bold">Keane Wyatt</span>
-                    </td>
-                    <td class="date">05/01/22</td>
-                    <td class="system">
-                        <img src="{{asset('assets_project/assets/images/logos/stripe..png')}}" alt="stripe">
-                    </td>
-                    <td class="quantity">1000</td>
-                    <td class="status"><span class="status-unpaid">Unpaid</span></td>
-                    <td class="edit text-center">
-                        <a class="view" href="javascript: void(0);">
-                            <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                        </a>
-                        <a class="edit mx-5" href="javascript: void(0);">
-                            <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                        </a>
-                        <a class="delete" href="javascript: void(0);">
-                            <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="pe-0">
-                        <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" value="">
-                        </div>
-                    </td>
-                    <td class="number ps-3">12</td>
-                    <td>
-                        <div class="avatar avatar-circle avatar-xs me-2">
-                            <img src="{{asset('assets_project/assets/images/profiles/profile-27.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                        </div>
-                        <span class="name fw-bold">Jordan Douglas</span>
-                    </td>
-                    <td class="date">05/01/22</td>
-                    <td class="system">
-                        <img src="{{asset('assets_project/assets/images/logos/paypal..png')}}" alt="pay-pal">
-                    </td>
-                    <td class="quantity">1000</td>
-                    <td class="status"><span class="status-unpaid">Unpaid</span></td>
-                    <td class="edit text-center">
-                        <a class="view" href="javascript: void(0);">
-                            <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                        </a>
-                        <a class="edit mx-5" href="javascript: void(0);">
-                            <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                        </a>
-                        <a class="delete" href="javascript: void(0);">
-                            <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                        </a>
-                    </td>
-                </tr>
+        @if(count($unpaid_payments) != 0 )
+         <table class="table user-table align-middle table-edge table-hover table-nowrap mb-0">
+             <thead class="thead-light">
+                 <tr>
+                     <th class="w-60px pe-0">
+                         <div class="form-check mb-0">
+                             <input class="form-check-input" type="checkbox" value="" id="checkAllCheckboxes">
+                         </div>
+                     </th>
+                     <th class="ps-3">
+                         <a href="javascript: void(0);" class="text-muted list-sort" data-sort="number">
+                             #
+                         </a>
+                     </th>
+                     <th>
+                         <a href="javascript: void(0);" class="text-muted list-sort" data-sort="name">
+                             User name
+                         </a>
+                     </th>
+                     <th>
+                         <a href="javascript: void(0);" class="text-muted list-sort" data-sort="date">
+                             Create date
+                         </a>
+                     </th>
+                     <th>
+                         <a href="javascript: void(0);" class="text-muted list-sort" data-sort="system">
+                             Payment system
+                         </a>
+                     </th>
+                     <th>
+                         <a href="javascript: void(0);" class="text-muted list-sort" data-sort="quantity">
+                             Quantity
+                         </a>
+                     </th>
+                     <th>
+                         <a href="javascript: void(0);" class="text-muted list-sort" data-sort="status">
+                             Status
+                         </a>
+                     </th>
+                     <th class="w-150px text-center">
+                         <a href="javascript: void(0);" class="text-muted">
+                             Actions
+                         </a>
+                     </th>
+                 </tr>
+             </thead>
 
-            </tbody>
-        </table>
+             <tbody class="list">
+                 @foreach($unpaid_payments as $unpaid_payment)
+                 <tr>
+                     <td class="pe-0">
+                         <div class="form-check mb-0">
+                             <input class="form-check-input" type="checkbox" value="">
+                         </div>
+                     </td>
+                     <td class="number ps-3">
+                         {{ $unpaid_payment['id'] }}
+
+                     </td>
+                     <td>
+                         <div class="avatar avatar-circle avatar-xs me-2">
+                             {!! $unpaid_payment['user']['avatar'] !!}
+                         </div>
+                         <span class="name fw-bold">{{ $unpaid_payment['user']['name'] }}</span>
+                     </td>
+                     <td class="date">{{ $unpaid_payment['created_at'] }}</td>
+                     <td class="system">
+                         <img src="{{ $unpaid_payment['payment_system'] }}">
+                     </td>
+                     <td class="quantity">
+                         {{ $unpaid_payment['quantity'] }}
+                     </td>
+                     <td class="status">
+                         <span class="status-{{$unpaid_payment['status']}}">
+                             {{ ucfirst($unpaid_payment['status']) }}
+                         </span>
+                     </td>
+                     <td class="edit text-center">
+                         <a class="view" href="javascript: void(0);">
+                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
+                         </a>
+                         <a class="edit mx-5" href="javascript: void(0);">
+                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
+                         </a>
+                         <a class="delete" href="javascript: void(0);">
+                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
+                         </a>
+                     </td>
+                 </tr>
+                 @endforeach
+             </tbody>
+         </table>
+         @else
+         <h1>I don`t requests </h1>
+         @endif
+
     </div> <!-- / .table-responsive -->
     <div class="card-footer">
         <div class="d-flex justify-content-between align-items-center">

@@ -61,6 +61,8 @@
      </div>
      <!-- Table -->
      <div class="table-responsive">
+
+         @if(count($canceled_payments) != 0 )
          <table class="table user-table align-middle table-edge table-hover table-nowrap mb-0">
              <thead class="thead-light">
                  <tr>
@@ -108,133 +110,54 @@
              </thead>
 
              <tbody class="list">
+                 @foreach($canceled_payments as $canceled_payment)
                  <tr>
                      <td class="pe-0">
                          <div class="form-check mb-0">
                              <input class="form-check-input" type="checkbox" value="">
                          </div>
                      </td>
-                     <td class="number ps-3">3</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-16.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Halee P. Lane</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/paypal.png')}}" alt="pay-pal">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-cancelled">Cancelled</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">5</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-17.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Galena Oliver</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/paypal.png')}}" alt="pay-pal">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-cancelled">Cancelled</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">6</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-19.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Kelly Doyle</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/stripe.png')}}" alt="stripe">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-cancelled">Cancelled</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">10</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-26.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Macon Dean</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/stripe.png')}}" alt="stripe">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-cancelled">Cancelled</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
+                     <td class="number ps-3">
+                         {{ $canceled_payment['id'] }}
 
+                     </td>
+                     <td>
+                         <div class="avatar avatar-circle avatar-xs me-2">
+                             {!! $canceled_payment['user']['avatar'] !!}
+                         </div>
+                         <span class="name fw-bold">{{ $canceled_payment['user']['name'] }}</span>
+                     </td>
+                     <td class="date">{{ $canceled_payment['created_at'] }}</td>
+                     <td class="system">
+                         <img src="{{ $canceled_payment['payment_system'] }}">
+                     </td>
+                     <td class="quantity">
+                         {{ $canceled_payment['quantity'] }}
+                     </td>
+                     <td class="status">
+                         <span class="status-{{$canceled_payment['status']}}">
+                             {{ ucfirst($canceled_payment['status']) }}
+                         </span>
+                     </td>
+                     <td class="edit text-center">
+                         <a class="view" href="javascript: void(0);">
+                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
+                         </a>
+                         <a class="edit mx-5" href="javascript: void(0);">
+                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
+                         </a>
+                         <a class="delete" href="javascript: void(0);">
+                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
+                         </a>
+                     </td>
+                 </tr>
+                 @endforeach
              </tbody>
          </table>
+         @else
+         <h1>I don`t requests </h1>
+         @endif
+
      </div> <!-- / .table-responsive -->
      <div class="card-footer">
          <div class="d-flex justify-content-between align-items-center">

@@ -61,6 +61,7 @@
      </div>
      <!-- Table -->
      <div class="table-responsive">
+         @if(count($all_payments) != 0 )
          <table class="table user-table align-middle table-edge table-hover table-nowrap mb-0">
              <thead class="thead-light">
                  <tr>
@@ -108,381 +109,53 @@
              </thead>
 
              <tbody class="list">
+                 @foreach($all_payments as $all_payment)
                  <tr>
                      <td class="pe-0">
                          <div class="form-check mb-0">
                              <input class="form-check-input" type="checkbox" value="">
                          </div>
                      </td>
-                     <td class="number ps-3">1</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-14.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Hakeem Chan</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/paypal.png')}}" alt="pay-pal">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-paid">Paid</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">2</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-23.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Orli J. Goodman</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/stripe.png')}}" alt="stripe">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-unpaid">Unpaid</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">3</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-16.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Halee P. Lane</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/paypal.png')}}" alt="pay-pal">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-cancelled">Cancelled</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">4</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <span class="avatar-title text-bg-primary-soft">KS</span>
-                         </div>
-                         <span class="name fw-bold">Kimberly Salinas</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/stripe.png')}}" alt="stripe">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-paid">Paid</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">5</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-17.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Galena Oliver</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/paypal.png')}}" alt="pay-pal">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-cancelled">Cancelled</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">6</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-19.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Kelly Doyle</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/stripe.png')}}" alt="stripe">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-cancelled">Cancelled</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">7</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-20.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Keane Wyatt</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/stripe.png')}}" alt="stripe">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-unpaid">Unpaid</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">8</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <span class="avatar-title text-bg-success-soft">NA</span>
-                         </div>
-                         <span class="name fw-bold">Nasim Aguirre</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/paypal.png')}}" alt="pay-pal">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-paid">Paid</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">9</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-25.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Leo Johnston</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/paypal.png')}}" alt="pay-pal">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-paid">Paid</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">10</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-26.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Macon Dean</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/stripe.png')}}" alt="stripe">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-cancelled">Cancelled</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">11</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-11.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Yoko Grimes</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/stripe.png')}}" alt="stripe">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-paid">Paid</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td class="pe-0">
-                         <div class="form-check mb-0">
-                             <input class="form-check-input" type="checkbox" value="">
-                         </div>
-                     </td>
-                     <td class="number ps-3">12</td>
-                     <td>
-                         <div class="avatar avatar-circle avatar-xs me-2">
-                             <img src="{{asset('assets_project/assets/images/profiles/profile-27.jpeg')}}" alt="..." class="avatar-img" width="30" height="30">
-                         </div>
-                         <span class="name fw-bold">Jordan Douglas</span>
-                     </td>
-                     <td class="date">05/01/22</td>
-                     <td class="system">
-                         <img src="{{asset('assets_project/assets/images/logos/paypal.png')}}" alt="pay-pal">
-                     </td>
-                     <td class="quantity">1000</td>
-                     <td class="status"><span class="status-unpaid">Unpaid</span></td>
-                     <td class="edit text-center">
-                         <a class="view" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
-                         </a>
-                         <a class="edit mx-5" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
-                         </a>
-                         <a class="delete" href="javascript: void(0);">
-                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
-                         </a>
-                     </td>
-                 </tr>
+                     <td class="number ps-3">
+                         {{ $all_payment['id'] }}
 
+                     </td>
+                     <td>
+                         <div class="avatar avatar-circle avatar-xs me-2">
+                             {!! $all_payment['user']['avatar'] !!}
+                         </div>
+                         <span class="name fw-bold">{{ $all_payment['user']['name'] }}</span>
+                     </td>
+                     <td class="date">{{ $all_payment['created_at'] }}</td>
+                     <td class="system">
+                         <img src="{{ $all_payment['payment_system'] }}">
+                     </td>
+                     <td class="quantity">
+                         {{ $all_payment['quantity'] }}
+                     </td>
+                     <td class="status">
+                         <span class="status-{{$all_payment['status']}}">
+                             {{ ucfirst($all_payment['status']) }}
+                         </span>
+                     </td>
+                     <td class="edit text-center">
+                         <a class="view" href="javascript: void(0);">
+                             <img src="{{asset('assets_project/assets/images/eye.svg')}}" alt="...">
+                         </a>
+                         <a class="edit mx-5" href="javascript: void(0);">
+                             <img src="{{asset('assets_project/assets/images/pencil.svg')}}" alt="...">
+                         </a>
+                         <a class="delete" href="javascript: void(0);">
+                             <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
+                         </a>
+                     </td>
+                 </tr>
+                 @endforeach
              </tbody>
          </table>
+         @else
+         <h1>I don`t requests </h1>
+         @endif
      </div> <!-- / .table-responsive -->
      <div class="card-footer">
          <div class="d-flex justify-content-between align-items-center">
@@ -504,5 +177,4 @@
              </div>
          </div>
      </div>
-
  </div>
