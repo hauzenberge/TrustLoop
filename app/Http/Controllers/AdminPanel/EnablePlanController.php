@@ -28,7 +28,7 @@ class EnablePlanController extends Controller
 
     public function choose(User $user, Plan $plan)
     {
-        $data =  UserDataService::update($user->userData, ['plan_id' => $plan->id]);
+        $data =  UserDataService::update($user->id, $user->userData, ['plan_id' => $plan->id]);
         return redirect('user-card');
     }
 
@@ -43,9 +43,8 @@ class EnablePlanController extends Controller
         ]);
         $user = Auth::user();
 
-        UserDataService::update($user->userData, ['card_id' => $card->id]);
+        UserDataService::update($user->id, $user->userData, ['card_id' => $card->id]);
 
-        $user = Auth::user();
         return redirect('/dashboard');
     }
 }

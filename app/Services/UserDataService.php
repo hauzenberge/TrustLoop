@@ -15,14 +15,14 @@ class UserDataService
         return $userData;
     }
 
-    public static function update(UserData $userData, $data)
+    public static function update($user_id, UserData $userData, $data)
     {
         if (array_key_exists('card_id', $data)) {
             if ($userData->plan->alias == 'no_trial') {
                 $price = floatval($userData->plan->price);
                 //dd($price);
                 $payment = PaymentFactory::create();
-                $payment->pay($price, $data['card_id']);
+                $payment->pay($user_id, $price, $data['card_id']);
                // dd($payment);
             }
         }

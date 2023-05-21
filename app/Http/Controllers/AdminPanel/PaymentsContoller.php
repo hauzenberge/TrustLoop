@@ -7,29 +7,42 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\Payment;
+
 class PaymentsContoller extends Controller
 {
     public function index()
     {
-        switch (Auth::user()->role) {
+        $user = Auth::user();
+        $data = [
+            
+            'active' => 'payments'
+        ];
+
+        $view = 'admin-panel.payments.' . $user->role . '-payments';
+
+        switch ($user->role) {
             case 'admin':{
-                $title = 'Payments';
+                $data['title'] =  'Payments';
                 break;
             }
             case 'user':{
-                $title = 'User Billing | TRUSTLOOP';
+                $data['title'] =  'User Billing | TRUSTLOOP';
+                //dd($user->id);
+
+                $data['payments'] = Payment::where('user_id', $user->id)
+                ->get();
+                //dd($payments);
+
                 break;
             }
             default:
-            $title = 'Payments';
+            $data['title'] = 'Payments';
                 break;
         }
-        $view = 'admin-panel.payments.' . Auth::user()->role . '-payments';
 
 
-        return view($view , [
-        'title' => $title,
-        'active' => 'payments'
-    ]);
+
+        return view($view , $data);
     }
 }

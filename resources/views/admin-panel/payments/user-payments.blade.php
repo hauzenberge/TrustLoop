@@ -139,6 +139,9 @@
             </div>
             <!-- Table -->
             <div class="table-responsive">
+                @include('admin-panel.payments.components.user-pay-list')
+
+                <!-- 
                 <table class="table user-table align-middle table-edge table-hover table-nowrap mb-0">
                     <thead class="thead-light">
                         <tr>
@@ -413,6 +416,8 @@
 
                     </tbody>
                 </table>
+                -->
+
             </div> <!-- / .table-responsive -->
             <div class="card-footer px-lg-6">
                 <div class="d-flex justify-content-between align-items-center">
