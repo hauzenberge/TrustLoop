@@ -4,7 +4,9 @@ namespace App\Payments\PaymentGateways;
 
 use App\Payments\PaymentGateway;
 
-use Cartalyst\Stripe\Laravel\Facades\Stripe;
+//use Cartalyst\Stripe\Laravel\Facades\Stripe;
+
+use Stripe\Stripe;
 
 use App\Models\Card;
 use App\Models\Payment;
@@ -14,7 +16,8 @@ class StripeGateway implements PaymentGateway
     private function generateToken($cardNumber, $expMonth, $expYear, $cvc)
     {
         //dd($cvc);
-        $token = Stripe::tokens()->create([
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        $token = \Stripe\Token::create([
             'card' => [
                 'number' => $cardNumber,
                 'exp_month' => $expMonth,
@@ -22,6 +25,7 @@ class StripeGateway implements PaymentGateway
                 'cvc' => $cvc,
             ],
         ]);
+
 
         return $token['id'];
     }
@@ -37,9 +41,9 @@ class StripeGateway implements PaymentGateway
         $card = Card::find($card_id);
         // dd($card->cvc);
         $token = $this->generateToken($card->card_number, $card->exp_month, $card->exp_year, intval($card->cvc));
-
-        $charge = Stripe::charges()->create([
-            'amount' => $amount,
+        //dd($token);
+        $charge = \Stripe\Charge::create([
+            'amount' => intval($amount * 100),
             'currency' => 'USD',
             'source' => $token,
         ]);
