@@ -8,7 +8,9 @@ class PaymentFactory
 {
     public static function create()
     {
+        /*
         $paymentSystem = env('PAYMENT_SYSTEM');
+        
 
         switch ($paymentSystem) {
             case 'stripe':
@@ -18,5 +20,7 @@ class PaymentFactory
             default:
                 throw new \Exception('Unsupported payment system');
         }
+        */
+        return new StripeGateway();
     }
 }

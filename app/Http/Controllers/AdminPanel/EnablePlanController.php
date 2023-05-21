@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Services\UserDataService;
 use App\Models\Card;
 
+
 class EnablePlanController extends Controller
 {
     public function index()
@@ -41,7 +42,10 @@ class EnablePlanController extends Controller
             'cvc' => $request->input("cvv")
         ]);
         $user = Auth::user();
+
         UserDataService::update($user->userData, ['card_id' => $card->id]);
+
+        $user = Auth::user();
         return redirect('/dashboard');
     }
 }
