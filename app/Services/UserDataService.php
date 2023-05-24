@@ -20,10 +20,8 @@ class UserDataService
         if (array_key_exists('card_id', $data)) {
             if ($userData->plan->alias == 'no_trial') {
                 $price = floatval($userData->plan->price);
-                //dd($price);
                 $payment = PaymentFactory::create();
                 $payment->pay($user_id, $price, $data['card_id']);
-               // dd($payment);
             }
         }
         return $userData->update($data);

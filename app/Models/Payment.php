@@ -50,15 +50,13 @@ class Payment extends Model
 
     public static function getMapFromAdminList($query)
     {
-        //dd($query);
         return $query->map(function ($item) {
-           // dd($item->user);
             return [
                 'id' => $item->id,
                 'user' => [
                     'avatar' => $item->user->avatar,
                     'name' => $item->user->name
-                ], //avatar and user_name
+                ], 
                 'created_at' => $item->created_at,
                 'payment_system' => $item->payment_system,
                 'quantity' => $item->quantity,

@@ -7,6 +7,7 @@ use App\Payments\PaymentGateway;
 //use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 use Stripe\Stripe;
+use Stripe\Exception\CardException;
 
 use App\Models\Card;
 use App\Models\Payment;
@@ -32,33 +33,35 @@ class StripeGateway implements PaymentGateway
 
     public function pay($user_id, $amount, $card_id)
     {
-        //dd($user_id);
         $data = [
             'user_id' => $user_id,
             'payment_system' => 'stripe',
             'quantity' => $amount
         ];
         $card = Card::find($card_id);
-        // dd($card->cvc);
         $token = $this->generateToken($card->card_number, $card->exp_month, $card->exp_year, intval($card->cvc));
-        //dd($token);
-        $charge = \Stripe\Charge::create([
-            'amount' => intval($amount * 100),
-            'currency' => 'USD',
-            'source' => $token,
-        ]);
+     
 
-        //  dd($charge["status"]);
-        if ($charge["status"] != "succeeded") {
-            $data['status'] = 'unpaid';
-            Payment::create($data);
+        try {
+            $charge = \Stripe\Charge::create([
+                'amount' => intval($amount * 100),
+                'currency' => 'USD',
+                'source' => $token,
+            ]);
 
-            abort(404, 'OOPS');
-        } else{ 
             $data['status'] = 'paid';
-            Payment::create($data);
-            return $charge;
+            
+            return Payment::create($data);
+
+        } catch (CardException $e) {
+          // dd($e);
+            $error = $e->getError();
+            $errorMessage = $error->message;
+            
+            $data['status'] = 'unpaid';
+            return Payment::create($data);
         }
+        
     }
 
     public function verifyCard($cardNumber)

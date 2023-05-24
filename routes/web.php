@@ -19,46 +19,49 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Controllers\AdminPanel'], function () {
-    Route::prefix('dashboard')->group(function () {
-        Route::get('/', 'DashboardController@index')->name('dashboard');
-    });
-
-    Route::prefix('users')->group(function () {
-        Route::get('/', 'UsersController@index')->name('users');
-        Route::get('/add', 'UsersController@add')->name('add.user');
-        Route::patch('/store', 'UsersController@store')->name('user.store');
-
-        Route::prefix('{user_id}')->group(function () {
-            Route::get('/delete', 'UsersController@delete')->name('user.destroy');
-            Route::get('/edit', 'UsersController@edit')->name('user.edit');
-            Route::patch('/update', 'UsersController@update')->name('user.update');
-            Route::get('/show', 'UsersController@show')->name('user.show');
+    Route::middleware('tariff')->group(function () {
+        Route::prefix('dashboard')->group(function () {
+            Route::get('/', 'DashboardController@index')->name('dashboard');
         });
-    });
-
-    Route::prefix('payments')->group(function () {
-        Route::get('/', 'PaymentsContoller@index')->name('payments');
-    });
-
-    Route::prefix('user-data')->group(function () {
-        Route::put('{userData}/updateCountry', 'UserDataController@updateCountry')->name('user-data.country.update');
-    });
-
-    Route::prefix('settigns')->group(function () {
-        Route::get('/', 'SettignsController@index')->name('settigns');
-        Route::post('/update-survay/{survey_id}', 'SettignsController@SurveyUpdate')->name('survey.update');
-
-        Route::prefix('question/')->group(function () {
-            Route::post('/create', 'SettignsController@QuestionCreate')->name('question.create');
-            Route::prefix('{question_id}')->group(function () {
-                Route::post('/update', 'SettignsController@QuestionUpdate')->name('question.update');
-                Route::get('/delete', 'SettignsController@QuestionDelete')->name('settigns.QuestionDelete');
+    
+        Route::prefix('users')->group(function () {
+            Route::get('/', 'UsersController@index')->name('users');
+            Route::get('/add', 'UsersController@add')->name('add.user');
+            Route::patch('/store', 'UsersController@store')->name('user.store');
+    
+            Route::prefix('{user_id}')->group(function () {
+                Route::get('/delete', 'UsersController@delete')->name('user.destroy');
+                Route::get('/edit', 'UsersController@edit')->name('user.edit');
+                Route::patch('/update', 'UsersController@update')->name('user.update');
+                Route::get('/show', 'UsersController@show')->name('user.show');
             });
         });
+    
+        Route::prefix('payments')->group(function () {
+            Route::get('/', 'PaymentsContoller@index')->name('payments');
+        });
+    
+        Route::prefix('user-data')->group(function () {
+            Route::put('{userData}/updateCountry', 'UserDataController@updateCountry')->name('user-data.country.update');
+        });
+    
+        Route::prefix('settigns')->group(function () {
+            Route::get('/', 'SettignsController@index')->name('settigns');
+            Route::post('/update-survay/{survey_id}', 'SettignsController@SurveyUpdate')->name('survey.update');
+    
+            Route::prefix('question/')->group(function () {
+                Route::post('/create', 'SettignsController@QuestionCreate')->name('question.create');
+                Route::prefix('{question_id}')->group(function () {
+                    Route::post('/update', 'SettignsController@QuestionUpdate')->name('question.update');
+                    Route::get('/delete', 'SettignsController@QuestionDelete')->name('settigns.QuestionDelete');
+                });
+            });
+        });
+    
+        Route::post('/upload-avatar/{user_id}', 'AvatarController@store')->name('avatar.upload');
     });
-
-
-    Route::post('/upload-avatar/{user_id}', 'AvatarController@store')->name('avatar.upload');
+    
+   
   
 
     Route::prefix('enable-plan')->group(function () {
