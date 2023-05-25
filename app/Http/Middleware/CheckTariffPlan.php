@@ -35,6 +35,10 @@ class CheckTariffPlan
             
             if ($payment === null) {
                 $card = $user->userData->card;
+                //dd($card);
+                if ($card == null ) {
+                    return redirect('/user-card');
+                }
                 UserDataService::update($user->id, $user->userData, ['card_id' => $card->id]);
             }elseif ($payment->status == "unpaid") {
                 return redirect('/enable-plan');
