@@ -34,6 +34,12 @@ class CheckTariffPlan
                 ->first();
             
             if ($payment === null) {
+               // dd($user->userData->plan);
+
+                if ($user->userData->plan == null) {
+                    return redirect('/enable-plan');
+                }
+
                 $card = $user->userData->card;
                 //dd($card);
                 if ($card == null ) {
