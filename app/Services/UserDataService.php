@@ -32,7 +32,7 @@ class UserDataService
                 $plan = Plan::find($data["plan_id"]);
                 //dd($plan->name);
                 $message = 'Текст сообщения Payment plan '. $plan->name .' has been activated!';
-                EmailService::sendEmail($user->email, $message);
+               // EmailService::sendEmail($user->email, $message);
             }
         }
         return $userData->update($data);

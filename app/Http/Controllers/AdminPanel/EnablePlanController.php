@@ -28,7 +28,7 @@ class EnablePlanController extends Controller
 
     public function choose(User $user, Plan $plan)
     {
-        //dd($plan->alias);
+       // dd($plan->alias);
         $data =  UserDataService::update($user->id, $user->userData, ['plan_id' => $plan->id]);
         if ($plan->alias == 'trial') {
             return redirect('dashboard');

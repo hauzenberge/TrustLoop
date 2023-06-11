@@ -23,32 +23,37 @@ class CheckTariffPlan
         $user = $request->user();
 
         if ($user->role == "user") {
+            $plan_alias = $user->userData->plan->alias;
+            //dd($plan_alias);
 
-            $startOfMonth = Carbon::now()->subMonth();
-            $endOfMonth = Carbon::now();
-
-            $payment = Payment::where('user_id', $user->id)
-               // ->where('status', "paid")
-                ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
-                ->latest()
-                ->first();
-            
-            if ($payment === null) {
-               // dd($user->userData->plan);
-
-                if ($user->userData->plan == null) {
+            if($plan_alias !== "trial"){
+                $startOfMonth = Carbon::now()->subMonth();
+                $endOfMonth = Carbon::now();
+    
+                $payment = Payment::where('user_id', $user->id)
+                   // ->where('status', "paid")
+                    ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+                    ->latest()
+                    ->first();
+                
+                if ($payment === null) {
+                   // dd($user->userData->plan);
+    
+                    if ($user->userData->plan == null) {
+                        return redirect('/enable-plan');
+                    }
+    
+                    $card = $user->userData->card;
+                    //dd($card);
+                    if ($card == null ) {
+                        return redirect('/user-card');
+                    }
+                    UserDataService::update($user->id, $user->userData, ['card_id' => $card->id]);
+                }elseif ($payment->status == "unpaid") {
                     return redirect('/enable-plan');
                 }
-
-                $card = $user->userData->card;
-                //dd($card);
-                if ($card == null ) {
-                    return redirect('/user-card');
-                }
-                UserDataService::update($user->id, $user->userData, ['card_id' => $card->id]);
-            }elseif ($payment->status == "unpaid") {
-                return redirect('/enable-plan');
             }
+           
         }
 
         return $next($request);
