@@ -26,9 +26,21 @@ class EnablePlanController extends Controller
         ]);
     }
 
+    public function update()
+    {
+        $plans = Plan::where('alias', '!=', "trial")->get();
+
+        //dd($plans);
+
+        return view('admin-panel.enable-plan', [
+            'title' => 'Plans',
+            'user_id' => Auth::user()->id,
+            'plans' => $plans
+        ]);
+    }
+
     public function choose(User $user, Plan $plan)
     {
-       // dd($plan->alias);
         $data =  UserDataService::update($user->id, $user->userData, ['plan_id' => $plan->id]);
         if ($plan->alias == 'trial') {
             return redirect('dashboard');

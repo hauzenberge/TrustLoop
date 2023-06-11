@@ -12,6 +12,8 @@ use App\Models\SurveyResponse;
 use Carbon\Carbon;
 use App\Services\UserDataService;
 
+use Illuminate\Support\Facades\View;
+
 class CheckTariffPlan
 {
     /**
@@ -25,6 +27,8 @@ class CheckTariffPlan
     {
         $user = $request->user();
 
+        $error = null;
+    
         $user_responce = SurveyResponse::where('user_id', $user->id)->first();
 
         if ($user_responce == null) {
@@ -36,14 +40,13 @@ class CheckTariffPlan
 
         if ($user->role == "user") {
             $plan = $user->userData->plan;
-            //dd($user_responce->sum_requests);
+          //  dd($plan);
             if (($plan->alias === "trial")
-               || (intval($plan->max_request) === $user_responce->sum_requests)
+                || (intval($plan->max_request) === $user_responce->sum_requests)
             ) {
-                dd('lol');
-                return redirect('dashboard');
-            } elseif (($plan->alias !== "trial")
-                && (intval($plan->max_request) === $user_responce->sum_requests)
+                $error = 'Your trial period or iterations expired.  <a class="block-button" href="' . url('/enable-plan/update'). ' ">Please upgrade</a>'; 
+            } elseif (($plan->alias === "no_trial")
+                or (intval($plan->max_request) === $user_responce->sum_requests)
             ) {
                 $startOfMonth = Carbon::now()->subMonth();
                 $endOfMonth = Carbon::now();
@@ -53,7 +56,7 @@ class CheckTariffPlan
                     ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
                     ->latest()
                     ->first();
-
+                //dd($payment);
                 if ($payment === null) {
                     if ($user->userData->plan == null) {
                         return redirect('/enable-plan');
@@ -64,11 +67,14 @@ class CheckTariffPlan
                         return redirect('/user-card');
                     }
                     UserDataService::update($user->id, $user->userData, ['card_id' => $card->id]);
-                } elseif ($payment->status == "unpaid") {
-                    return redirect('/enable-plan');
+                } elseif ($payment->status === "unpaid") {
+                   // dd("lol");
+                    return redirect('/user-card');
                 }
             }
         }
+
+        View::share('error', $error);
 
         return $next($request);
     }

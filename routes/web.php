@@ -67,6 +67,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
     Route::prefix('enable-plan')->group(function () {
         Route::get('/', 'EnablePlanController@index');
 
+        Route::get('/update', 'EnablePlanController@update');
+
         Route::get('/choose/{user}/{plan}', 'EnablePlanController@choose');
     });
 
