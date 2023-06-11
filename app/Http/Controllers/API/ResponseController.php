@@ -12,6 +12,8 @@ use App\Models\Survey;
 use App\Models\Answer;
 use App\Models\User;
 
+use App\Models\SurveyResponse;
+
 class ResponseController extends Controller
 {
     public function store(Request $request, Survey $survey)
@@ -24,6 +26,18 @@ class ResponseController extends Controller
         ]);
 
         $user = User::where('survey_id', $survey->id)->first();
+        
+        $user_responce = SurveyResponse::where('user_id', $user->id)->first();
+        if ($user_responce == null) {
+            $user_responce = SurveyResponse::create([
+                'user_id' => $user->id,
+                'sum_requests' => 0
+            ]);
+        }
+
+        $sum_requests = $user_responce->sum_requests + 1;
+        //dd($sum_requests);
+
         foreach ($validatedData['answers'] as $answerData) {
             Answer::create([
                 'user_id' =>  $user->id,
@@ -31,6 +45,9 @@ class ResponseController extends Controller
                 'text' => $answerData['value'],
             ]);
         }
+
+        $user_responce->sum_requests = $sum_requests;
+        $user_responce->save();
 
        // dd($survey->feedback_request);
 
