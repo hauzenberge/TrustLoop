@@ -40,11 +40,14 @@ class CheckTariffPlan
 
         if ($user->role == "user") {
             $plan = $user->userData->plan;
-          //  dd($plan);
-            if (($plan->alias === "trial")
-                || (intval($plan->max_request) === $user_responce->sum_requests)
-            ) {
-                $error = 'Your trial period or iterations expired.  <a class="block-button" href="' . url('/enable-plan/update'). ' ">Please upgrade</a>'; 
+            //dd($plan);
+            if ($plan == null) {
+                return redirect('/enable-plan');
+            }
+            if ($plan->alias === "trial") {
+                if (intval($plan->max_request) === $user_responce->sum_requests){
+                    $error = 'Your trial period or iterations expired.  <a class="block-button" href="' . url('/enable-plan/update'). ' ">Please upgrade</a>'; 
+                }
             } elseif (($plan->alias === "no_trial")
                 or (intval($plan->max_request) === $user_responce->sum_requests)
             ) {
