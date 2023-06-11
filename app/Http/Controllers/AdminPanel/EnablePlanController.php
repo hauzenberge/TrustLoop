@@ -11,6 +11,7 @@ use App\Models\Plan;
 use App\Models\User;
 use App\Services\UserDataService;
 use App\Models\Card;
+use App\Models\SurveyResponse;
 
 
 class EnablePlanController extends Controller
@@ -30,8 +31,6 @@ class EnablePlanController extends Controller
     {
         $plans = Plan::where('alias', '!=', "trial")->get();
 
-        //dd($plans);
-
         return view('admin-panel.enable-plan', [
             'title' => 'Plans',
             'user_id' => Auth::user()->id,
@@ -42,6 +41,19 @@ class EnablePlanController extends Controller
     public function choose(User $user, Plan $plan)
     {
         $data =  UserDataService::update($user->id, $user->userData, ['plan_id' => $plan->id]);
+
+
+        $user_responce = SurveyResponse::where('user_id', $user->id)->first();
+        if ($user_responce == null) {
+            $user_responce = SurveyResponse::create([
+                'user_id' => $user->id,
+                'sum_requests' => 0
+            ]);
+        } else {
+            $user_responce->sum_requests = 0;
+            $user_responce->save();
+        }
+
         if ($plan->alias == 'trial') {
             return redirect('dashboard');
         }

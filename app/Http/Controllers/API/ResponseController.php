@@ -36,7 +36,7 @@ class ResponseController extends Controller
         }
 
         $sum_requests = $user_responce->sum_requests + 1;
-        //dd($sum_requests);
+    
 
         foreach ($validatedData['answers'] as $answerData) {
             Answer::create([
