@@ -59,7 +59,6 @@ class UsersController extends Controller
                                     return $item;
                                 }
                             })->first();
-                           // dd($rate_as);
 
                            if ($rate_as) {
                             $rate_as = $rate_as->text;
