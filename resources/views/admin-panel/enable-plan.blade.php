@@ -4,8 +4,7 @@
 
 <div class="row mb-4">
 
-    @foreach($plans as $plan)
-       
+    @foreach($plans as $plan)       
         <div class="col-xl-3">
         <!-- Card -->
         <div class="card pricing-card border-1 border-primary py-4 px-5 mb-6 mb-xl-3">

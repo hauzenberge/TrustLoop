@@ -9,69 +9,7 @@
 
 <h2 class="fs-20 mb-6">Plan</h2>
 
-<div class="d-inline-block border border-primary rounded bg-white py-3 px-3 px-lg-6 mb-6">
-    <div class="d-flex align-items-baseline">
-        <div class="fs-3 me-4">Startup</div>
-        <div>Up to 10 rating interactions = <span class="fw-semibold">free</span></div>
-    </div>
-</div>
-
-
-<div class="row mb-5">
-    <div class="col-xl-4">
-
-        <!-- Card -->
-        <div class="card pricing-card border-1 border-primary py-4 px-5 mb-6 mb-xl-3 text-bg-primary">
-            <div class="card-body px-1 py-0">
-                <div class="d-flex">
-                    <h3 class="d-inline card-title fw-normal mb-5 me-auto">Growth</h3>
-                    <span class="d-inline card-text fs-20 fw-semibold">
-                        $5.99 <span class="fs-16 fw-normal">/ month</span>
-                    </span>
-                </div>
-                <p class="mb-5">25 interactions / month</p>
-                <!-- Button -->
-                <a class="btn btn-sm btn-white w-125px" href="javascript: void(0);">Upgrade</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-4">
-
-        <!-- Card -->
-        <div class="card pricing-card border-1 border-primary py-4 px-5 mb-6 mb-xl-3">
-            <div class="card-body px-1 py-0">
-                <div class="d-flex">
-                    <h3 class="d-inline card-title fw-normal mb-5 me-auto">Enterprise</h3>
-                    <span class="d-inline card-text fs-20 fw-semibold">
-                        $10.99 <span class="fs-16 fw-normal">/ month</span>
-                    </span>
-                </div>
-                <p class="mb-5">26 - 250 interactions / month</p>
-                <!-- Button -->
-                <a class="btn btn-sm btn-primary w-125px" href="javascript: void(0);">Upgrade</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-4">
-
-        <!-- Card -->
-        <div class="card pricing-card border-1 border-primary py-4 px-5 mb-6 mb-xl-3">
-            <div class="card-body px-1 py-0">
-                <div class="d-flex">
-                    <h3 class="d-inline card-title fw-normal mb-5 me-auto">Unlimited</h3>
-                    <span class="d-inline card-text fs-20 fw-semibold">
-                        $29.99 <span class="fs-16 fw-normal">/ month</span>
-                    </span>
-                </div>
-                <p class="mb-5">Unlimited interactions / month</p>
-                <!-- Button -->
-                <a class="btn btn-sm btn-primary w-125px" href="javascript: void(0);">Upgrade</a>
-            </div>
-        </div>
-    </div>
-</div> <!-- / .row -->
+@include('admin-panel.payments.components.user-plans')
 
 <div class="row">
     <div class="col">

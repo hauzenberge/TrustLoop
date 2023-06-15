@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Payment;
+use App\Models\Plan;
 
 class PaymentsContoller extends Controller
 {
@@ -39,6 +40,8 @@ class PaymentsContoller extends Controller
 
                     $data['payments'] = Payment::where('user_id', $user->id)
                         ->get();
+
+                    $data['plans'] = Plan::where('alias', '!=', "trial")->get();
 
                     break;
                 }
