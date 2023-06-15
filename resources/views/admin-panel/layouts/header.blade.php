@@ -27,23 +27,7 @@
     </form>
 
     @if( Auth::user()->isAdmin() === false)
-
-    <div class="d-flex align-items-center justify-content-between">
-        <div>
-            <strong>
-                {{ __(' You Current plan is  ') }}
-            </strong>
-        </div>
-        <div class="mr-3">
-            <a class="btn btn-link p-2" href="#" style="color:#50C18B;">
-                FREE TRIAL
-            </a>
-        </div>
-
-        <div>
-            <a class="btn btn-primary" href="#" style="background-color: #5083C1; border-radius: 7.60234px;">{{ __('Upgrade to premium') }}</a>
-        </div>
-    </div>
+    @include('admin-panel.layouts.user-plan')
     @endif
 
     <!-- Top buttons -->
