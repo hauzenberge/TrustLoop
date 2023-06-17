@@ -13,6 +13,8 @@ use App\Models\Question;
 use App\Models\UserData;
 use Illuminate\Support\Carbon;
 
+use App\Models\Answer;
+
 class DashboardController extends Controller
 {
     public function index()
@@ -43,7 +45,7 @@ class DashboardController extends Controller
                     $user = Auth::user();
 
                     $userData = UserData::find($user->user_data_id);
-                    
+
                     if ($userData->plan_id == null) {
                         return redirect('enable-plan');
                     }
@@ -99,14 +101,14 @@ class DashboardController extends Controller
                                 })
                                 ->map(function ($item) {
                                     $answers = $item->answers
-                                    ->sortByDesc('created_at')  
-                                    ->take(5)
+                                        ->sortByDesc('created_at')
+                                        ->take(5)
                                         ->map(function ($item) {
                                             return [
                                                 'count' => intval($item->text),
                                                 'date' => Carbon::parse($item->created_at)->format('d/m/y'),
                                             ];
-                                        });  
+                                        });
 
                                     return $answers;
                                 })
@@ -114,11 +116,27 @@ class DashboardController extends Controller
                         })
                         ->first();
 
+                    $answers_data = Answer::selectRaw('DAYNAME(created_at) as day, COUNT(*) as count')
+                        ->groupBy('day')
+                        ->orderByRaw("FIELD(day, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')")
+                        ->get();
+
+                    $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                    $counts = [];
+
+                    foreach ($daysOfWeek as $day) {
+                        $count = $answers_data->firstWhere('day', $day);
+                        $counts[] = $count ? $count->count : 0;
+                    }
 
                     $data = [
                         'title' => $title,
                         'active' => 'dashboard',
-                        'anwers' => $anwers
+                        'anwers' => $anwers,
+                        'chart' => [
+                            'daysOfWeek' => ['Mon', 'Tue', 'Web', 'Thu', 'Fr', 'Sat', 'Sun'],
+                            'counts' => $counts
+                        ]
                     ];
                     break;
                 }

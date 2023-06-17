@@ -125,6 +125,10 @@
 
     <!-- Page Title -->
     <title>{{ $title }}</title>
+
+    <script src="{{asset('assets_project/assets/js/chart.js.bundle.js')}}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
