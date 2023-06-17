@@ -90,7 +90,7 @@
             </div>
 
             <div class="card-body d-flex flex-column px-lg-6">
-                @include('admin-panel.dashboards.components.chart')
+                @include('admin-panel.dashboards.components.user-chart')
             </div>
         </div>
     </div>
