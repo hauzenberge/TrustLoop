@@ -285,11 +285,7 @@
             </div>
 
             <div class="card-body d-flex flex-column px-lg-6">
-
-                <!-- Chart -->
-                <div class="chart-container flex-grow-1 h-275px">
-                    <canvas id="salesChart"></canvas>
-                </div>
+            @include('admin-panel.dashboards.components.admin-chart')
             </div>
         </div>
     </div>

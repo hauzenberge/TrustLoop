@@ -11,6 +11,10 @@ use Illuminate\Support\Str;
 use App\Models\Country;
 use App\Models\Plan;
 use App\Models\UserData;
+use App\Payments\PaymentGateways\PaymentFactory;
+use App\Models\Card;
+
+use App\Services\UserDataService;
 
 class AdminRoleSeeder extends Seeder
 {
@@ -21,24 +25,20 @@ class AdminRoleSeeder extends Seeder
      */
     public function run()
     {
-        /*
-        $admin = User::insert(
+        $cards = [
             [
-                [
-                    'name' => 'Admin',
-                    'email' => 'admin@admin.com',
-                    'password' => bcrypt('admin'),
-                    'role' => 'admin'
-                ],
-                [
-                    'name' => 'User',
-                    'email' => 'user@admin.com',
-                    'password' => bcrypt('user'),
-                    'role' => 'user'
-                ]
+                'card_number' => '4242 4242 4242 4242',
+                'exp_month' => rand(1, 12),
+                'exp_year' => rand(2024, 2029),
+                'cvc' => rand(100, 999)
+            ],
+            [
+                'card_number' => '4000 0000 0000 0002',
+                'exp_month' => rand(1, 12),
+                'exp_year' => rand(2024, 2029),
+                'cvc' => rand(100, 999)
             ]
-        );
-        */
+        ];
 
         // Create Admin user
         User::create([
@@ -52,8 +52,8 @@ class AdminRoleSeeder extends Seeder
         $lastNames = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson'];
 
 
-        // Create 100 User users
-        for ($i = 0; $i < 100; $i++) {
+        // Create 100 000 User users
+        for ($i = 0; $i < 100000; $i++) {
 
             // Get a random plan from the database
             $plan = Plan::inRandomOrder()->first();
@@ -62,6 +62,7 @@ class AdminRoleSeeder extends Seeder
             $country = Country::inRandomOrder()->first();
 
             // Create a UserData record with the selected plan and country
+            // dd($plan->alias);
             $userData =  UserData::create([
                 'country_id' => $country->id,
                 'plan_id' => $plan->id,
@@ -76,6 +77,14 @@ class AdminRoleSeeder extends Seeder
             $user_data_id = $userData->id;
 
             $user = User::create(compact('name',  'email', 'password', 'role', 'user_data_id'));
+
+            if ($plan->alias == 'no_trial') {
+                $card = Card::create($cards[rand(0,1)]);
+
+                $price = floatval($userData->plan->price);
+                $payment = PaymentFactory::create();
+                UserDataService::update($user->id, $user->userData, ['card_id' => $card->id]);
+            }
         }
     }
 }

@@ -48,20 +48,29 @@ class Payment extends Model
         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('m/d/y');
     }
 
-    public static function getMapFromAdminList($query)
+    public static function getMapFromAdminList($search = 'all', $where = null)
     {
+        if ($search === 'all') {
+            $query = Payment::query();
+        }else{
+            $query = Payment::where($where["fillable"], $where["value"]);
+        }
+
+       $query = $query->with('user')->get();
+        
         return $query->map(function ($item) {
             return [
                 'id' => $item->id,
                 'user' => [
                     'avatar' => $item->user->avatar,
                     'name' => $item->user->name
-                ], 
+                ],
                 'created_at' => $item->created_at,
                 'payment_system' => $item->payment_system,
                 'quantity' => $item->quantity,
                 'status' => $item->status,
             ];
         });
+        
     }
 }

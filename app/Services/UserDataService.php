@@ -30,7 +30,6 @@ class UserDataService
             if ($userData->plan_id == null) {
                 $user = User::find($user_id);
                 $plan = Plan::find($data["plan_id"]);
-                //dd($plan->name);
                 $message = 'Текст сообщения Payment plan '. $plan->name .' has been activated!';
                // EmailService::sendEmail($user->email, $message);
             }

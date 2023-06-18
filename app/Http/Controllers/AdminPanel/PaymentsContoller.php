@@ -26,12 +26,10 @@ class PaymentsContoller extends Controller
             case 'admin': {
                     $data['title'] =  'Payments';
 
-                    $payment_query = new Payment;
-                    $payment_query = $payment_query->with('user');
-                    $data['all_payments'] = Payment::getMapFromAdminList($payment_query->get());
-                    $data['paid_payments'] = Payment::getMapFromAdminList($payment_query->where('status', 'paid')->get());
-                    $data['unpaid_payments'] = Payment::getMapFromAdminList($payment_query->where('status', 'unpaid')->get());
-                    $data['canceled_payments'] = Payment::getMapFromAdminList($payment_query->where('status', 'canceled')->get());
+                    $data['all_payments'] = Payment::getMapFromAdminList('all');
+                    $data['paid_payments'] = Payment::getMapFromAdminList('', ['fillable' => 'status', 'value' => 'paid']);
+                    $data['unpaid_payments'] = Payment::getMapFromAdminList('', ['fillable' => 'status', 'value' => 'unpaid']);
+                    $data['canceled_payments'] = Payment::getMapFromAdminList('', ['fillable' => 'status', 'value' => 'canceled']);
 
                     break;
                 }

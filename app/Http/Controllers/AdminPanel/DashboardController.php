@@ -12,8 +12,12 @@ use App\Models\Survey;
 use App\Models\Question;
 use App\Models\UserData;
 use Illuminate\Support\Carbon;
-
 use App\Models\Answer;
+
+use App\Models\Payment;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\Plan;
 
 class DashboardController extends Controller
 {
@@ -29,6 +33,38 @@ class DashboardController extends Controller
                     $registrations_count_weeks = User::where('role', '!=', 'admin')->whereDate('created_at', '>=', Carbon::now()->subDays(7))->count();
                     $total_users = User::all()->count();
 
+                    $paid_data = Payment::selectRaw('DAYNAME(created_at) as day, COUNT(*) as count')
+                        ->groupBy('day')
+                        ->orderByRaw("FIELD(day, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')")
+                        ->get();
+
+                    $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                    $counts = [];
+
+                    $paid_counts = array_map(function ($day) use ($paid_data) {
+                        $count = $paid_data->firstWhere('day', $day);
+                        return $count ? $count->count : 0;
+                    }, $daysOfWeek);
+
+                    $trialPlanId = Plan::where("alias", "trial")->first()->id;
+                    // dd($trialPlanId);
+
+                    $users_data = User::where('role', 'user')
+                        ->with('userData')
+                        ->whereHas('userData', function ($query) use ($trialPlanId) {
+                            $query->where('plan_id', $trialPlanId);
+                        })
+                        ->selectRaw('DAYNAME(created_at) as day, COUNT(*) as count')
+                        ->groupBy('day')
+                        ->orderByRaw("FIELD(day, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')")
+                        ->get();
+
+                    $free_counts = array_map(function ($day) use ($users_data) {
+                        $count = $users_data->firstWhere('day', $day);
+                        return $count ? $count->count : 0;
+                    }, $daysOfWeek);
+
+                    //dd($free_counts);
 
                     $data = [
                         'title' => $title,
@@ -36,7 +72,12 @@ class DashboardController extends Controller
                         'registrations_count' => $registrations_count,
                         'registrations_count_weeks' => $registrations_count_weeks,
                         'total_users' => $total_users,
-                        'userList' => User::getUserList()
+                        'userList' => User::getUserList(),
+                        'chart' => [
+                            'namesOfMounthes' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            'countsPaid' => $paid_counts,
+                            'countsFree' => $free_counts
+                        ]
                     ];
 
                     break;
