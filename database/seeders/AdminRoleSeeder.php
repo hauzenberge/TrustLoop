@@ -52,8 +52,8 @@ class AdminRoleSeeder extends Seeder
         $lastNames = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson'];
 
 
-        // Create 100 000 User users
-        for ($i = 0; $i < 100000; $i++) {
+        // Create 500 User users
+        for ($i = 0; $i < 500; $i++) {
 
             // Get a random plan from the database
             $plan = Plan::inRandomOrder()->first();

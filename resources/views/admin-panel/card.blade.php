@@ -23,7 +23,10 @@
                                 <input name="cvv" type="text" class="form-control" id="cvv" placeholder="Enter CVV">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <br>
+                        <div class="form-group col-md-6">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                     </form>
                 </div>
             </div>
