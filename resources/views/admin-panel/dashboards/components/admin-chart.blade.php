@@ -1,7 +1,9 @@
 <!-- Chart -->
+<!--
 <div class="chart-container flex-grow-1 h-275px">
     <canvas id="salesChart"></canvas>
 </div>
+-->
 
 <div class="chart-container flex-grow-1 h-275px">
     <canvas id="myChart" width="1000" height="275"></canvas>
@@ -53,6 +55,9 @@
                 }
             },
             plugins: {
+                legend: {
+                    display: false
+                },
                 tooltip: {
                     mode: 'index',
                     callbacks: {
