@@ -75,5 +75,5 @@
     </tbody>
 </table>
 @else
-<h1>I don`t requests </h1>
+<h1>{{ __('NO PAYMENTS FOUND')}} </h1>
 @endif
