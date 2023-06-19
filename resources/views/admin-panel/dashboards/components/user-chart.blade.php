@@ -22,12 +22,12 @@
             datasets: [{
                 label: 'Reviews',
                 data: counts,
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#5083C1',
                 borderRadius: 30,
             }]
         },
         options: {
-            hoverBackgroundColor: '#5083C1',
+            hoverBackgroundColor: '#FFFFFF',
             scales: {
                 x: {
                     grid: {
