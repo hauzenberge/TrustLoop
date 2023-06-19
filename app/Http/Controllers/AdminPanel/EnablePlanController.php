@@ -96,6 +96,9 @@ class EnablePlanController extends Controller
         $user_responce = SurveyResponse::where('user_id', $user->id)->first();
         $user_responce->sum_requests = $planLog->survey_responses;
         $user_responce->save();
+
+        $planLog->delete();
+        
         return redirect('dashboard');
     }
 
