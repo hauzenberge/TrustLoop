@@ -59,7 +59,7 @@ class CheckTariffPlan
                     ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
                     ->latest()
                     ->first();
-                //dd($payment);
+         
                 if ($payment === null) {
                     if ($user->userData->plan == null) {
                         return redirect('/enable-plan');
@@ -71,7 +71,7 @@ class CheckTariffPlan
                     }
                     UserDataService::update($user->id, $user->userData, ['card_id' => $card->id]);
                 } elseif ($payment->status === "unpaid") {
-                   // dd("lol");
+             
                     return redirect('/user-card');
                 }
             }
