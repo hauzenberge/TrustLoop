@@ -43,17 +43,23 @@ class EnablePlanController extends Controller
     {
         $userCountRequests = $user->surveyResponse->first()->sum_requests;
         //dd($userCountRequests);
-        $plan = $user->userData->plan;
-        $max_request = intval($plan->max_request);
         
-        if ($userCountRequests < $max_request) {
-          //  dd($max_request);
-            EnablePlanLog::create([
-                'user_id' => $user->id,
-                'plan_id' => $plan->id,
-                'survey_responses' =>  $userCountRequests
-            ]);
+       // dd($plan);
+        if ($user->userData->plan != null) {
+            
+            
+            $max_request = intval($plan->max_request);
+            
+            if ($userCountRequests < $max_request) {
+              //  dd($max_request);
+                EnablePlanLog::create([
+                    'user_id' => $user->id,
+                    'plan_id' => $user->userData->plan->id,
+                    'survey_responses' =>  $userCountRequests
+                ]);
+            }
         }
+
         $data =  UserDataService::update($user->id, $user->userData, ['plan_id' => $plan->id]);
 
 
@@ -98,7 +104,7 @@ class EnablePlanController extends Controller
         $user_responce->save();
 
         $planLog->delete();
-        
+
         return redirect('dashboard');
     }
 
