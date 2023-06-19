@@ -14,6 +14,7 @@ use App\Models\UserData;
 use App\Models\Survey;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\SurveyResponse;
 
 class User extends Authenticatable
 {
@@ -76,6 +77,11 @@ class User extends Authenticatable
     public function survey()
     {
         return $this->belongsTo(Survey::class, 'survey_id');
+    }
+
+    public function surveyResponse()
+    {
+        return $this->hasMany(SurveyResponse::class);
     }
 
     public function getAvatarAttribute($size = 150)

@@ -24,8 +24,11 @@
                             </div>
                         </div>
                         <br>
-                        <div class="form-group col-md-6">
+                        <div class="form-group d-flex justify-content-between">
                             <button type="submit" class="btn btn-primary">Submit</button>
+                            @if($planLog != null)
+                            <a href="{{ url('enable-plan/cancel/' . $planLog->id) }}" class="btn btn-danger">Cancel</a>
+                            @endif
                         </div>
                     </form>
                 </div>
@@ -33,6 +36,4 @@
         </div>
     </div>
 </div>
-
-
 @endsection

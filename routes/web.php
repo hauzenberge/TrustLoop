@@ -72,14 +72,11 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
         Route::get('/update', 'EnablePlanController@update');
 
         Route::get('/choose/{user}/{plan}', 'EnablePlanController@choose');
+
+        Route::get('cancel/{planLog}', 'EnablePlanController@cancel');
     });
 
-    Route::get('/user-card', function () {
-        return view('admin-panel.card',[
-            'title' => 'User Card'
-        ]);
-    });
-
+    Route::get('/user-card', 'EnablePlanController@userCard');
     Route::post('save-card', 'EnablePlanController@saveCard');
 });
 
