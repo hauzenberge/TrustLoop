@@ -40,7 +40,7 @@ class CheckTariffPlan
 
         if ($user->role == "user") {
             $plan = $user->userData->plan;
-            //dd($plan);
+           
             if ($plan == null) {
                 return redirect('/enable-plan');
             }

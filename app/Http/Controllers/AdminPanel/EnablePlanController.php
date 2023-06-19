@@ -37,26 +37,25 @@ class EnablePlanController extends Controller
             'user_id' => Auth::user()->id,
             'plans' => $plans
         ]);
-    }    
+    }
 
     public function choose(User $user, Plan $plan)
     {
         $userCountRequests = $user->surveyResponse->first()->sum_requests;
-        //dd($userCountRequests);
-        
-       // dd($plan);
+
         if ($user->userData->plan != null) {
-            
-            
+
             $max_request = intval($plan->max_request);
-            
+
             if ($userCountRequests < $max_request) {
-              //  dd($max_request);
-                EnablePlanLog::create([
-                    'user_id' => $user->id,
-                    'plan_id' => $user->userData->plan->id,
-                    'survey_responses' =>  $userCountRequests
-                ]);
+                $planLog = EnablePlanLog::where('user_id', $user->id)->first();
+                if ($planLog == null) {
+                    EnablePlanLog::create([
+                        'user_id' => $user->id,
+                        'plan_id' => $user->userData->plan->id,
+                        'survey_responses' =>  $userCountRequests
+                    ]);
+                }
             }
         }
 
@@ -70,8 +69,8 @@ class EnablePlanController extends Controller
                 'sum_requests' => 0
             ]);
         } else {
-            $user_responce->sum_requests = 0;
-            $user_responce->save();
+            //$user_responce->sum_requests = 0;
+            //  $user_responce->save();
         }
 
         if ($plan->alias == 'trial') {
@@ -82,9 +81,12 @@ class EnablePlanController extends Controller
 
     public function userCard()
     {
-        $planLogs = EnablePlanLog::where('user_id', Auth::user()->id)->first();
+        $planLogs = EnablePlanLog::where('user_id', Auth::user()->id)
+        ->with('plan')
+        ->first();
 
-        return view('admin-panel.card',[
+        // dd($planLogs);
+        return view('admin-panel.card', [
             'title' => 'User Card',
             'planLog' => $planLogs
         ]);
@@ -120,6 +122,17 @@ class EnablePlanController extends Controller
         $user = Auth::user();
 
         UserDataService::update($user->id, $user->userData, ['card_id' => $card->id]);
+
+        $user_responce = SurveyResponse::where('user_id', $user->id)->first();
+        if ($user_responce == null) {
+            $user_responce = SurveyResponse::create([
+                'user_id' => $user->id,
+                'sum_requests' => 0
+            ]);
+        } else {
+            $user_responce->sum_requests = 0;
+            $user_responce->save();
+        }
 
         return redirect('/dashboard');
     }
