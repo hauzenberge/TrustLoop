@@ -157,7 +157,8 @@ class DashboardController extends Controller
                         })
                         ->first();
 
-                    $answers_data = Answer::selectRaw('DAYNAME(created_at) as day, COUNT(*) as count')
+                    $answers_data = Answer::where('user_id', Auth::user()->id)
+                    ->selectRaw('DAYNAME(created_at) as day, COUNT(*) as count')
                         ->groupBy('day')
                         ->orderByRaw("FIELD(day, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')")
                         ->get();
