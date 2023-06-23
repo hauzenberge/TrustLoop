@@ -11,6 +11,9 @@ use Stripe\Exception\CardException;
 
 use App\Models\Card;
 use App\Models\Payment;
+use App\Models\User;
+
+use App\Services\EmailService;
 
 class StripeGateway implements PaymentGateway
 {
@@ -40,7 +43,7 @@ class StripeGateway implements PaymentGateway
         ];
         $card = Card::find($card_id);
         $token = $this->generateToken($card->card_number, $card->exp_month, $card->exp_year, intval($card->cvc));
-     
+
 
         try {
             $charge = \Stripe\Charge::create([
@@ -50,18 +53,21 @@ class StripeGateway implements PaymentGateway
             ]);
 
             $data['status'] = 'paid';
-            
-            return Payment::create($data);
 
+            return Payment::create($data);
         } catch (CardException $e) {
-          // dd($e);
+            // dd($e);
             $error = $e->getError();
             $errorMessage = $error->message;
-            
+
             $data['status'] = 'unpaid';
+
+            $user = User::find($user_id);
+           
+            $message = 'Your payment failed. Subscription plan has been suspended.';
+            EmailService::sendEmail($user->email, $message);
             return Payment::create($data);
         }
-        
     }
 
     public function verifyCard($cardNumber)

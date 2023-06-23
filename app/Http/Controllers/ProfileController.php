@@ -14,6 +14,7 @@ use App\Models\UserData;
 use App\Models\Country;
 use App\Models\Answer;
 use App\Models\Survey;
+use App\Models\SurveyResponse;
 
 class ProfileController extends Controller
 {
@@ -82,6 +83,7 @@ class ProfileController extends Controller
                 ->with('question')
                 ->delete();
             Survey::find($user->survey_id)->delete();
+            SurveyResponse::where('user_id',  $user->id)->delete();
         }
 
 

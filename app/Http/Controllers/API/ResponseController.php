@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Survey;
 use App\Models\Answer;
 use App\Models\User;
-
 use App\Models\SurveyResponse;
+
+use App\Services\EmailService;
 
 class ResponseController extends Controller
 {
@@ -25,7 +26,14 @@ class ResponseController extends Controller
             'answers.*.value' => 'required',
         ]);
 
-        $user = User::where('survey_id', $survey->id)->first();
+        $user = User::where('survey_id', $survey->id)
+        ->with('userData')
+        ->first();
+
+        $plan = $user->userData->plan;
+       // dd($plan->alias);
+        $max_request = intval($user->userData->plan->max_request);
+       // dd($max_request);
         
         $user_responce = SurveyResponse::where('user_id', $user->id)->first();
         if ($user_responce == null) {
@@ -36,6 +44,12 @@ class ResponseController extends Controller
         }
 
         $sum_requests = $user_responce->sum_requests + 1;
+
+        if (($sum_requests == $max_request) 
+        and ($plan->alias === "trial")){
+            $message = 'Your trial peris has expired. Please upgrate.';
+            EmailService::sendEmail($user->email, $message);
+        }
     
 
         foreach ($validatedData['answers'] as $answerData) {

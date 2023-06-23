@@ -30,8 +30,13 @@ class UserDataService
             if ($userData->plan_id == null) {
                 $user = User::find($user_id);
                 $plan = Plan::find($data["plan_id"]);
-                $message = 'Текст сообщения Payment plan '. $plan->name .' has been activated!';
-               // EmailService::sendEmail($user->email, $message);
+                $message = 'Payment plan '. $plan->name .' has been activated!';
+                EmailService::sendEmail($user->email, $message);
+            }else{
+                $user = User::find($user_id);
+                $plan = Plan::find($data["plan_id"]);
+                $message = 'Your current payment plan has been upgraded to '. $plan->name ;
+                EmailService::sendEmail($user->email, $message);
             }
         }
         return $userData->update($data);

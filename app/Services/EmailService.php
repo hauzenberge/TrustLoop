@@ -3,28 +3,22 @@
 namespace App\Services;
 
 use Mailchimp;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class EmailService
 {
-    public static function sendEmail($email, $message)
+    public static function sendEmail($email, $message2)
     {
-        $mailchimp = new MailChimp(env('MAILCHIMP_APIKEY'));
-        //dd($mailchimp);
-        dd($mailchimp);
-        $mailchimp->send('your-campaign-template', [
-            'email' => $email,
-            'html' => $message,
-        ]);
-        /*
-        Newsletter::subscribe($email);
-        Newsletter::send('your-campaign-template', [
-            'email' => $email,
-            'html' => $message,
-        ]);
+        try {
+            $subject = env('APP_NAME');
 
-        $result = Newsletter::subscribeOrUpdate($email, [
-            'им\'я' => 'ім\'я_підписника',
-        ]);
-        */
+            Mail::raw($message2, function ($message) use ($email, $subject) {
+                $message->to($email);
+                $message->subject($subject);
+            });
+        } catch (\Exception $e) {
+            Log::error('Error sand email: ' . $e->getMessage());
+        }
     }
 }
