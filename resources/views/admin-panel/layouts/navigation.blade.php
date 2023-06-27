@@ -34,7 +34,7 @@
                                 </svg>
 
 
-                                <span> Dashboards </span>
+                                <span> Dashboard </span>
                             </a>
                     </li>
 
