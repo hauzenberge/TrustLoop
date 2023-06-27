@@ -51,7 +51,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th>Review</th>
-                            <th>Data</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     @if($anwers->count() != 0)

@@ -47,7 +47,6 @@ class DashboardController extends Controller
                     }, $daysOfWeek);
 
                     $trialPlanId = Plan::where("alias", "trial")->first()->id;
-                    // dd($trialPlanId);
 
                     $users_data = User::where('role', 'user')
                         ->with('userData')
@@ -64,11 +63,48 @@ class DashboardController extends Controller
                         return $count ? $count->count : 0;
                     }, $daysOfWeek);
 
-                    //dd($free_counts);
+                    $reviews = Survey::all()
+                        ->map(function ($item) {
+                            return $item->questions
+                                ->filter(function ($item) {
+                                    if ($item->text == "Rate Us") {
+                                        return $item;
+                                    }
+                                })
+                                ->filter(function($item){
+                                    if ($item->answers->count() != 0 ) {
+                                        return $item;
+                                    }
+                                })
+                                ->map(function ($item) {
+                                    $answers = $item->answers
+                                        ->sortByDesc('created_at')
+                                        ->take(5)
+                                        ->map(function ($item) {
+                                            return [
+                                                'count' => intval($item->text),
+                                                'user' => $item->user->name,
+                                                'date' => Carbon::parse($item->created_at)->format('m/d/y'),
+                                            ];
+                                        });
+
+                                    return $answers;
+                                })
+                                ->first();
+                        })
+                        ->filter(function($item){
+                            if ($item != null) {
+                                return $item;
+                            }
+                        })
+                        ->first()
+                        ->values();
+                    //dd($reviews);
 
                     $data = [
                         'title' => $title,
                         'active' => 'dashboard',
+                        'reviews' => $reviews,
                         'registrations_count' => $registrations_count,
                         'registrations_count_weeks' => $registrations_count_weeks,
                         'total_users' => $total_users,
@@ -147,7 +183,7 @@ class DashboardController extends Controller
                                         ->map(function ($item) {
                                             return [
                                                 'count' => intval($item->text),
-                                                'date' => Carbon::parse($item->created_at)->format('d/m/y'),
+                                                'date' => Carbon::parse($item->created_at)->format('m/d/y'),
                                             ];
                                         });
 
@@ -158,7 +194,7 @@ class DashboardController extends Controller
                         ->first();
 
                     $answers_data = Answer::where('user_id', Auth::user()->id)
-                    ->selectRaw('DAYNAME(created_at) as day, COUNT(*) as count')
+                        ->selectRaw('DAYNAME(created_at) as day, COUNT(*) as count')
                         ->groupBy('day')
                         ->orderByRaw("FIELD(day, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')")
                         ->get();
