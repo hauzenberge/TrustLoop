@@ -9,6 +9,8 @@
 
 <h2 class="fs-20 mb-6">Plan</h2>
 
+<h2 class="fs-20 mb-6">Please select a plan that works for you</h2>
+
 @include('admin-panel.payments.components.user-plans')
 
 <div class="row">
