@@ -99,7 +99,6 @@ class DashboardController extends Controller
                         })
                         ->first()
                         ->values();
-                    //dd($reviews);
 
                     $data = [
                         'title' => $title,
