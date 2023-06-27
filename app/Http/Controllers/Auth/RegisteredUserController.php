@@ -24,7 +24,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth2.register');
+        return view('auth2.register',[
+            'title' =>  'Sign Up',
+        ]);
     }
 
     /**

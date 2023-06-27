@@ -122,7 +122,7 @@
     </script>
 
     <!-- Page Title -->
-    <title>Sign In | TRUSTLOOP</title>
+    <title> {{ $title }} | TRUSTLOOP</title>
 </head>
 
 <body class="d-flex align-items-center" style="

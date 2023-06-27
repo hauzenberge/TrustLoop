@@ -23,7 +23,7 @@
 
                 <!-- Label -->
                 <label class="form-label">
-                    {{ __('First name') }}
+                    {{ __('Name') }}
                 </label>
 
                 <!-- Input -->
