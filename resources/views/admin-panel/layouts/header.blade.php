@@ -647,7 +647,7 @@
                 <!-- End Dropdown -->
 
                 <a class="dropdown-item" href="{{ route('profile.edit') }}">Profile & account</a>
-                <a class="dropdown-item" href="{{ route('settigns') }}">Settings</a>
+                <a class="dropdown-item" href="{{ route('settings') }}">Settings</a>
 
                 <hr class="dropdown-divider">
                 <form method="POST" action="{{ route('logout') }}">

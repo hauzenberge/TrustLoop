@@ -14,7 +14,7 @@ class SettignsController extends Controller
     public function index()
     {
         $data = [
-            'active' => 'settigns'
+            'active' => 'settings'
         ];
 
         switch (Auth::user()->role) {
@@ -37,7 +37,7 @@ class SettignsController extends Controller
                 }
         }
 
-        $view = 'admin-panel.settigns.' . Auth::user()->role . '-settigns';
+        $view = 'admin-panel.settings.' . Auth::user()->role . '-settings';
 
         return view($view, $data);
     }

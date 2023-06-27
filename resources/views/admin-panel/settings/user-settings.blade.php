@@ -9,7 +9,7 @@
 
 <div class="row mb-5">
     <div class="col-12 col-xl-6">
-        <form action="{{ url('settigns/update-survay/' .$survey->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('settings/update-survay/' .$survey->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
                 <!-- Label -->
@@ -122,7 +122,7 @@
             <h3 id="q-text-{{ $question->id }}" class="fw-semibold mb-0 ps-1 me-auto">{{ $question->text }}</h3>
 
             <div class="fw-semibold mb-0 ps-1 me-auto" id="hidden-element-{{ $question->id }}" style="display: none;">
-                <form class="form-inline" action="{{ url('settigns/question/' . $question->id . '/update') }}" method="POST" enctype="multipart/form-data">
+                <form class="form-inline" action="{{ url('settings/question/' . $question->id . '/update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <input type="text" name="text" class="form-control mr-2" id="url" placeholder="https://www.trustpilot.com/review/trustloop.co" value="{{ $question->text }}" required>
@@ -157,7 +157,7 @@
                     }
                 });
             </script>
-            <a class="delete" href="{{ url('settigns/question/' . $question->id .'/delete/') }}">
+            <a class="delete" href="{{ url('settings/question/' . $question->id .'/delete/') }}">
                 <img src="{{asset('assets_project/assets/images/trash.svg')}}" alt="...">
             </a>
         </div>
