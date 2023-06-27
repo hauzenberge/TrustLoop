@@ -8,7 +8,6 @@
 <p class='m-0'>        integrity=&quot;sha512-Z0dNfC81uEXC2iTTXtE0rM18I3ATkwn1m8Lxe0onw/uPEEkCmVZd+H8GTeYGkAZv50yvoSR5N3hoy/Do2hNSkw==&quot;</p>
 <p class='m-0'>        crossorigin=&quot;anonymous&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/script&gt;</p>
 <p class='m-0'>    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;</p>
-<p class='m-0'>    &lt;!-- Додаємо посилання на CDN-версію jQuery --&gt;</p>
 <p class='m-0'>    &lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</p>
 <p class='m-0'>    &lt;script&gt;</p>
 <p class='m-0'>        $(document).ready(function () {</p>  
