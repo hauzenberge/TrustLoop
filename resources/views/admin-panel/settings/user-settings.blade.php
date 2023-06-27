@@ -173,8 +173,9 @@
 
                 <!-- Input -->
                 <input name="text" type="text" class="form-control bg-white" placeholder="What do you think so far?" required>
-                <!-- Button -->
-                <button type="submit" class="btn w-100 btn-primary mt-6 mb-2">Add a question</button>
+                <!-- Buttons -->
+                <a href="{{ url('demo-page/' . Auth::user()->id ) }}"  target="_blank">Preview</a>
+                <button type="submit" class="btn btn-primary mt-6 mb-2">Add a question</button>
 
             </form>
         </div>
