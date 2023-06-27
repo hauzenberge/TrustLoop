@@ -13,7 +13,7 @@
     </div>
 
     <div>
-        <a class="btn btn-primary" href="{{route('payments')}}" style="background-color: #5083C1; border-radius: 7.60234px;">{{ __('Upgrade to premium') }}</a>
+        <a class="btn btn-primary" href="{{route('billing')}}" style="background-color: #5083C1; border-radius: 7.60234px;">{{ __('Upgrade to premium') }}</a>
     </div>
 </div>
 @endif

@@ -39,8 +39,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
     
         Route::get('/export-csv', 'CSVController@export')->name('export.csv');
 
-        Route::prefix('payments')->group(function () {
-            Route::get('/', 'PaymentsContoller@index')->name('payments');
+        Route::prefix('billing')->group(function () {
+            Route::get('/', 'PaymentsContoller@index')->name('billing');
         });
     
         Route::prefix('user-data')->group(function () {

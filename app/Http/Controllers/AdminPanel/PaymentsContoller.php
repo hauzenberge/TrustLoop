@@ -24,7 +24,7 @@ class PaymentsContoller extends Controller
 
         switch ($user->role) {
             case 'admin': {
-                    $data['title'] =  'Payments';
+                    $data['title'] =  'Billing';
 
                     $data['all_payments'] = Payment::getMapFromAdminList('all');
                     $data['paid_payments'] = Payment::getMapFromAdminList('', ['fillable' => 'status', 'value' => 'paid']);
