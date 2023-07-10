@@ -107,7 +107,7 @@ class User extends Authenticatable
 
     public function getResourceUrlAttribute()
     {
-        return url('/users/' . $this->id);
+        return url('/user-reviews/' . $this->id);
     }
 
     public static function getUserList()

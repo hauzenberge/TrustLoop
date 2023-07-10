@@ -30,7 +30,7 @@ class UsersController extends Controller
         $view = 'admin-panel.users.' . Auth::user()->role . '-index';
 
         $data = [
-            'active' => 'users'
+            'active' => 'user-reviews'
         ];
         switch (Auth::user()->role) {
             case 'admin': {

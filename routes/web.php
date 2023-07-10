@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
             Route::get('/', 'DashboardController@index')->name('dashboard');
         });
     
-        Route::prefix('users')->group(function () {
+        Route::prefix('user-reviews')->group(function () {
             Route::get('/', 'UsersController@index')->name('users');
             Route::get('/add', 'UsersController@add')->name('add.user');
             Route::patch('/store', 'UsersController@store')->name('user.store');
@@ -61,10 +61,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
         });
     
         Route::post('/upload-avatar/{user_id}', 'AvatarController@store')->name('avatar.upload');
-    });
-    
-   
-  
+    });  
 
     Route::prefix('enable-plan')->group(function () {
         Route::get('/', 'EnablePlanController@index');
