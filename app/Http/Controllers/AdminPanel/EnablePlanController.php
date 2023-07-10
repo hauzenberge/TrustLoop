@@ -81,14 +81,16 @@ class EnablePlanController extends Controller
 
     public function userCard()
     {
-        $planLogs = EnablePlanLog::where('user_id', Auth::user()->id)
+        $user = Auth::user();
+       // dd($user->userData->plan);
+        $planLogs = EnablePlanLog::where('user_id', $user->id)
         ->with('plan')
         ->first();
-
-         //dd($planLogs);
+        
         return view('admin-panel.card', [
             'title' => 'User Card',
-            'planLog' => $planLogs
+            'planLog' => $planLogs,
+            'plan' => $user->userData->plan
         ]);
     }
 
