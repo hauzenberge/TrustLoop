@@ -85,7 +85,7 @@ class EnablePlanController extends Controller
         ->with('plan')
         ->first();
 
-        // dd($planLogs);
+         //dd($planLogs);
         return view('admin-panel.card', [
             'title' => 'User Card',
             'planLog' => $planLogs

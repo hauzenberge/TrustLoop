@@ -27,7 +27,7 @@
                         <div class="form-group d-flex justify-content-between">
                             <button type="submit" class="btn btn-primary">Submit</button>
                             @if($planLog != null)
-                            @if($planLog->survey_responses != intval($planLog->plan->max_request))
+                            @if($planLog->survey_responses != intval($planLog->plan->max_request))                          
                             <a href="{{ url('enable-plan/cancel/' . $planLog->id) }}" class="btn btn-danger">Cancel</a>
                             @endif
                             @endif
