@@ -124,44 +124,7 @@ class DashboardController extends Controller
 
                     if ($userData->plan_id == null) {
                         return redirect('enable-plan');
-                    }
-
-                    if ($user->survey_id == null) {
-
-                        $survey = Survey::create(['title' => 'Survey Into ' . $user->name]);
-
-                        $questions = [
-                            ['text' => 'How would you rate our service?', 'type' => 'question'],
-                            ['text' => 'How likely are you to recommend us?', 'type' => 'question'],
-                            ['text' => 'How satisfied are you with our product?', 'type' => 'question'],
-                            ['text' => 'What is your age?', 'type' => 'question'],
-                            ['text' => 'What is your favorite color?', 'type' => 'question'],
-                            ['text' => 'What is your favorite food?', 'type' => 'question'],
-                        ];
-
-                        $rate_as_quastion = Question::create([
-                            'text' => "Rate Us",
-                            'type' => 'rating',
-                            'survey_id' => $survey->id,
-                        ]);
-
-                        $questionsCount = count($questions);
-
-                        $randomKeys = array_rand($questions, 3);
-                        $randomQuestions = [];
-                        foreach ($randomKeys as $key) {
-                            $randomQuestions[] = $questions[$key];
-                        }
-
-                        foreach ($questions as $questionData) {
-                            $question = Question::create([
-                                'text' => $questionData['text'],
-                                'type' => $questionData['type'],
-                                'survey_id' => $survey->id,
-                            ]);
-                        }
-                        $user->survey()->associate($survey)->save();
-                    }
+                    }                    
 
                     $title = 'Dashboard | TRUSTLOOP';
 
