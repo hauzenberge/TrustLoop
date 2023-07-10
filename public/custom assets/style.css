@@ -76,3 +76,45 @@ input:checked+.slider:before {
   z-index: 9999; /* Встанови високий значення індексу, щоб перекрити інші елементи */
  /* pointer-events: none;  Заборонити взаємодію з елементами під ним */
 }
+
+
+.check-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.bulltet-point {
+  grid-column-gap: 12px;
+  align-items: center;
+  display: flex;
+}
+
+.paragraph-12px {
+  color: #475467;
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.heading-20px.left {
+  text-align: left;
+}
+
+.heading-20px {
+  color: #101828;
+  text-align: center;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.card-button {
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 23px;
+  margin-bottom: 23px;
+  display: flex;
+}

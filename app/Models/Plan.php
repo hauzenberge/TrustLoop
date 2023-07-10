@@ -25,4 +25,9 @@ class Plan extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function getFeaturesAttribute($value)
+    {
+        return json_decode($value, true);
+    }
 }

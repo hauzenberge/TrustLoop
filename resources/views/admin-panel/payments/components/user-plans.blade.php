@@ -29,8 +29,23 @@ $enabled_card_class = $card_class . " text-bg-primary";
                         </span>
                     </div>
                     <p class="mb-5">{{ $plan->description }}</p>
-                    <!-- Button -->
-                    <a class="btn btn-sm btn-primary w-125px" href="{{ url('enable-plan/choose/' . Auth::user()->id . '/'. $plan->id) }}">Choose</a>
+                    <div class="card-button">
+                        <a class="btn btn-sm btn-primary w-125px" href="{{ url('enable-plan/choose/' . Auth::user()->id . '/'. $plan->id) }}">Choose</a>
+                    </div>
+
+                    <div class="pricing-features">
+                        <div class="heading-box">
+                            <p class="heading-20px left">{{__('FEATURES')}}</p>
+                        </div>
+                        <div class="pricing-points">
+                            @foreach($plan->features as $feature)
+                            <div class="bulltet-point">
+                                <img src="{{ asset('custom assets/icons/Check icon.svg') }}" alt="" class="check-icon ">
+                                <p class="paragraph-12px">{!! $feature !!}</p>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
