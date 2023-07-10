@@ -21,7 +21,11 @@ return new class extends Migration
             $table->string('alias')->default('no_trial');
 
             $table->decimal('price', 8, 2);
+
             $table->text('description');
+
+            $table->json('features');
+
             $table->string('max_request');
 
             $table->timestamps();

@@ -97,8 +97,12 @@ class DashboardController extends Controller
                                 return $item;
                             }
                         })
-                        ->first()
-                        ->values();
+                        ->first();
+                        //->values();
+                      //  dd($reviews);
+                        if ($reviews != null) {
+                            $reviews = $reviews->values();
+                        }
 
                     $data = [
                         'title' => $title,

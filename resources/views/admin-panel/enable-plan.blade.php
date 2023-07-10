@@ -5,7 +5,7 @@
 <div class="row mb-4">
 
     @foreach($plans as $plan)       
-        <div class="col-xl-3">
+        <div class="col-xl-4">
         <!-- Card -->
         <div class="card pricing-card border-1 border-primary py-4 px-5 mb-6 mb-xl-3">
             <div class="card-body px-1 py-0">
@@ -18,6 +18,7 @@
                 <p class="mb-5">{{ $plan->description }}</p>
                 <!-- Button -->
                 <a class="btn btn-sm btn-primary w-125px" href="{{ url('enable-plan/choose/' . $user_id . '/'. $plan->id) }}">Choose</a>
+            {!! $plan->features !!}
             </div>
         </div>
     </div>

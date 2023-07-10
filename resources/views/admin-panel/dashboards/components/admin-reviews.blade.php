@@ -39,18 +39,27 @@
             </tr>
         </thead>
         <tbody>
+            @if($reviews != null)
             @foreach($reviews as $review)
             <tr>
                 <td class="text-start">
                     <span class="stars-reviews">
                         @for($i = 0; $i < $review["count"] ; $i++) <img src="{{asset('assets_project/assets/images/star.svg')}}" class="star" alt="...">
-                                        @endfor
+                            @endfor
                     </span>
                 </td>
                 <td class="text-muted">{{ $review['user'] }}</td>
                 <td class="text-muted">{{ $review['date'] }}</td>
             </tr>
             @endforeach
+            @else
+            <tr>
+                <td class="text-start">
+                </td>
+                <td class="text-muted">I don`t have records</td>
+                <td class="text-muted"></td>
+            </tr>
+            @endif
         </tbody>
     </table>
 </div> <!-- / .table-responsive -->

@@ -15,11 +15,10 @@ class Plan extends Model
         'id',
 
         'name',
-
-        'alias',
-        
+        'alias',        
         'price', 
         'description',
+        'features',
 
         'max_request',
 

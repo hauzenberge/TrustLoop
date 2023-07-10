@@ -40,7 +40,6 @@ class AdminRoleSeeder extends Seeder
             ]
         ];
 
-        // Create Admin user
         User::create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
@@ -52,17 +51,12 @@ class AdminRoleSeeder extends Seeder
         $lastNames = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson'];
 
 
-        // Create 500 User users
         for ($i = 0; $i < 500; $i++) {
 
-            // Get a random plan from the database
             $plan = Plan::inRandomOrder()->first();
 
-            // Get a random country from the database
             $country = Country::inRandomOrder()->first();
 
-            // Create a UserData record with the selected plan and country
-            // dd($plan->alias);
             $userData =  UserData::create([
                 'country_id' => $country->id,
                 'plan_id' => $plan->id,
