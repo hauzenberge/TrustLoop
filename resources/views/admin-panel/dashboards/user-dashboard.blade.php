@@ -100,8 +100,8 @@
     <div class="col mt-2 mb-6 pb-2">
 
         <div class="mb-6">
-            <h2 class="d-inline me-4">Your ID:</h2>
-            <p class="d-inline fs-3">UA-172504677-{{ Auth::user()->id }}</p>
+            <h2 class="d-inline me-4">Reviews Captured: </h2>
+            <p class="d-inline fs-3">{{ intval($chart['counts']) }}</p>
         </div>
         <p class="fs-3 fw-semibold">Please copy the piece of code below and insert it in to the &lt;head&gt; section of your website.</p>
         <div class="row">

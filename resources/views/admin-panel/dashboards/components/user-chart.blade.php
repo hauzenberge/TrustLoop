@@ -40,7 +40,9 @@
                     },
                     ticks: {
                         callback: (value, index, values) => {
-                            return value;
+                            if (Number.isInteger(value)) {
+                                return value;
+                            }
                         }
                     }
                 }
@@ -62,8 +64,8 @@
                     }
                 }
             },
-          indexAxis: 'x',
-          barPercentage: 0.2,
+            indexAxis: 'x',
+            barPercentage: 0.2,
         }
     });
 </script>

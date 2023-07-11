@@ -48,8 +48,17 @@
                     },
                     ticks: {
                         callback: (value, index, values) => {
-                            return value > 0 ? (value < 1000 ? value / 100 : ((value < 1000000) ? Math.floor(value / 1000) + 'k' : Math.floor(value / 1000000) + 'M')) : value;
-
+                            console.log(value);
+                            //return value > 0 ? (value < 1000 ? value / 100 : ((value < 1000000) ? Math.floor(value / 1000) + 'k' : Math.floor(value / 1000000) + 'M')) : value;
+                            if (value === 1000) {
+                                return '1k';
+                            } else if (value > 1000 && value < 1000000) {
+                                return (Math.floor(value / 1000)) + 'k';
+                            } else if (value >= 1000000) {
+                                return (Math.floor(value / 1000000)) + 'M';
+                            } else {
+                                return value ;
+                            }
                         }
                     }
                 }

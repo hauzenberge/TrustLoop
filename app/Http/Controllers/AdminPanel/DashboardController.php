@@ -71,8 +71,8 @@ class DashboardController extends Controller
                                         return $item;
                                     }
                                 })
-                                ->filter(function($item){
-                                    if ($item->answers->count() != 0 ) {
+                                ->filter(function ($item) {
+                                    if ($item->answers->count() != 0) {
                                         return $item;
                                     }
                                 })
@@ -92,17 +92,17 @@ class DashboardController extends Controller
                                 })
                                 ->first();
                         })
-                        ->filter(function($item){
+                        ->filter(function ($item) {
                             if ($item != null) {
                                 return $item;
                             }
                         })
                         ->first();
-                        //->values();
-                      //  dd($reviews);
-                        if ($reviews != null) {
-                            $reviews = $reviews->values();
-                        }
+                    //->values();
+                    //  dd($reviews);
+                    if ($reviews != null) {
+                        $reviews = $reviews->values();
+                    }
 
                     $data = [
                         'title' => $title,
@@ -128,7 +128,7 @@ class DashboardController extends Controller
 
                     if ($userData->plan_id == null) {
                         return redirect('enable-plan');
-                    }                    
+                    }
 
                     $title = 'Dashboard | TRUSTLOOP';
 
@@ -159,26 +159,26 @@ class DashboardController extends Controller
                         })
                         ->first();
 
+                    $year = date('Y');
+
                     $answers_data = Answer::where('user_id', Auth::user()->id)
-                        ->selectRaw('DAYNAME(created_at) as day, COUNT(*) as count')
-                        ->groupBy('day')
-                        ->orderByRaw("FIELD(day, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')")
+                        ->whereYear('created_at', $year)
+                        ->selectRaw("DATE_FORMAT(created_at, '%d/%m') as date, COUNT(*) as count")
+                        ->groupBy('date')
+                        ->orderByRaw("STR_TO_DATE(date, '%d/%m')")
                         ->get();
 
-                    $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-                    $counts = [];
 
-                    foreach ($daysOfWeek as $day) {
-                        $count = $answers_data->firstWhere('day', $day);
-                        $counts[] = $count ? $count->count : 0;
-                    }
+                    $daysOfWeek = $answers_data->pluck('date')->toArray();
+                    $counts = $answers_data->pluck('count')->toArray();
+
 
                     $data = [
                         'title' => $title,
                         'active' => 'dashboard',
                         'anwers' => $anwers,
                         'chart' => [
-                            'daysOfWeek' => ['Mon', 'Tue', 'Web', 'Thu', 'Fr', 'Sat', 'Sun'],
+                            'daysOfWeek' => $daysOfWeek,
                             'counts' => $counts
                         ]
                     ];
