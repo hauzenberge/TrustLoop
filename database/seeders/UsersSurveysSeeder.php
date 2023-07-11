@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Survey;
 use App\Models\Question;
+use App\Models\Font;
 
 class UsersSurveysSeeder extends Seeder
 {
@@ -21,17 +22,22 @@ class UsersSurveysSeeder extends Seeder
         $users = User::where('role', 'user')->get();
 
         $questions = [
-            ['text' => 'How would you rate our service?', 'type' => 'question'],
-            ['text' => 'How likely are you to recommend us?', 'type' => 'question'],
+            ['text' => 'What would need to be improved for you to rate us 5-stars?', 'type' => 'question'],
+            ['text' => 'How likely are you to tell share our product (1-10)?', 'type' => 'question'],
             ['text' => 'How satisfied are you with our product?', 'type' => 'question'],
-            ['text' => 'What is your age?', 'type' => 'question'],
-            ['text' => 'What is your favorite color?', 'type' => 'question'],
-            ['text' => 'What is your favorite food?', 'type' => 'question'],
+            ['text' => 'Any other feedback?', 'type' => 'question'],
         ];
 
 
         foreach ($users as $user) {
-            $survey = Survey::create(['title' => 'Survey Into ' . $user->name]);
+            $font = Font::inRandomOrder()->first();
+
+            $survey = Survey::create(
+                [
+                    'title' => 'Survey Into ' . $user->name,
+                    'font_id' => $font->id
+                ]);
+           
 
             $questionsCount = count($questions);            
 

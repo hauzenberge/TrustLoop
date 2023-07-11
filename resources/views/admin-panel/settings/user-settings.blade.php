@@ -116,7 +116,29 @@
                 <!-- Input -->
                 <input type="text" name="link_url" class="form-control bg-white" id="url" placeholder="https://www.trustpilot.com/review/trustloop.co" value="{{ $survey->link_url }}" required>
                 <x-input-error class="mt-2" :messages="$errors->get('link_url')" style="color: red;" />
+            </div>
 
+            <div class="mb-4">
+                <label for="font_id">{{ __('Select Font') }}</label>
+                <select class="form-control" name="font_id" id="font_id">
+                    @foreach($fonts as $font)
+                    <option value="{{ $font->id }}" {{ $survey->font_id == $font->id ? 'selected' : '' }}>{{ $font->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <!-- Label -->
+                <label class="form-label">
+                    Custom Styles
+                </label>
+
+                <!-- Textarea -->
+                <textarea name="style" class="form-control bg-white" rows="5" placeholder="Your styles for modal">{{ $survey->style }}</textarea>
+                <x-input-error class="mt-2" :messages="$errors->get('style')" style="color: red;" />
+            </div>
+
+            <div class="mb-4">
                 <!-- Button -->
                 <button type="submit" class="btn w-100 btn-primary mt-6 mb-2">Save changes</button>
             </div>

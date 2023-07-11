@@ -1,4 +1,4 @@
-                                    0nbbbbb<?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,11 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::table('surveys', function (Blueprint $table) {
-            $table->boolean('static_request_widget')->default(false);
-            $table->boolean('exit_intent_feedback_popup')->default(false);
-            
+            $table->unsignedBigInteger('font_id')->nullable();
+            $table->text('style')->nullable();
+            $table->foreign('font_id')->references('id')->on('fonts');
         });
-        
     }
 
     /**
@@ -29,7 +28,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('surveys', function (Blueprint $table) {
-            $table->dropColumn('static_request');
+            $table->dropForeign(['font_id']);
+            $table->dropColumn(['font_id', 'style']);
         });
     }
 };

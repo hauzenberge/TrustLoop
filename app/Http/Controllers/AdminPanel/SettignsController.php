@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\Font;
+
 class SettignsController extends Controller
 {
     public function index()
@@ -25,12 +27,13 @@ class SettignsController extends Controller
             case 'user': {
                     $data['title'] = 'User Settings | TRUSTLOOP';
                     $survey =  Auth::user()->survey()->with('questions')->first();
+                 //  dd($survey);
                     $data['survey'] = $survey;
                     $data['questions'] =  $survey->questions->where("text", '!=', 'Rate Us');
+                    $data['fonts'] = Font::all();
                     break;
                 }
             default: {
-
                     $title = 'Settings';
                     break;
                 }
@@ -49,6 +52,9 @@ class SettignsController extends Controller
             'feedback_request' => 'required|string',
             'review_text' => 'required|string',
             'review_button_text' => 'required|string',
+
+            'font_id' => 'required',
+            'style' => 'sometimes',
 
             'link_url' => 'required|url',
         ]);

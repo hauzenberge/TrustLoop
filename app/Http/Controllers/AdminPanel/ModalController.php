@@ -11,6 +11,7 @@ class ModalController extends Controller
     public function index($user_id)
     {
         $survey = User::find($user_id)->survey()->first();
+       // dd($survey->font);
 
         $script = null;
         $button_style = '';
@@ -39,7 +40,9 @@ class ModalController extends Controller
         return view('modal', [
             'user_id' => $user_id,
             'script' => $script,
-            'button_style' => $button_style
+            'button_style' => $button_style,
+            'font' => $survey->font,
+            'style' => $survey->style
         ]);
     }
 }

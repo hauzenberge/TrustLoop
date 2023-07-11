@@ -4,17 +4,15 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-
-use App\Models\Payment;
-use App\Models\Survey;
-use App\Models\SurveyResponse;
-
 use Carbon\Carbon;
 use App\Services\UserDataService;
-
 use Illuminate\Support\Facades\View;
 
 use App\Models\Question;
+use App\Models\Payment;
+use App\Models\Survey;
+use App\Models\SurveyResponse;
+use App\Models\Font;
 
 class CheckTariffPlan
 {
@@ -94,7 +92,13 @@ class CheckTariffPlan
 
         if ($user->survey_id == null) {
 
-            $survey = Survey::create(['title' => 'Survey Into ' . $user->name]);
+            $font = Font::inRandomOrder()->first();
+
+            $survey = Survey::create(
+                [
+                    'title' => 'Survey Into ' . $user->name,
+                    'font_id' => $font->id
+                ]);
 
             $questions = [
                 ['text' => 'What would need to be improved for you to rate us 5-stars?', 'type' => 'question'],

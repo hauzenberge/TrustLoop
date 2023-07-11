@@ -88,7 +88,7 @@
     #feedback {
         width: 199px;
         height: 49px;
-        font-family: 'Open Sans';
+       /* font-family: 'Open Sans'; */
         font-style: normal;
         font-weight: 700;
         font-size: 36px;
@@ -97,6 +97,21 @@
         flex: none;
         order: 0;
         flex-grow: 0;
-
+        {{ $font->css }}
     }
+
+    .survey-container {
+        {{ $font->css }}
+    }
+    .form-group {
+        {{ $font->css }}
+    }
+    #label-massege {
+        {{ $font->css }}
+    }
+    .form-control {
+        {{ $font->css }}
+    }
+
+    {{ $style }}
 </style>

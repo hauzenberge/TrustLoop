@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CountrySeeder::class);
         $this->call(PlanSeeder::class);
 
+        $this->call(FontSeeder::class);
+
         $this->call(AdminRoleSeeder::class);
         $this->call(UsersSurveysSeeder::class);
     }

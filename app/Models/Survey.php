@@ -25,6 +25,9 @@ class Survey extends Model
         'static_request_widget',
         'exit_intent_feedback_popup',
 
+        'font_id',
+        'style',
+
         'link_url',
 
         'static_request',
@@ -32,6 +35,11 @@ class Survey extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function font()
+    {
+        return $this->belongsTo(Font::class, 'font_id');
+    }
 
     public function questions()
     {
