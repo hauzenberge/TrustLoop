@@ -21,7 +21,10 @@ class Survey extends Model
         'popup_text',
         'feedback_request',
         'review_text',
-        'review_button_text',
+
+        'static_request_widget',
+        'exit_intent_feedback_popup',
+
         'link_url',
 
         'static_request',

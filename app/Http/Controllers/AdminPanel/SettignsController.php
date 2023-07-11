@@ -53,9 +53,13 @@ class SettignsController extends Controller
             'link_url' => 'required|url',
         ]);
         
-        if ($request->input("static_request") != null) {
-            $validate["static_request"] = true;
-        }else $validate["static_request"] = false;
+        if ($request->input("static_request_widget") != null) {
+            $validate["static_request_widget"] = true;
+        }else $validate["static_request_widget"] = false;
+
+        if ($request->input("exit_intent_feedback_popup") != null) {
+            $validate["exit_intent_feedback_popup"] = true;
+        }else $validate["exit_intent_feedback_popup"] = false;
 
         $survay = Survey::find($survey_id);
         $survay->update($validate);

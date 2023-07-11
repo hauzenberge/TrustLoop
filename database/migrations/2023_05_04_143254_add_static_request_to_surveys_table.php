@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('surveys', function (Blueprint $table) {
-            $table->boolean('static_request')->default(false);
+            $table->boolean('static_request_widget')->default(false);
+            $table->boolean('exit_intent_feedback_popup')->default(false);
         });
     }
 
