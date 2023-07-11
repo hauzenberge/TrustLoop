@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
     
         Route::prefix('user-data')->group(function () {
             Route::put('{userData}/updateCountry', 'UserDataController@updateCountry')->name('user-data.country.update');
+            Route::put('{userData}/updateCompany', 'UserDataController@updateCompany')->name('user-data.company.update');
         });
     
         Route::prefix('settings')->group(function () {

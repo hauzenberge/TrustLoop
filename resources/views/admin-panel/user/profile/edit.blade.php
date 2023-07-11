@@ -79,6 +79,16 @@
                     {{ __('Country') }}
                 </a>
             </li>
+
+            <li>
+                <a href="#companySection" class="d-flex align-items-center py-3">
+                    <svg viewBox="0 0 24 24" height="14" width="14" class="me-3" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.750 6.000 A5.250 5.250 0 1 0 17.250 6.000 A5.250 5.250 0 1 0 6.750 6.000 Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                        <path d="M2.25,23.25a9.75,9.75,0,0,1,19.5,0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    </svg>
+                    {{ __('Company') }}
+                </a>
+            </li>
             @endif
 
 
@@ -157,7 +167,7 @@
                         <div class="invalid-feedback">{{ __('Please add your full name') }}</div>
 
                         @if($errors->count() != 0)
-                        
+
                         @endif
                         <x-input-error class="mt-2" :messages="$errors->get('name')" />
                     </div>
@@ -215,14 +225,34 @@
                 @method('PUT')
 
                 <div class="form-group">
-                    <label for="country_id">Оберіть країну</label>
+                    <label for="country_id">{{ __('Select Country') }}</label>
                     <select class="form-control" name="country_id" id="country_id">
                         @foreach($countries as $country)
                         <option value="{{ $country->id }}" {{ $userData->country_id == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                         @endforeach
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Зберегти</button>
+                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card border-0 scroll-mt-3" id="companySection">
+        <div class="card-header">
+            <h2 class="h3 mb-0">{{ __('Company Name') }}</h2>
+        </div>
+
+        <div class="card-body">
+            <form action="{{ route('user-data.company.update', $userData->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+
+                <div class="col-lg">
+                    <input name="companyName" type="text" class="form-control" id="companyName" value="{{ old('name', $userData->company_name) }}">
+                    <div class="invalid-feedback">Please add your current password</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
             </form>
         </div>
     </div>

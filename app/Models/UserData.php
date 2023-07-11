@@ -23,6 +23,8 @@ class UserData extends Model
 
         'card_id',
 
+        'company_name',
+
         'created_at',
         'updated_at'
     ];

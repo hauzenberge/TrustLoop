@@ -17,4 +17,12 @@ class UserDataController extends Controller
 
         return redirect()->back();
     }
+
+    public function updateCompany(Request $request, UserData $userData)
+    {
+        $userData->company_name = $request->companyName;
+        $userData->save();
+
+        return redirect()->back();
+    }
 }

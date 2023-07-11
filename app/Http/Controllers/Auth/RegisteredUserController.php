@@ -39,15 +39,16 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'company_name' => ['required', 'string', 'max:255'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-      //  $plan = Plan::where('name', 'Trial')->first();
+      
         $country = Country::where('name', 'USA')->first();
 
         $userData = UserData::create([
             'country_id' => $country->id,
-           // 'plan_id' => $plan->id,
+          'company_name' => $request->company_name
         ]);
 
 

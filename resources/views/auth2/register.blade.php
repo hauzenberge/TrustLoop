@@ -37,6 +37,20 @@
 
                 <!-- Label -->
                 <label class="form-label">
+                    {{ __('Company Name') }}
+                </label>
+
+                <!-- Input -->
+                <input id="company_name" name="company_name" :value="old('company_name')" type="text" class="form-control" :value="old('company_name')" required autofocus autocomplete="company_name" placeholder="Your company name">
+                <x-input-error :messages="$errors->get('company_name')" class="mt-2" />
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="mb-4">
+
+                <!-- Label -->
+                <label class="form-label">
                     {{ __('Email Address') }}
                 </label>
 
