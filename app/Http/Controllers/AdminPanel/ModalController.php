@@ -11,11 +11,9 @@ class ModalController extends Controller
     public function index($user_id)
     {
         $survey = User::find($user_id)->survey()->first();
-       // dd($survey->font);
 
         $script = null;
         $button_style = '';
-
 
         if ($survey->static_request_widget == 0) {
             $button_style = 'style="
@@ -24,7 +22,7 @@ class ModalController extends Controller
         }
 
         if ($survey->exit_intent_feedback_popup == 1) {
-            $script = "
+            $script .= "
                         <script>
                             var listener = document.addEventListener('mouseleave', function(e){
                             var btn = document.getElementById('modal_button');
