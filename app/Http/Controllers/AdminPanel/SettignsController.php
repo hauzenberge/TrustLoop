@@ -8,8 +8,9 @@ use App\Models\Survey;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
-
 use App\Models\Font;
+
+use App\Models\Answer;
 
 class SettignsController extends Controller
 {
@@ -29,6 +30,48 @@ class SettignsController extends Controller
                     $survey =  Auth::user()->survey()->with('questions')->first();
                   //  dd($survey);
                     $data['survey'] = $survey;
+                    
+                    if ($survey->static_request_widget == 1) {
+                       // dd($survey->static_request_widget);
+                        $data['reviews'] =  Answer::where('user_id', Auth::user()->id)
+                        ->with('question')
+                       // ->paginate(2)
+                        ->get()
+                        ->groupBy(function ($answer) {
+                            return $answer->created_at->format('m/d/Y h:m:s');
+                        })
+                        ->map(function ($item, $key) {
+                            $rate_as = $item->filter(function ($item) {
+                                if (($item->question->text == "Rate Us")){
+                                    return $item;
+                                }
+                            })->first();
+
+                           if ($rate_as) {
+                            $rate_as = $rate_as->text;
+                        } else {
+                            $rate_as = '0'; 
+                        }
+
+                            $all_questions = $item->filter(function ($item) {
+                                if ($item->question->text != "Rate Us") {
+                                    return $item;
+                                }
+                            })
+                                ->values()
+                                ->map(function ($item) {
+                                    return [
+                                        'question' => $item->question->text,
+                                        'answer' => $item->text
+                                    ];
+                                })->toArray();
+                            return [
+                                'rate_as' => intval($rate_as),
+                                'date' => $key,
+                                'all_questions' => $all_questions
+                            ];
+                        });
+                    }
                     $data['questions'] =  $survey->questions->where("text", '!=', 'Rate Us');
                     $data['fonts'] = Font::all();
                     break;
