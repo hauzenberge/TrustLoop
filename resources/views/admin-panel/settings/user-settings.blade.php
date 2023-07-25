@@ -215,10 +215,14 @@
                 <!-- Input -->
                 <input name="text" type="text" class="form-control bg-white" placeholder="What do you think so far?" required>
                 <!-- Buttons -->
-                <a href="{{ url('demo-page/' . Auth::user()->id ) }}" target="_blank">Preview</a>
+
                 <button type="submit" class="btn btn-primary mt-6 mb-2">Add a question</button>
 
             </form>
+        </div>
+
+        <div class="mt-4 d-flex justify-content-center">
+            <a href="{{ url('demo-page/' . Auth::user()->id ) }}" class="btn btn-outline-primary" target="_blank">Preview on test page</a>
         </div>
 
     </div>
