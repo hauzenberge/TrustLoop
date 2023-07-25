@@ -45,7 +45,7 @@ class Survey extends Model
     {
         return $this->hasMany(Question::class);
     }
-
+    
     public function getReviewButtonTextAttribute($value)
     {
         if ($value == null) {
@@ -60,10 +60,12 @@ class Survey extends Model
         }else return $value;
     }    
 
+    /*
     public function getLinkUrlAttribute($value)
     {
         if ($value == null) {
             return url('/');
         }else return $value;
     } 
+    */
 }

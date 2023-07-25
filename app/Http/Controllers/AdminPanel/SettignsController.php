@@ -27,7 +27,7 @@ class SettignsController extends Controller
             case 'user': {
                     $data['title'] = 'User Settings | TRUSTLOOP';
                     $survey =  Auth::user()->survey()->with('questions')->first();
-                 //  dd($survey);
+                  //  dd($survey);
                     $data['survey'] = $survey;
                     $data['questions'] =  $survey->questions->where("text", '!=', 'Rate Us');
                     $data['fonts'] = Font::all();
@@ -56,9 +56,15 @@ class SettignsController extends Controller
             'font_id' => 'required',
             'style' => 'sometimes',
 
-            'link_url' => 'required|url',
+            'link_url' => 'nullable|url',
         ]);
+        if ($request->input("link_url") == null) {
+            //dd($request->input("link_url"));
+            $validate["link_url"] = null;
+
+        }
         
+
         if ($request->input("static_request_widget") != null) {
             $validate["static_request_widget"] = true;
         }else $validate["static_request_widget"] = false;
@@ -69,6 +75,19 @@ class SettignsController extends Controller
 
         $survay = Survey::find($survey_id);
         $survay->update($validate);
+
+       
+        if ($request->input("link_url") == null) {
+            //dd($request->input("link_url"));
+            //$validate["link_url"] = null;
+
+            $survey = Survey::find($survey_id);
+            $survey->link_url = null;
+            $survey->save();
+          //  dd($survey->link_url);
+           // dd($validate);
+        }
+      
 
         return redirect()->back();
     }

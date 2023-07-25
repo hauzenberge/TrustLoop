@@ -73,7 +73,7 @@ class PlanSeeder extends Seeder
             [
                 'name' => 'Enterprise',
 
-                'alias' => 'no_trial',
+                'alias' => 'enterprise',
 
                 'price' => 10.99,
                 'description' => 'Unlimited feedback interactions/month',

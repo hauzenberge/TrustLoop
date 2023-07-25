@@ -114,7 +114,7 @@
                 </label>
 
                 <!-- Input -->
-                <input type="text" name="link_url" class="form-control bg-white" id="url" placeholder="https://www.trustpilot.com/review/trustloop.co" value="{{ $survey->link_url }}" required>
+                <input type="text" name="link_url" class="form-control bg-white" id="url" placeholder="Please add your URL" value="{{ $survey->link_url }}">
                 <x-input-error class="mt-2" :messages="$errors->get('link_url')" style="color: red;" />
             </div>
 
