@@ -12,7 +12,7 @@
                     <h3 class="d-inline card-title fw-normal mb-5 me-auto">{{ $plan->name }}</h3>
                     <span class="d-inline card-text fs-20 fw-semibold">                        
                         @if($plan->alias == 'enterprise')
-                        <a class="btn btn-sm btn-primary w-125px" href="#"> {{ __('Contact us') }}</a>
+                        <a class="btn btn-sm btn-primary w-125px" href="https://docs.google.com/forms/d/e/1FAIpQLSc8BkOx_Sx3KqhnvA8JiS4YgkxK4yvIPJBIf3jC3qEpw7FQ3g/formrestricted"> {{ __('Contact us') }}</a>
                         @else
                              ${{ $plan->price }} <span class="fs-16 fw-normal">/ month</span>
                         @endif
