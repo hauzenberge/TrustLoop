@@ -28,49 +28,49 @@ class SettignsController extends Controller
             case 'user': {
                     $data['title'] = 'User Settings | TRUSTLOOP';
                     $survey =  Auth::user()->survey()->with('questions')->first();
-                  //  dd($survey);
+                    //  dd($survey);
                     $data['survey'] = $survey;
-                    
+
                     if ($survey->static_request_widget == 1) {
-                       // dd($survey->static_request_widget);
+                        // dd($survey->static_request_widget);
                         $data['reviews'] =  Answer::where('user_id', Auth::user()->id)
-                        ->with('question')
-                       // ->paginate(2)
-                        ->get()
-                        ->groupBy(function ($answer) {
-                            return $answer->created_at->format('m/d/Y h:m:s');
-                        })
-                        ->map(function ($item, $key) {
-                            $rate_as = $item->filter(function ($item) {
-                                if (($item->question->text == "Rate Us")){
-                                    return $item;
-                                }
-                            })->first();
-
-                           if ($rate_as) {
-                            $rate_as = $rate_as->text;
-                        } else {
-                            $rate_as = '0'; 
-                        }
-
-                            $all_questions = $item->filter(function ($item) {
-                                if ($item->question->text != "Rate Us") {
-                                    return $item;
-                                }
+                            ->with('question')
+                            // ->paginate(2)
+                            ->get()
+                            ->groupBy(function ($answer) {
+                                return $answer->created_at->format('m/d/Y h:m:s');
                             })
-                                ->values()
-                                ->map(function ($item) {
-                                    return [
-                                        'question' => $item->question->text,
-                                        'answer' => $item->text
-                                    ];
-                                })->toArray();
-                            return [
-                                'rate_as' => intval($rate_as),
-                                'date' => $key,
-                                'all_questions' => $all_questions
-                            ];
-                        });
+                            ->map(function ($item, $key) {
+                                $rate_as = $item->filter(function ($item) {
+                                    if (($item->question->text == "Rate Us")) {
+                                        return $item;
+                                    }
+                                })->first();
+
+                                if ($rate_as) {
+                                    $rate_as = $rate_as->text;
+                                } else {
+                                    $rate_as = '0';
+                                }
+
+                                $all_questions = $item->filter(function ($item) {
+                                    if ($item->question->text != "Rate Us") {
+                                        return $item;
+                                    }
+                                })
+                                    ->values()
+                                    ->map(function ($item) {
+                                        return [
+                                            'question' => $item->question->text,
+                                            'answer' => $item->text
+                                        ];
+                                    })->toArray();
+                                return [
+                                    'rate_as' => intval($rate_as),
+                                    'date' => $key,
+                                    'all_questions' => $all_questions
+                                ];
+                            });
                     }
                     $data['questions'] =  $survey->questions->where("text", '!=', 'Rate Us');
                     $data['fonts'] = Font::all();
@@ -89,7 +89,7 @@ class SettignsController extends Controller
 
     public function SurveyUpdate($survey_id, Request $request)
     {
-        
+
         $validate = $request->validate([
             'popup_text' => 'required|string',
             'feedback_request' => 'required|string',
@@ -104,22 +104,21 @@ class SettignsController extends Controller
         if ($request->input("link_url") == null) {
             //dd($request->input("link_url"));
             $validate["link_url"] = null;
-
         }
-        
+
 
         if ($request->input("static_request_widget") != null) {
             $validate["static_request_widget"] = true;
-        }else $validate["static_request_widget"] = false;
+        } else $validate["static_request_widget"] = false;
 
         if ($request->input("exit_intent_feedback_popup") != null) {
             $validate["exit_intent_feedback_popup"] = true;
-        }else $validate["exit_intent_feedback_popup"] = false;
+        } else $validate["exit_intent_feedback_popup"] = false;
 
         $survay = Survey::find($survey_id);
         $survay->update($validate);
 
-       
+
         if ($request->input("link_url") == null) {
             //dd($request->input("link_url"));
             //$validate["link_url"] = null;
@@ -127,18 +126,23 @@ class SettignsController extends Controller
             $survey = Survey::find($survey_id);
             $survey->link_url = null;
             $survey->save();
-          //  dd($survey->link_url);
-           // dd($validate);
+            //  dd($survey->link_url);
+            // dd($validate);
         }
-      
+
 
         return redirect()->back();
     }
 
     public function QuestionDelete($question_id)
     {
-        $question = Question::find($question_id);
-        $question->delete();
+        try {
+            $question = Question::find($question_id);
+            $question->delete();
+        } catch (\Throwable $th) {
+            return redirect()->back();
+        }
+
         return redirect()->back();
     }
 
@@ -148,8 +152,8 @@ class SettignsController extends Controller
 
         $text = $request->input('text');
 
-        if (substr($text, -1) !== '?') { 
-            $text .= '?'; 
+        if (substr($text, -1) !== '?') {
+            $text .= '?';
         }
 
         $question->text = $text;
