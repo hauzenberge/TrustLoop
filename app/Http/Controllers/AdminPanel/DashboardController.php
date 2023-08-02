@@ -159,19 +159,38 @@ class DashboardController extends Controller
                         })
                         ->first();
 
+                    $answers_ids = Survey::where('id', $user->survey_id)
+                        ->with('questions.answers')
+                        ->get()
+                        ->map(function ($item) {
+                            return $item->questions
+                                ->filter(function ($item) {
+                                    if ($item->text == "Rate Us") {
+                                        return $item;
+                                    }
+                                })
+                                ->map(function ($item) {
+                                    $answers = $item->answers->map(function($item){
+                                        return $item->id;
+                                    });
+                                    return $answers;
+                                })->first();
+                        })
+                        ->first()
+                        ->toArray();
+
                     $year = date('Y');
 
                     $answers_data = Answer::where('user_id', Auth::user()->id)
+                        ->whereIn('id', $answers_ids)
                         ->whereYear('created_at', $year)
-                        ->selectRaw("DATE_FORMAT(created_at, '%d/%m') as date, COUNT(*) as count")
+                        ->selectRaw("DATE_FORMAT(created_at, '%m/%d') as date, COUNT(*) as count")
                         ->groupBy('date')
-                        ->orderByRaw("STR_TO_DATE(date, '%d/%m')")
+                        ->orderByRaw("STR_TO_DATE(date, '%m/%d')")
                         ->get();
-
 
                     $daysOfWeek = $answers_data->pluck('date')->toArray();
                     $counts = $answers_data->pluck('count')->toArray();
-
 
                     $data = [
                         'title' => $title,
