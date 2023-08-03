@@ -53,7 +53,6 @@
                                     </button>
                                 </div>
                             </form>
-
                             <div v-if="showFeedBeck" id="feedback">
                                 @{{ FeedBeckMassege }}
                             </div>
