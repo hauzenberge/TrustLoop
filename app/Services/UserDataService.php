@@ -20,25 +20,28 @@ class UserDataService
 
     public static function update($user_id, UserData $userData, $data)
     {
+        $return = [];
         if (array_key_exists('card_id', $data)) {
             if ($userData->plan->alias == 'no_trial') {
                 $price = floatval($userData->plan->price);
                 $payment = PaymentFactory::create();
-                $payment->pay($user_id, $price, $data['card_id']);
+                $return['return_payment'] =  $payment->pay($user_id, $price, $data['card_id']);
+                //dd($return_payment);
             }
-        }else {
+        } else {
             if ($userData->plan_id == null) {
                 $user = User::find($user_id);
                 $plan = Plan::find($data["plan_id"]);
-                $message = 'Payment plan '. $plan->name .' has been activated!';
+                $message = 'Payment plan ' . $plan->name . ' has been activated!';
                 EmailService::sendEmail($user->email, $message);
-            }else{
+            } else {
                 $user = User::find($user_id);
                 $plan = Plan::find($data["plan_id"]);
-                $message = 'Your current payment plan has been upgraded to '. $plan->name ;
+                $message = 'Your current payment plan has been upgraded to ' . $plan->name;
                 EmailService::sendEmail($user->email, $message);
             }
         }
-        return $userData->update($data);
+        $return['userData'] = $userData->update($data);
+        return $return;
     }
 }

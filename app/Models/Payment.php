@@ -18,6 +18,7 @@ class Payment extends Model
         'payment_system',
         'quantity',
         'status',
+        'error',
 
         'created_at',
         'updated_at'

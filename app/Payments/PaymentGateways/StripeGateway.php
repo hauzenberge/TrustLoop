@@ -56,17 +56,22 @@ class StripeGateway implements PaymentGateway
 
             return Payment::create($data);
         } catch (CardException $e) {
-            // dd($e);
+            //dd($e);
             $error = $e->getError();
             $errorMessage = $error->message;
+           // dd($errorMessage);
 
             $data['status'] = 'unpaid';
+            $data['error'] = $errorMessage;
 
             $user = User::find($user_id);
-           
+
             $message = 'Your payment failed. Subscription plan has been suspended.';
             EmailService::sendEmail($user->email, $message);
-            return Payment::create($data);
+            return [
+                'payment' => Payment::create($data),
+                'error' => $e
+            ];
         }
     }
 

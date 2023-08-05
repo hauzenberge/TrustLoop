@@ -75,7 +75,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
         Route::get('cancel/{planLog}', 'EnablePlanController@cancel');
     });
 
-    Route::get('/user-card', 'EnablePlanController@userCard');
+    Route::get('/user-card', 'EnablePlanController@userCard')->name('user-card');
     Route::post('save-card', 'EnablePlanController@saveCard');
 });
 

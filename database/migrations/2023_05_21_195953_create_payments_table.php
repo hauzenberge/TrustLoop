@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('payment_system', ['paypal', 'stripe'])->default('stripe');
             $table->decimal('quantity', 8, 2);
             $table->enum('status', ['paid', 'unpaid', 'canceled'])->default('unpaid');
+            $table->string('error')->nullable();
 
             $table->timestamps();
 

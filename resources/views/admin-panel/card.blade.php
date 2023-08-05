@@ -55,6 +55,10 @@
                                 <input name="cvv" type="text" class="form-control" id="cvv" placeholder="Enter CVV">
                             </div>
                         </div>
+
+                        @if($error != null)
+                        <x-input-error :messages="$error" class="mt-2" style="color:red;" />
+                        @endif
                         <br>
                         <div class="form-group d-flex justify-content-between">
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -65,6 +69,7 @@
                             @endif
                         </div>
                     </form>
+                    {{-- dd($error) --}}
                 </div>
             </div>
         </div>

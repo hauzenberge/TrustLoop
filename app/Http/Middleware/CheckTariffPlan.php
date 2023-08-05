@@ -59,7 +59,6 @@ class CheckTariffPlan
                 $endOfMonth = Carbon::now();
 
                 $payment = Payment::where('user_id', $user->id)
-
                     ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
                     ->latest()
                     ->first();

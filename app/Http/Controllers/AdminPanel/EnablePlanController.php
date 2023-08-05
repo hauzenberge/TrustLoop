@@ -12,8 +12,10 @@ use App\Models\User;
 use App\Services\UserDataService;
 use App\Models\Card;
 use App\Models\SurveyResponse;
+use App\Models\Payment;
 
 use App\Models\EnablePlanLog;
+use Carbon\Carbon;
 
 class EnablePlanController extends Controller
 {
@@ -79,18 +81,33 @@ class EnablePlanController extends Controller
         return redirect('user-card');
     }
 
-    public function userCard()
+    public function userCard($error = null)
     {
         $user = Auth::user();
-       // dd($user->userData->plan);
-        $planLogs = EnablePlanLog::where('user_id', $user->id)
-        ->with('plan')
-        ->first();
+
+        $error = null;
+
+        $startOfMonth = Carbon::now()->subMonth();
+        $endOfMonth = Carbon::now();
+
+        $payment = Payment::where('user_id', $user->id)
+            ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+            ->latest()
+            ->first();
         
+        if($payment != null){
+            $error = $payment->error;
+        }
+
+        $planLogs = EnablePlanLog::where('user_id', $user->id)
+            ->with('plan')
+            ->first();
+
         return view('admin-panel.card', [
             'title' => 'User Card',
             'planLog' => $planLogs,
-            'plan' => $user->userData->plan
+            'plan' => $user->userData->plan,
+            'error' => $error
         ]);
     }
 
@@ -123,7 +140,7 @@ class EnablePlanController extends Controller
         ]);
         $user = Auth::user();
 
-        UserDataService::update($user->id, $user->userData, ['card_id' => $card->id]);
+        $userData = UserDataService::update($user->id, $user->userData, ['card_id' => $card->id]);
 
         $user_responce = SurveyResponse::where('user_id', $user->id)->first();
         if ($user_responce == null) {
