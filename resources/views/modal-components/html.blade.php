@@ -12,6 +12,8 @@
                 <div class="modal" id="myModal">
                     <div class="modal-dialog">
                         <div class="modal-content" id="demo-content">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 0; right: 0;"></button>
+
                             <form @submit.prevent="onSubmit" id="demo-form" v-if="showForm">
 
                                 <div class="form-group d-flex flex-column">
