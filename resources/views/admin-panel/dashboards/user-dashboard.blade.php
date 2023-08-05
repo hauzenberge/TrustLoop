@@ -21,7 +21,7 @@
                 </h2>
 
                 <!-- Dropdown -->
-                <div class="dropdown">
+                <div class="dropdown" style="display:none;">
                     <a href="javascript: void(0);" class="dropdown-toggle no-arrow text-gray-500" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="14" width="14">
                             <g>
