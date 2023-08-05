@@ -13,6 +13,7 @@ class SurveyController extends Controller
     private function questionList($user)
     {
         $survey = $user->survey()->first();
+       // dd($survey->hide_for_months);
         $questions = $user->survey()
             ->with('questions')
             ->first()

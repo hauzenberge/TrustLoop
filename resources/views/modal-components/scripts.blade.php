@@ -3,7 +3,7 @@
     var app = new Vue({
         el: '#app',
         data: {
-            showForm: true,
+            showForm: false,
             showFeedBeck: false,
             FeedBeckMassege: '',
             rating: null,
@@ -71,26 +71,49 @@
             },
 
             onCloseModal() {
-                // Встановлюємо дату закриття модального вікна в localStorage
                 const currentDate = new Date();
                 localStorage.setItem('modalClosedDate', currentDate.toISOString());
+                this.showForm = false;
+
+                // Update localStorage with new hide_modal and hide_for_months values
+                this.updateLocalStorage();
             },
 
             shouldShowModal() {
-                // Перевіряємо, чи існує дата закриття модального вікна в localStorage
                 const modalClosedDate = localStorage.getItem('modalClosedDate');
+                const storedHideModal = localStorage.getItem('hideModal');
+                const storedHideForMonths = localStorage.getItem('hideForMonths');
 
-                // Якщо дата існує і була закрита протягом 30 днів, не показуємо модальне вікно
-                if (modalClosedDate) {
-                    const currentDate = new Date();
-                    const lastClosedDate = new Date(modalClosedDate);
-                    const timeDiff = Math.abs(currentDate - lastClosedDate);
-                    const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                if (this.survey.hide_modal === 0) {
+                    // If hide_modal value from API is 0, show the modal
+                    this.showForm = true;
+                } else {
+                    // If hide_modal value from API is not 0, check if we need to hide the modal
+                    if (!modalClosedDate || !storedHideModal || !storedHideForMonths) {
+                        // If there are no stored values, show the modal
+                        this.showForm = true;
+                    } else {
+                        const currentDate = new Date();
+                        const lastClosedDate = new Date(modalClosedDate);
+                        const timeDiff = Math.abs(currentDate - lastClosedDate);
+                        const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                        const storedHideForMonthsInt = parseInt(storedHideForMonths);
 
-                    if (daysDiff <= 30) {
-                        this.showForm = false;
+                        if (daysDiff > storedHideForMonthsInt) {
+                            // If enough time has passed, show the modal
+                            this.showForm = true;
+                        } else {
+                            // If not enough time has passed, hide the modal
+                            this.showForm = false;
+                        }
                     }
                 }
+            },
+
+            updateLocalStorage() {
+                // Save hide_modal and hide_for_months values to localStorage
+                localStorage.setItem('hideModal', this.survey.hide_modal);
+                localStorage.setItem('hideForMonths', this.survey.hide_for_months);
             },
 
             onSubmit: function() {
@@ -144,14 +167,14 @@
                         vm.questions[vm.rateAs_index].value = parseInt(storedRating);
                     }
 
-                    // Перевіряємо, чи показувати модальне вікно
+                    // Call the method to update localStorage with new hide_modal and hide_for_months values
+                    vm.updateLocalStorage();
                     vm.shouldShowModal();
                 } catch (error) {
                     console.log(error);
                 }
             }
             fetchData();
-            console.log(this.showForm);
         },
     });
 </script>

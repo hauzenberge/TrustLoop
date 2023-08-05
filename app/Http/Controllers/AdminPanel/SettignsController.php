@@ -99,6 +99,8 @@ class SettignsController extends Controller
             'font_id' => 'required',
             'style' => 'sometimes',
 
+            'hide_modal' => 'sometimes',
+
             'link_url' => 'nullable|url',
         ]);
         if ($request->input("link_url") == null) {
@@ -110,6 +112,12 @@ class SettignsController extends Controller
         if ($request->input("static_request_widget") != null) {
             $validate["static_request_widget"] = true;
         } else $validate["static_request_widget"] = false;
+
+        //dd($request->input("hide_modal"));
+
+        if ($request->input("hide_modal") != null) {
+            $validate["hide_modal"] = true;
+        } else $validate["hide_modal"] = false;
 
         if ($request->input("exit_intent_feedback_popup") != null) {
             $validate["exit_intent_feedback_popup"] = true;

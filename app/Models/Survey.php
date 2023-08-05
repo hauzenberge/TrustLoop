@@ -29,8 +29,10 @@ class Survey extends Model
         'style',
 
         'link_url',
-
         'static_request',
+
+        'hide_modal',     
+        'hide_for_months',
 
         'created_at',
         'updated_at'
