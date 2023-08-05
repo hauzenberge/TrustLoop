@@ -196,6 +196,7 @@ class DashboardController extends Controller
                         'title' => $title,
                         'active' => 'dashboard',
                         'anwers' => $anwers,
+                        'rewiews_captured' => array_sum($counts),
                         'chart' => [
                             'daysOfWeek' => $daysOfWeek,
                             'counts' => $counts

@@ -4,7 +4,7 @@
             <div class="survey-container" v-if="survey?.id">
 
                 <!-- Button trigger modal -->
-                <button id="modal_button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" {!! $button_style !!}>
+                <button v-if="showForm" id="modal_button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" {!! $button_style !!}>
                     Leave a review
                 </button>
 
@@ -27,8 +27,9 @@
                                         </div>
                                     </label>
 
-                                    <b-form-rating v-bind:id="questions[rateAs_index].question_id" size="sm" variant="warning" color="#C2C2C2" no-border v-model="questions[rateAs_index].value" :max="5" :inline="true" @change="saveRating">
-                                    </b-form-rating>
+                                    <b-form-rating  
+                                    v-bind:id="questions[rateAs_index].question_id" size="sm" variant="warning" color="#C2C2C2" v-model="questions[rateAs_index].value" :max="5" :inline="true" @change="saveRating"></b-form-rating>
+
 
                                 </div>
 
