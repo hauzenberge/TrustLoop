@@ -47,7 +47,7 @@ class AdminRoleSeeder extends Seeder
             'role' => 'admin'
         ]);
         
-        /*
+    
         $firstNames = ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank', 'Grace', 'Henry', 'Isabella', 'Jack', 'Kate', 'Liam', 'Mia', 'Noah', 'Olivia', 'Penny', 'Quinn', 'Ruby', 'Samantha', 'Tom', 'Ursula', 'Violet', 'William', 'Xander', 'Yvonne', 'Zachary'];
         $lastNames = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson'];
 
@@ -81,6 +81,6 @@ class AdminRoleSeeder extends Seeder
                 UserDataService::update($user->id, $user->userData, ['card_id' => $card->id]);
             }
         }
-        */
+      
     }
 }
