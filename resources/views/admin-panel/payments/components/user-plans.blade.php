@@ -2,7 +2,7 @@
 <div class="d-inline-block border border-primary rounded bg-white py-3 px-3 px-lg-6 mb-6">
     <div class="d-flex align-items-baseline">
         <div class="fs-3 me-4">Startup</div>
-        <div>Up to 10 rating interactions = <span class="fw-semibold">free</span></div>
+        <div>Up to {{ App\Models\Plan::where('alias', 'trial')->first()->max_request }} rating interactions = <span class="fw-semibold">free</span></div>
     </div>
 </div>
 @endif

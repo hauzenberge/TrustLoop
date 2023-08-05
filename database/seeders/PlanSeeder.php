@@ -23,7 +23,7 @@ class PlanSeeder extends Seeder
                 'alias' => 'trial',
 
                 'price' => 0,
-                'description' => '10 interactions / month',
+                'description' => '20 interactions / month',
 
                 'features' => json_encode([
                     'Access to basic features',
@@ -33,7 +33,7 @@ class PlanSeeder extends Seeder
                     'Basic email support'
                 ]),
 
-                'max_request' => 10
+                'max_request' => 20
             ],
             [
                 'name' => 'Growth',
