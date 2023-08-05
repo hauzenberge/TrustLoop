@@ -27,7 +27,7 @@
             }]
         },
         options: {
-            hoverBackgroundColor: '#FFFFFF',
+            hoverBackgroundColor: '#5083C1',
             scales: {
                 x: {
                     grid: {
