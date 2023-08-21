@@ -51,7 +51,9 @@
                                 <input type="month" id="expiry_date" name="expiry-date" min="2023-01" max="2040-12" class="form-control" id="expiry-date" placeholder="MM / YY">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="cvv">CVV</label>
+                                <label for="cvv">CVV </label>
+
+                            
                                 <input name="cvv" type="text" class="form-control" id="cvv" placeholder="Enter CVV">
                             </div>
                         </div>
@@ -64,7 +66,7 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                             @if($planLog != null)
                             @if($planLog->survey_responses != intval($planLog->plan->max_request))
-                            <a href="{{ url('enable-plan/cancel/' . $planLog->id) }}" class="btn btn-danger">Cancel</a>
+                            <a href="{{ url('enable-plan/cancel/' . $planLog->id . '/' . app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName()) }}" class="btn btn-danger">Cancel</a>
                             @endif
                             @endif
                         </div>

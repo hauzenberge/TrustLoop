@@ -66,13 +66,13 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'App\Http\Con
     });  
 
     Route::prefix('enable-plan')->group(function () {
-        Route::get('/', 'EnablePlanController@index');
+        Route::get('/', 'EnablePlanController@index')->name('enable-plan');
 
         Route::get('/update', 'EnablePlanController@update');
 
         Route::get('/choose/{user}/{plan}', 'EnablePlanController@choose');
 
-        Route::get('cancel/{planLog}', 'EnablePlanController@cancel');
+        Route::get('cancel/{planLog}/{prev_route}', 'EnablePlanController@cancel');
     });
 
     Route::get('/user-card', 'EnablePlanController@userCard')->name('user-card');

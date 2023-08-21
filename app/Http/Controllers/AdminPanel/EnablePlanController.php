@@ -81,7 +81,7 @@ class EnablePlanController extends Controller
         return redirect('user-card');
     }
 
-    public function userCard($error = null)
+    public function userCard(Request $request, $error = null)
     {
         $user = Auth::user();
 
@@ -111,8 +111,9 @@ class EnablePlanController extends Controller
         ]);
     }
 
-    public function cancel(EnablePlanLog $planLog)
+    public function cancel(EnablePlanLog $planLog, $prev_route)
     {
+        //dd($prev_route);
         $user = $planLog->user;
         $plan = $planLog->plan;
 
@@ -126,7 +127,7 @@ class EnablePlanController extends Controller
 
         $planLog->delete();
 
-        return redirect('dashboard');
+        return redirect($prev_route);
     }
 
     public function saveCard(Request $request)
