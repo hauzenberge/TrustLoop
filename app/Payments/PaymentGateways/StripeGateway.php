@@ -41,11 +41,11 @@ class StripeGateway implements PaymentGateway
             'payment_system' => 'stripe',
             'quantity' => $amount
         ];
-        $card = Card::find($card_id);
-        $token = $this->generateToken($card->card_number, $card->exp_month, $card->exp_year, intval($card->cvc));
-
 
         try {
+            $card = Card::find($card_id);
+            $token = $this->generateToken($card->card_number, $card->exp_month, $card->exp_year, intval($card->cvc));
+
             $charge = \Stripe\Charge::create([
                 'amount' => intval($amount * 100),
                 'currency' => 'USD',
@@ -59,7 +59,7 @@ class StripeGateway implements PaymentGateway
             //dd($e);
             $error = $e->getError();
             $errorMessage = $error->message;
-           // dd($errorMessage);
+            // dd($errorMessage);
 
             $data['status'] = 'unpaid';
             $data['error'] = $errorMessage;

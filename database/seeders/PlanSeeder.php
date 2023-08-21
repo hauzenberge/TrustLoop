@@ -40,8 +40,8 @@ class PlanSeeder extends Seeder
 
                 'alias' => 'no_trial',
 
-                'price' => 27,
-                'description' => '25 interactions / month',
+                'price' => 100,
+                'description' => '100 interactions / month',
                 'features' => json_encode([
                     'Access to basic features',
                     'Basic reporting and analytics',

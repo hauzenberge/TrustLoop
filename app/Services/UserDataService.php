@@ -26,7 +26,6 @@ class UserDataService
                 $price = floatval($userData->plan->price);
                 $payment = PaymentFactory::create();
                 $return['return_payment'] =  $payment->pay($user_id, $price, $data['card_id']);
-                //dd($return_payment);
             }
         } else {
             if ($userData->plan_id == null) {
