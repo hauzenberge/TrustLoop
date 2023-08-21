@@ -1,4 +1,4 @@
-<div class="feedback-widget">
+<div class="feedback-widget" style="display:none;">
     <!-- Тут може бути ваш контент для відгуків -->
     <h3>{{ __('User Reviews') }}</h3>
     
