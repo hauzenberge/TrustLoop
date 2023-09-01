@@ -127,14 +127,22 @@
                         if (this.questions[this.rateAs_index].value == 5 && response.data.redirect_url != null) {
                             window.location.assign(response.data.redirect_url);
                         } else {
+
                             this.showForm = false;
                             this.showFeedBeck = true;
                             this.FeedBeckMassege = response.data.text;
+
+                            // Update localStorage with new hide_modal and hide_for_months values
+                            this.updateLocalStorage();
+                            this.showForm = false;
                         }
                     })
                     .catch(error => {
                         console.log(error);
-                        // handle error
+
+                        // Update localStorage with new hide_modal and hide_for_months values
+                        this.updateLocalStorage();
+                        this.showForm = false;
                     });
             },
         },

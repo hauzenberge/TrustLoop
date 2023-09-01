@@ -37,6 +37,7 @@ class Survey extends Model
         'created_at',
         'updated_at'
     ];
+    
 
     public function font()
     {
@@ -60,7 +61,17 @@ class Survey extends Model
         if ($value == null) {
             return 'Thank you!';
         }else return $value;
-    }    
+    }  
+    
+    public function getPopupTextAttribute($value)
+    {
+        return "What do you think so far?";
+    }
+
+    public function getReviewTextAttribute($value)
+    {
+        return "Thank you! If you have time, please leave us a review.";
+    }
 
     /*
     public function getLinkUrlAttribute($value)
