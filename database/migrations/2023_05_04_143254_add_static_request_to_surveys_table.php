@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('surveys', function (Blueprint $table) {
             $table->boolean('static_request_widget')->default(true);
             $table->boolean('exit_intent_feedback_popup')->default(true);
-            $table->boolean('hide_modal')->default(false);        
+            $table->boolean('hide_modal')->default(true);        
             $table->integer('hide_for_months')->default(30); 
         });
         
