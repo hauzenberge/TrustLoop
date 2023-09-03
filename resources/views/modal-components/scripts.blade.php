@@ -114,6 +114,10 @@
                 // Save hide_modal and hide_for_months values to localStorage
                 localStorage.setItem('hideModal', this.survey.hide_modal);
                 localStorage.setItem('hideForMonths', this.survey.hide_for_months);
+
+                // Save the current date to localStorage
+                const currentDate = new Date();
+                localStorage.setItem('modalClosedDate', currentDate.toISOString());
             },
 
             onSubmit: function() {
@@ -135,14 +139,11 @@
                             // Update localStorage with new hide_modal and hide_for_months values
                             this.updateLocalStorage();
                             this.showForm = false;
+                            $('#myModal').modal('hide');
                         }
                     })
                     .catch(error => {
                         console.log(error);
-
-                        // Update localStorage with new hide_modal and hide_for_months values
-                        this.updateLocalStorage();
-                        this.showForm = false;
                     });
             },
         },
@@ -158,11 +159,15 @@
                     vm.rateAs_index = vm.questions.findIndex(
                         value => value.text === 'Rate Us' || value.type === 'rating'
                     );
+                    console.log(response.data.survey.hide_modal);
+                    console.log(response.data.survey.hide_for_months);
 
                     // Перевіряємо, чи є збережені значення в localStorage
                     const storedData = JSON.parse(localStorage.getItem('userResponses'));
                     const storedRating = localStorage.getItem('userRating');
 
+                    console.log(localStorage.getItem('hideModal'));
+                    console.log(localStorage.getItem('hideForMonths'));
                     // Якщо значення існують, встановлюємо їх в модель
                     if (storedData) {
                         vm.questions.forEach(question => {
