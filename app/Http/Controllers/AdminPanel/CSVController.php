@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use League\Csv\Writer;
 use App\Models\Answer;
+use App\Models\Question;
 
 class CSVController extends Controller
 {
@@ -35,7 +36,8 @@ class CSVController extends Controller
                 })
                     ->values()
                     ->map(function ($item) {
-                        return $item->question->text . ' : ' . $item->text;
+                        //return $item->question->text . ' : ' . $item->text;
+                        return  $item->text;
                     })
                     ->toArray();
 
@@ -46,20 +48,41 @@ class CSVController extends Controller
                 return [
                     'rate_as' => intval($rate_as),
                     'date' => $key,
-                    'all_questions' => $all_questions_string
+                    'all_questions' => $all_questions
                 ];
             });
 
+        //dd(Auth::user());
+        $questions = Question::where('survey_id', Auth::user()->survey_id)
+            ->where('type', '!=', 'rating')
+            ->get()
+            ->map(function ($item) {
+                //dd($item);
+                return $item->text;
+            })->toArray();
+        //dd($questions);
         $data = [
-            ['Review', 'Date', 'All Questions'],
+            //  [
+            'Review',
+            'Date',
+            //'All Questions'
+            //],
         ];
+        $data = [array_merge($data, $questions)];
+        //$data = $data + $questions;
+        // dd($data);
 
         foreach ($answers as $answer) {
+            if (count($answer['all_questions']) != 0) {
+
+                //dd($answer['all_questions']);
+            }
             $row = [
                 $answer['rate_as'],
                 $answer['date'],
-                json_encode($answer['all_questions']),
+                //json_encode($answer['all_questions']),
             ];
+            $row = array_merge($row, $answer['all_questions']);
 
             $data[] = $row;
         }
